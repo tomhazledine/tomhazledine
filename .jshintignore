@@ -1,0 +1,4 @@
+gulpfile.js
+uncompressed/js/jquery/*.js
+uncompressed/js/static/*.js
+uncompressed/js/vendor/*.js
