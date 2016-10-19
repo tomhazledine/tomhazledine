@@ -1,9 +1,8 @@
 [![Build Status](https://travis-ci.org/tomhazledine/tabularasa.svg?branch=master)](https://travis-ci.org/tomhazledine/tabularasa)
 
-# Tabula Rasa
+# Tom Hazledine
 
-Hi. I'm a starter theme called `Tabula Rasa`. I'm based on `_s` (or `underscores`, if you like), the super-smart [starter theme built and maintained by the folks at Automattic](http://underscores.me).
-
+This is a WordPress theme for my personal blog, portfolio, and homepage. Rebuilt and imported from former static-site blog.
 
 ## Gulp
 
