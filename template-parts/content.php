@@ -27,6 +27,14 @@
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
+
+		<?php
+		// Get reading time.
+		$reading_time = reading_time( get_the_content() );
+		$reading_time_string = parse_read_time( $reading_time );
+		print_pre( $reading_time_string );
+		?>
+		
 		<?php
 			the_content( sprintf(
 				/* translators: %s: Name of current post. */

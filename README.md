@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/tomhazledine/tabularasa.svg?branch=master)](https://travis-ci.org/tomhazledine/tabularasa)
-
 # Tom Hazledine
 
 This is a WordPress theme for my personal blog, portfolio, and homepage. Rebuilt and imported from former static-site blog.
