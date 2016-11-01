@@ -9,7 +9,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Tabula_Rasa
+ * @package Tom_Hazledine_Theme
  */
 
 get_header(); ?>

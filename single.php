@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package Tabula_Rasa
+ * @package Tom_Hazledine_Theme
  */
 
 get_header(); ?>

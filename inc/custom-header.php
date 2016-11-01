@@ -12,33 +12,33 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
- * @package Tabula_Rasa
+ * @package Tom_Hazledine_Theme
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses tabularasa_header_style()
+ * @uses tomhazledine_theme_header_style()
  */
-function tabularasa_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'tabularasa_custom_header_args', array(
+function tomhazledine_theme_custom_header_setup() {
+	add_theme_support( 'custom-header', apply_filters( 'tomhazledine_theme_custom_header_args', array(
 		'default-image'          => '',
 		'default-text-color'     => '000000',
 		'width'                  => 1000,
 		'height'                 => 250,
 		'flex-height'            => true,
-		'wp-head-callback'       => 'tabularasa_header_style',
+		'wp-head-callback'       => 'tomhazledine_theme_header_style',
 	) ) );
 }
-add_action( 'after_setup_theme', 'tabularasa_custom_header_setup' );
+add_action( 'after_setup_theme', 'tomhazledine_theme_custom_header_setup' );
 
-if ( ! function_exists( 'tabularasa_header_style' ) ) :
+if ( ! function_exists( 'tomhazledine_theme_header_style' ) ) :
 	/**
 	 * Styles the header image and text displayed on the blog.
 	 *
-	 * @see tabularasa_custom_header_setup().
+	 * @see tomhazledine_theme_custom_header_setup().
 	 */
-	function tabularasa_header_style() {
+	function tomhazledine_theme_header_style() {
 		$header_text_color = get_header_textcolor();
 
 		/**

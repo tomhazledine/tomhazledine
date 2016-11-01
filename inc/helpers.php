@@ -1,8 +1,8 @@
 <?php
 /**
- * Tabula Rasa Helpers
+ * Tom Hazledine Theme Helpers
  *
- * @package Tabula_Rasa
+ * @package Tom_Hazledine_Theme
  */
 
 /**

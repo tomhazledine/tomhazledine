@@ -1,13 +1,13 @@
 <?php
 /**
- * Tabula Rasa functions and definitions.
+ * Tom Hazledine Theme functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Tabula_Rasa
+ * @package Tom_Hazledine_Theme
  */
 
-if ( ! function_exists( 'tabularasa_setup' ) ) :
+if ( ! function_exists( 'tomhazledine_theme_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -15,14 +15,14 @@ if ( ! function_exists( 'tabularasa_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function tabularasa_setup() {
+	function tomhazledine_theme_setup() {
 		/**
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Tabula Rasa, use a find and replace
-		 * to change 'tabularasa' to the name of your theme in all the template files.
+		 * If you're building a theme based on Tom Hazledine Theme, use a find and replace
+		 * to change 'tomhazledine_theme' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'tabularasa', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'tomhazledine_theme', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -44,7 +44,7 @@ if ( ! function_exists( 'tabularasa_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'primary' => esc_html__( 'Primary', 'tabularasa' ),
+			'primary' => esc_html__( 'Primary', 'tomhazledine_theme' ),
 		) );
 
 		/*
@@ -60,13 +60,13 @@ if ( ! function_exists( 'tabularasa_setup' ) ) :
 		) );
 
 		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'tabularasa_custom_background_args', array(
+		add_theme_support( 'custom-background', apply_filters( 'tomhazledine_theme_custom_background_args', array(
 			'default-color' => 'ffffff',
 			'default-image' => '',
 		) ) );
 	}
 endif;
-add_action( 'after_setup_theme', 'tabularasa_setup' );
+add_action( 'after_setup_theme', 'tomhazledine_theme_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -75,28 +75,28 @@ add_action( 'after_setup_theme', 'tabularasa_setup' );
  *
  * @global int $content_width
  */
-function tabularasa_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'tabularasa_content_width', 640 );
+function tomhazledine_theme_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'tomhazledine_theme_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'tabularasa_content_width', 0 );
+add_action( 'after_setup_theme', 'tomhazledine_theme_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function tabularasa_widgets_init() {
+function tomhazledine_theme_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'tabularasa' ),
+		'name'          => esc_html__( 'Sidebar', 'tomhazledine_theme' ),
 		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'tabularasa' ),
+		'description'   => esc_html__( 'Add widgets here.', 'tomhazledine_theme' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
 }
-add_action( 'widgets_init', 'tabularasa_widgets_init' );
+add_action( 'widgets_init', 'tomhazledine_theme_widgets_init' );
 
 /**
  * Enqueuing Scripts & Styles.

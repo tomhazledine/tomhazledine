@@ -2,7 +2,7 @@
 /**
  * Custom Filters & Actions
  *
- * @package Tabula_Rasa
+ * @package Tom_Hazledine_Theme
  */
 
 /**
