@@ -32,7 +32,7 @@
 		// Get reading time.
 		$reading_time = reading_time( get_the_content() );
 		$reading_time_string = parse_read_time( $reading_time );
-		print_pre( $reading_time_string );
+		echo '<span class="readingTime">Read time: ' . $reading_time_string . '</span>';
 		?>
 		
 		<?php

@@ -37,7 +37,7 @@ function print_pre( $stuff_to_print ) {
 function reading_time( $content ) {
 
 	// Predefined words-per-minute rate.
-	$words_per_minute = 350;
+	$words_per_minute = 225;
 	$words_per_second = $words_per_minute / 60;
 
 	// Count the words in the content.
@@ -74,7 +74,7 @@ function parse_read_time( $seconds ) {
 	if ( $seconds < 60 ) {
 
 		// If the time is less than 60 seconds, we'll call it a 1min read.
-		$string_output .= '1 minute read';
+		$string_output .= '1 minute';
 
 	} else {
 		if ( $seconds < 120 ) {
@@ -88,15 +88,16 @@ function parse_read_time( $seconds ) {
 			$minutes = floor( $seconds / 60 );
 
 			// And output our minutes, plural.
-			$string_output .= $minutes . ' minute';
+			$string_output .= $minutes . ' minutes';
 
 		}
 
 		if ( 0 !== $seconds % 60 ) {
 			$string_output .= ', ' . floor( $seconds % 60 ) . ' second';
+			if ( 1 < floor( $seconds % 60 ) ) {
+				$string_output .= 's';
+			}
 		}
-
-		$string_output .= ' read';
 	}
 
 	return $string_output;
