@@ -61,3 +61,11 @@ function custom_excerpt_length( $length ) {
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
+
+/**
+ * Disable the Admin Bar
+ */
+// Disable the Admin Bar By Default
+add_filter( 'show_admin_bar', '__return_false' );
+// Remove the Admin Bar preference in user profile to remove temptation...
+remove_action( 'personal_options', '_admin_bar_preferences' );
