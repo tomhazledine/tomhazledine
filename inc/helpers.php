@@ -65,6 +65,10 @@ function reading_time( $content ) {
  */
 function parse_read_time( $seconds ) {
 
+	/**
+	 * Add new human-readable output here.
+	 */
+	
 	// String to store our output.
 	$string_output = '';
 
