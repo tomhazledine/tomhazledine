@@ -65,3 +65,14 @@ add_action('init', 'removeHeadLinks');
 
 // Remove WP version # from head
 remove_action('wp_head', 'wp_generator');
+
+/**
+ * Remove jQuery Migrate (used to ensure backwards compatibility
+ * for plugins etc. that use the older version of jQuery).
+ */
+add_action( 'wp_default_scripts', function( $scripts ) {
+    if ( ! empty( $scripts->registered['jquery'] ) ) {
+        $jquery_dependencies = $scripts->registered['jquery']->deps;
+        $scripts->registered['jquery']->deps = array_diff( $jquery_dependencies, array( 'jquery-migrate' ) );
+    }
+} );
