@@ -28,11 +28,13 @@ $grey:#dad8d2;
 $primary:#00b7c6;
 
 // Selection Colours
+$selection_primary:$white;
+$selection_secondary:$black;
 ::selection{
-  color:$white;
-  background:$black;
+  color:$selection_primary;
+  background:$selection_secondary;
 }
 a::selection{
-  color:$black;
-  background:$white;
+  color:$selection_secondary;
+  background:$selection_primary;
 }

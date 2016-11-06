@@ -105,17 +105,17 @@
 //------------------------------------//
 
 // // 01. SETTINGS
-// @import "settings.colours";
-// @import "settings.fonts";
-// @import "settings.breakpoints";
+@import "settings.colours";
+@import "settings.fonts";
+@import "settings.breakpoints";
 
 // // 02. TOOLS
-// @import "tools.placeholders";
+@import "tools.placeholders";
 // @import "tools.mixins";
+@import "_s_sass/modules/accessibility";
 
 // // 03. GENERIC
-// //@import 'generic.normalize';
-// @import "generic.reset";
+@import "generic.reset";
 
 // // 04. BASE
 // @import "base.general";
