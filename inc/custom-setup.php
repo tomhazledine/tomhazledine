@@ -44,9 +44,24 @@ function disable_emojis_tinymce( $plugins ) {
     }
 }
 
+add_filter( 'emoji_svg_url', '__return_false' );
+
+
 /**
- * Remove unwanted Rest API links from head.
+ * Clean up the <head>
  */
+
+// Remove unwanted Rest API links from head.
 remove_action( 'wp_head', 'rest_output_link_wp_head' );
 remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
 remove_action( 'template_redirect', 'rest_output_link_header', 11, 0 );
+
+// Remove unwanted links
+function removeHeadLinks() {
+    remove_action('wp_head', 'rsd_link');
+    remove_action('wp_head', 'wlwmanifest_link');
+}
+add_action('init', 'removeHeadLinks');
+
+// Remove WP version # from head
+remove_action('wp_head', 'wp_generator');
