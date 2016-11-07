@@ -1,7 +1,9 @@
 body {
-    max-width: 50em;
+    max-width: 54em;
     padding: 2em .5em;
     margin: 0 auto;
+    color:$black;
+    background:$white;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -10,12 +12,15 @@ h1,h2,h3,h4,h5,h6{
 }
 
 h1{
-    font-size:1.3em;
-    padding-bottom:1em;
+    // font-size:1.3em;
+    padding-bottom:.2em;
+    margin-bottom:.5em;
+    display:block;
+    border-bottom:.1rem solid $black;
 }
 
 h2{
-    font-size:1.2em;
+    // font-size:1.2em;
 }
 
 h2,h3,h4,h5,h6{
@@ -23,7 +28,7 @@ h2,h3,h4,h5,h6{
 }
 
 p{
-    padding-bottom:1em;
+    margin-bottom:1em;
 }
 
 li{
