@@ -75,33 +75,26 @@ function parse_read_time( $seconds ) {
 	// Double-check we're using an integer.
 	$seconds = (int) $seconds;
 
+	// How many minutes?
+	$minute_count = floor( $seconds / 60 );
+
+	// Do we need an 's' on the end of 'minute'?
+	$minute_plural = $minute_count > 1 ? 's' : '';
+
+	// How many seconds?
+	$minute_remainder = $seconds % 60;
+
+
 	if ( $seconds < 60 ) {
 
 		// If the time is less than 60 seconds, we'll call it a 1min read.
-		$string_output .= '1 minute';
+		$string_output .= 'less than a minute.';
 
-	} else {
-		if ( $seconds < 120 ) {
-
-			// If the time is less than 120 seconds, we'll output a singular minute.
-			$string_output .= '1 minute';
-
-		} else {
-
-			// Calculate the number of whole minutes.
-			$minutes = floor( $seconds / 60 );
-
-			// And output our minutes, plural.
-			$string_output .= $minutes . ' minutes';
-
-		}
-
-		if ( 0 !== $seconds % 60 ) {
-			$string_output .= ', ' . floor( $seconds % 60 ) . ' second';
-			if ( 1 < floor( $seconds % 60 ) ) {
-				$string_output .= 's';
-			}
-		}
+	} elseif ( $minute_remainder < 3 || $minute_remainder > 57 ) {
+		$minuteCount = floor( $seconds / 60 );
+		$string_output .= 'bang-on ' . $minute_count . ' minute' . $minute_plural . '.';
+	} elseif ( $minute_remainder < 10 || $minute_remainder > 50 ) {
+		$string_output .= $minute_count . ' minutes (ish).';
 	}
 
 	return $string_output;
