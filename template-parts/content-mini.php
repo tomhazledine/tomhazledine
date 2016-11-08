@@ -14,7 +14,7 @@
 
         if ( 'post' === get_post_type() ) : ?>
         <div class="entry-meta">
-            <?php tomhazledine_theme_posted_on(); ?>
+            <?php //tomhazledine_theme_posted_on(); ?>
         </div><!-- .entry-meta -->
         <?php
         endif; ?>
@@ -26,11 +26,11 @@
         // Get reading time.
         $reading_time = reading_time( get_the_content() );
         $reading_time_string = parse_read_time( $reading_time );
-        echo '<span class="readingTime">Read time: ' . $reading_time_string . '</span>';
+        echo '<span class="readingTime"><em>Read time: ' . $reading_time_string . '</em></span>';
         ?>
         
         <?php
-            the_excerpt();
+            // the_excerpt();
         ?>
     </div><!-- .entry-content -->
 
