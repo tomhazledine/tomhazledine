@@ -64,10 +64,6 @@ function reading_time( $content ) {
  * @return  string Formatted output.
  */
 function parse_read_time( $seconds ) {
-
-	/**
-	 * Add new human-readable output here.
-	 */
 	
 	// String to store our output.
 	$string_output = '';
@@ -77,9 +73,6 @@ function parse_read_time( $seconds ) {
 
 	// How many minutes?
 	$minute_count = floor( $seconds / 60 );
-
-	// Do we need an 's' on the end of 'minute'?
-	$minute_plural = $minute_count > 1 ? 's' : '';
 
 	// How many seconds?
 	$minute_remainder = $seconds % 60;
@@ -147,6 +140,8 @@ function parse_read_time( $seconds ) {
 
 	} elseif ( $minute_remainder < 10 || $minute_remainder > 50 ) {
 		$string_output .= $minute_count . ' minutes (ish).';
+	} else {
+		$string_output .= 'something like ' . $minute_count . ' minutes.';
 	}
 
 	return $string_output;
