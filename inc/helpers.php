@@ -84,15 +84,67 @@ function parse_read_time( $seconds ) {
 	// How many seconds?
 	$minute_remainder = $seconds % 60;
 
+	/**
+	 * Specific responses for a range
+	 * of times up to two minutes:
+	 */
+	if ( $seconds < 30 ) {
 
-	if ( $seconds < 60 ) {
+		$string_output .= 'hardly any time at all.';
 
-		// If the time is less than 60 seconds, we'll call it a 1min read.
+	} elseif  ( $seconds < 50 ) {
+		
 		$string_output .= 'less than a minute.';
 
-	} elseif ( $minute_remainder < 3 || $minute_remainder > 57 ) {
-		$minuteCount = floor( $seconds / 60 );
-		$string_output .= 'bang-on ' . $minute_count . ' minute' . $minute_plural . '.';
+	} elseif  ( $seconds < 55 ) {
+		
+		$string_output .= 'nearly a minute.';
+
+	} elseif  ( $seconds < 65 ) {
+		
+		$string_output .= 'one minute dead.';
+
+	} elseif  ( $seconds < 85 ) {
+		
+		$string_output .= 'a minute and a bit.';
+
+	} elseif  ( $seconds < 95 ) {
+		
+		$string_output .= 'roughly a minute and a half.';
+
+	} elseif  ( $seconds < 120 ) {
+		
+		$string_output .= 'less than two minutes.';
+
+	/**
+	 * Dynamic responses for a variety
+	 * of times over two minutes:
+	 */
+	} elseif ( $minute_remainder < 2 || $minute_remainder > 58 ) {
+
+		// If we're within +/- 2 seconds of a minute:
+		$string_output .= $minute_count . ' minutes, on the nose.';
+
+	} elseif ( $minute_remainder > 50 ) {
+
+		// If we're within less than 10 seconds short of any minute:
+		$string_output .= 'just shy of ' . $minute_count . ' minutes.';
+
+	} elseif ( $minute_remainder < 10 ) {
+
+		// If we're within less than 10 seconds over any minute:
+		$string_output .= 'a little over ' . $minute_count . ' minutes.';
+
+	} elseif ( $minute_remainder < 15 || $minute_remainder > 45 ) {
+
+		// If we're within +/- 15 seconds of any minute:
+		$string_output .= 'about ' . $minute_count . ' minutes.';
+
+	} elseif ( $minute_remainder > 20 && $minute_remainder < 40 ) {
+
+		// If we're within +/- 10 seconds of any half-minute:
+		$string_output .= $minute_count . ' and a half minutes.';
+
 	} elseif ( $minute_remainder < 10 || $minute_remainder > 50 ) {
 		$string_output .= $minute_count . ' minutes (ish).';
 	}
