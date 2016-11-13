@@ -21,20 +21,21 @@ $black:#111;
 
 // Project Colours
 $black:#4d4d4d;
-$mid:#9d9d9d;
-$white:#ffffff;
+$white:#fdfdfa;
 $cream:#efeeeb;
 $grey:#dad8d2;
+$greyDark:darken($grey,20%);
 $primary:#00b7c6;
 
 // Selection Colours
 $selection_primary:$white;
 $selection_secondary:$black;
+$selection_tertiary:$primary;
 ::selection{
   color:$selection_primary;
   background:$selection_secondary;
 }
 a::selection{
-  color:$selection_secondary;
-  background:$selection_primary;
+  color:$selection_primary;
+  background:$selection_tertiary;
 }
