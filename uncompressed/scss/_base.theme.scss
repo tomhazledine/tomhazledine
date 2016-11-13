@@ -4,10 +4,12 @@ body {
     margin: 0 auto;
     color:$black;
     background:$white;
+    font-family:$text;
 }
 
 h1,h2,h3,h4,h5,h6{
     font-weight:bold;
+    font-family:$display;
     // padding:0 0 1em 0;
 }
 
