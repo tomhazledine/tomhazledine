@@ -14,4 +14,8 @@
         </div>
 	</header>
 
+    <?php if ( ! is_front_page() ) { ?>
+        <a href="<?=get_site_url();?>/" class="home-link"><span class="">Home</span></a>
+    <?php } ?>
+
 	<div id="content" class="site-content">

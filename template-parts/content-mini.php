@@ -8,11 +8,13 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <code>
     <?php
     the_date('M Y');
-    echo ' – ';
+    // echo '';
     ?>
-    <h3><a href="<?= esc_url( get_permalink() ); ?>" rel="bookmark"><?php the_title(); ?></a></h3>
+    </code>
+    <a href="<?= esc_url( get_permalink() ); ?>" rel="bookmark"><?php the_title(); ?></a>
 
     <?php
     // Get reading time.
