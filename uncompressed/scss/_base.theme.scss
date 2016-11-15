@@ -9,7 +9,7 @@ body {
 }
 
 h1,h2,h3,h4,h5,h6{
-    // font-weight:bold;
+    font-weight:bold;
     // font-family:$display;
     // padding:0 0 1em 0;
 }
@@ -46,6 +46,118 @@ li{
     list-style-position:inside;
 }
 
+ol{
+    counter-reset:licounter;
+    li{
+        list-style-position:outside;
+        list-style:none;
+        margin-left:2em;
+        position:relative;
+        padding-bottom:1em;
+        &:before{
+            display:block;
+            position:absolute;
+            top:0em;
+            width:1em;
+            height:1em;
+            line-height:inherit;
+            left:-1em;
+            // font-size:1.2em;
+            content:'·';
+            content:counter(licounter);
+            counter-increment:licounter;
+            color:$greyDark;
+        }
+    }
+}
+
+ul{
+    li{
+        list-style:none;
+        margin-left:2em;
+        padding-bottom:.5em;
+        position:relative;
+        &:before{
+            display:block;
+            position:absolute;
+            top:.1em;
+            width:1em;
+            height:1em;
+            line-height:1;
+            left:-.6em;
+            font-size:1.2em;
+            content:'·';
+            color:$grey;
+        }
+    }
+}
+
+dl{
+    dt{
+        list-style:none;
+        margin-left:2em;
+        position:relative;
+        font-weight:bold;
+        &:before{
+            display:block;
+            position:absolute;
+            top:.1em;
+            width:1em;
+            height:1em;
+            line-height:1;
+            left:-.6em;
+            font-size:1.2em;
+            content:'·';
+            // content:counter(my-badass-counter);
+            // counter-increment:my-badass-counter;
+            color:$grey;
+        }
+    }
+    dd{
+        margin-left:2em;
+        padding-bottom:1em;
+    }
+}
+
+.entry-content{
+    a.jetpack-footnote{
+        box-shadow:none;
+        text-shadow:none;
+        color:$primary;
+        font-weight:bold;
+        &:focus{
+            outline:none;
+        }
+        &:hover{
+            box-shadow:none;
+            text-shadow:none;
+            background:$primary;
+            color:$white;
+        }
+    }
+    .footnotes li{
+        &:focus{
+            outline:none;
+            background:rgba($primary,.2);
+            a{
+                text-shadow:none;
+                box-shadow:none;
+                text-decoration:underline;
+            }
+            // box-shadow:$primary 0 0 0 .2em;
+        }
+    }
+    sup{
+        &:focus{
+            outline:none;
+            a.jetpack-footnote{
+                background:rgba($primary,.4);
+                // box-shadow:$primary 0 0 0 .2em;
+            }
+        }
+    }
+}
+
 pre{
     font-family:monospace;
     margin:1em 0;
@@ -62,18 +174,19 @@ em{
 }
 
 
-sub, sup {
-  // Specified in % so that the sup/sup is the right size relative to the surrounding text.
-  font-size:75%;
+sub,
+sup{
+    // Specified in % so that the sup/sup is the right size relative to the surrounding text.
+    font-size:75%;
 
-  // Zero out the line-height so that it doesn't interfere with the positioning that follows.
-  line-height:0;
+    // Zero out the line-height so that it doesn't interfere with the positioning that follows.
+    line-height:0;
 
-  // Where the magic happens: makes all browsers position the sup/sup properly, relative to the surrounding text.
-  position:relative;
+    // Where the magic happens: makes all browsers position the sup/sup properly, relative to the surrounding text.
+    position:relative;
 
-  // Note that if you're using Eric Meyer's reset.css, this is already set and you can remove this rule
-  // vertical-align: baseline;
+    // Note that if you're using Eric Meyer's reset.css, this is already set and you can remove this rule
+    // vertical-align: baseline;
 }
 
 sup {
@@ -108,30 +221,53 @@ code{
 
 .entry-content{
     margin-bottom:5em;
-    p:first-of-type{
-
-        &::first-letter,
-        a:first-letter{
-            font-size:3.2em;
-            line-height:1;
-            display:block;
-            float:left;
-            color:$primary;
-        }
-        a:hover:first-letter{
-            color:$cream;
-        }
-    // a:first-letter{
-    //     font-size:1.5em;
-    //     color:$primary;
-    //     transition:color,background;
-    //     transition-duration:.3s;
-    // }
-    // a:hover:first-letter{
-    //     color:$cream;
-    //     font-size:1.5em;
-    // }
+    hanging-punctuation:first;
+    
+    &::first-letter{
+        font-size:3.2em;
+        line-height:1;
+        display:block;
+        float:left;
+        color:$primary;
     }
+
+    a{
+        color:$black;
+        cursor:pointer;
+        text-shadow:
+            $white .0em .05em,
+            $white .0em -.05em,
+            $white -.05em 0em,
+            $white -.1em 0em,
+            $white .05em 0em,
+            $white -.05em .05em,
+            $white .05em .05em,
+            ;
+        box-shadow:
+            inset $white 0 -.2em 0 0,
+            inset $primary 0 -.25em 0 0;
+        transition:box-shadow .2s;
+        &:hover{
+            box-shadow:
+                inset $white 0 -.15em 0 0,
+                inset $primary 0 -.25em 0 0;
+        }
+    }
+
+    h2,h3,h4,h5,h6{
+        display:block;
+        padding-bottom:.5em;
+    }
+
+    blockquote{
+        font-style:italic;
+        padding:0 1em;
+        // border-left:.2em solid $grey;
+        box-shadow:
+        //     $white -.3em 0 0 0,
+            $grey -.2em 0 0 0;
+    }
+
 }
 
 .entry-header{

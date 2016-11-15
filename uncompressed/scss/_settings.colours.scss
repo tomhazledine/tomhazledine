@@ -38,4 +38,6 @@ $selection_tertiary:$primary;
 a::selection{
   color:$selection_primary;
   background:$selection_tertiary;
+  text-shadow:none !important;
+  box-shadow:none !important;
 }
