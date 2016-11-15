@@ -121,13 +121,15 @@
 // // 04. BASE
 // @import "base.general";
 @import "base.theme";
+@import "base.lists";
 // @import "base.forms";
 // @import "base.selects";
 // @import "base.checkbox";
 // @import "base.datepicker";
 
 // // 05. OBJECTS
-// @import "objects.pagination";
+@import "objects.footnotes";
+@import "objects.singlepost";
 
 // // 06. COMPONENTS
 
