@@ -1,8 +1,39 @@
 .site-header{
     position:fixed;
     width:100%;
-    top:0;
+    bottom:0;
     left:0;
-    background:$white;
-    border:.1rem solid $red;
+    background:white;
+    border-top:.1rem solid $grey;
+    z-index:2;
+    // box-shadow:rgba($black,.1) 0 -.1em .1em 0;
+}
+
+.header-inner{
+    max-width:54em;
+    padding:0.5em;
+    margin:0 auto;
+}
+
+.site-title{
+    display:inline;
+}
+
+.main-navigation{
+    display:inline;
+
+    > div{
+        display:inline;
+    }
+
+    ul{
+        display:inline;
+    }
+
+    li{
+        display:inline;
+        &:before{
+            display:none;
+        }
+    }
 }
