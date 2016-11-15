@@ -41,9 +41,9 @@ if ( ! function_exists( 'tomhazledine_theme_setup' ) ) :
         add_theme_support( 'post-thumbnails' );
 
         // This theme uses wp_nav_menu() in one location.
-        register_nav_menus( array(
-            'primary' => esc_html__( 'Primary', 'tomhazledine_theme' ),
-        ) );
+        // register_nav_menus( array(
+        //     'primary' => esc_html__( 'Primary', 'tomhazledine_theme' ),
+        // ) );
 
         /*
          * Switch default core markup for search form, comment form, and comments

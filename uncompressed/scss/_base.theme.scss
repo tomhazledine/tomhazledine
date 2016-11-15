@@ -23,9 +23,9 @@ h1{
     font-weight:bold;
     // font-size:1.3em;
     padding-bottom:.2em;
-    margin-bottom:.5em;
+    // margin-bottom:5em;
     display:block;
-    border-bottom:.1rem solid $grey;
+    // border-bottom:.1rem solid $grey;
 }
 
 h2{
@@ -49,8 +49,12 @@ li{
 pre{
     font-family:monospace;
     margin:1em 0;
-    padding:.1em;
-    background:$grey;
+    // padding:.1em;
+    border-radius:.5em;
+    border:.1rem solid $grey;
+    overflow:hidden;
+    // border-radius:.5em;
+    // background:$grey;
 }
 
 em{
@@ -77,7 +81,64 @@ sup {
   top:-0.5em;
 }
 
+hr{
+    border:none;
+    border-top:.1rem solid $grey;
+    width:50%;
+    margin:2em auto;
+}
+
 sub {
   // Move the subscripted text down, but only half as far down as the superscript moved up.
   bottom:-0.25em;
+}
+
+code{
+    font-family:$code;
+    line-height:1.2em;
+    font-size:.8em;
+    background:$cream;
+    padding-right:.2em;
+    padding-left:.3em;
+}
+
+.entry-title{
+    margin-bottom:.5em;
+}
+
+.entry-content{
+    margin-bottom:5em;
+    p:first-of-type{
+
+        &::first-letter,
+        a:first-letter{
+            font-size:3.2em;
+            line-height:1;
+            display:block;
+            float:left;
+            color:$primary;
+        }
+        a:hover:first-letter{
+            color:$cream;
+        }
+    // a:first-letter{
+    //     font-size:1.5em;
+    //     color:$primary;
+    //     transition:color,background;
+    //     transition-duration:.3s;
+    // }
+    // a:hover:first-letter{
+    //     color:$cream;
+    //     font-size:1.5em;
+    // }
+    }
+}
+
+.entry-header{
+    margin-top:7em;
+    margin-bottom:5em;
+}
+.entry-meta{
+    font-size:.8em;
+    font-style:italic;
 }
