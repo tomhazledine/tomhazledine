@@ -49,6 +49,11 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/helpers.php';
 
 /**
+ * Load reading-time functions.
+ */
+require get_template_directory() . '/inc/reading-time.php';
+
+/**
  * Load custom filters.
  */
 // require get_template_directory() . '/inc/filters-actions.php';
