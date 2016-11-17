@@ -7,26 +7,11 @@
  * @package Tom_Hazledine_Theme
  */
 
-/**
- * Theme Setup
- */
-require get_template_directory() . '/inc/custom-setup.php';
-// require get_template_directory() . '/inc/theme-setup.php';
-
-/**
- * Enqueuing Scripts & Styles.
- */
-require get_template_directory() . '/inc/enqueuing.php';
 
 /**
  * Implement the Custom Header feature.
  */
 // require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
 
 /**
  * Custom functions that act independently of the theme templates.
@@ -43,22 +28,28 @@ require get_template_directory() . '/inc/template-tags.php';
  */
 // require get_template_directory() . '/inc/jetpack.php';
 
-/**
- * Load additional helper functions.
- */
+
+// Theme Setup.
+require get_template_directory() . '/inc/custom-setup.php';
+// require get_template_directory() . '/inc/theme-setup.php';
+
+// Enqueuing Scripts & Styles.
+require get_template_directory() . '/inc/enqueuing.php';
+
+// Custom template tags for this theme.
+require get_template_directory() . '/inc/template-tags.php';
+
+// Additional helper functions.
 require get_template_directory() . '/inc/helpers.php';
 
-/**
- * Load reading-time functions.
- */
+// Reading-time functions.
 require get_template_directory() . '/inc/reading-time.php';
 
-/**
- * Load custom filters.
- */
-// require get_template_directory() . '/inc/filters-actions.php';
-
-/**
- * Register menus.
- */
+// Register menus.
 require get_template_directory() . '/inc/menus.php';
+
+// Shortcodes.
+require get_template_directory() . '/inc/shortcodes.php';
+
+// Custom filters.
+// require get_template_directory() . '/inc/filters-actions.php';
