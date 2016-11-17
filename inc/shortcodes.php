@@ -3,7 +3,9 @@
 function sidenote_shortcode( $atts, $content = null ) {
 
     $output = '<span class="sidenote">';
-    $output .= WPCom_Markdown::get_instance()->transform( $content );
+        $output .= '<span class="visuallyhidden"> (</span>';
+        $output .= WPCom_Markdown::get_instance()->transform( $content );
+        $output .= '<span class="visuallyhidden">)</span>';
     $output .= '</span>';
 
     return $output;
