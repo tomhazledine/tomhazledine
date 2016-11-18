@@ -131,10 +131,11 @@
 @import "objects.header";
 @import "objects.contentblocks";
 @import "objects.footnotes";
+@import "objects.sidenotes";
 @import "objects.singlepost";
 
 // // 06. COMPONENTS
 
 // // 07. TRUMPS
-// @import "trumps.utilities";
+@import "trumps.utilities";
 // @import "trumps.printpre";

@@ -1,0 +1,21 @@
+.entry-content{
+    // width:80%;
+}
+
+.entry-content > p{
+    position:relative;
+}
+
+.sidenote{
+    display:block;
+    padding-left:.5em;
+    // background:rgba($red,.5);
+    position:absolute;
+    left:100%;
+    width:20%;
+    font-size:.8em;
+    line-height:1.2;
+    font-style:italic;
+
+    // top:0;
+}
