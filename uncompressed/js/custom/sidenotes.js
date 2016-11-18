@@ -17,14 +17,19 @@
 // sidenotes) with the footnotes.
 var footnotes = document.getElementsByClassName('footnotes')[0].getElementsByTagName("li");
 
+// Create an array to store our sidenotes info.
 var sidenotes = [];
 
 // Loop through the footnotes and get their IDs
-// (which we can use to find the in-text links).
+// (which we can use to find the in-text links)
+// and their content.
 for (var i = 0; i < footnotes.length; i++) {
     var new_item = [];
     new_item['link_id'] = footnotes[i].id;
     new_item['content'] = footnotes[i].innerHTML;
+
+    // Add the info for this sidenote
+    // to our sidenotes array.
     sidenotes.push(new_item);
 }
 
