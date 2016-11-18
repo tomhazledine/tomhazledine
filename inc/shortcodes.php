@@ -2,7 +2,7 @@
 // [bartag foo="foo-value"]
 function sidenote_shortcode( $atts, $content = null ) {
 
-    print_pre($content);
+    // print_pre($content);
 
     $output = '<span class="sidenote">';
         $output .= '<span class="visuallyhidden"> (</span>';
