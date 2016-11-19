@@ -28,6 +28,8 @@ for (var i = 0; i < footnotes.length; i++) {
     new_item['link_id'] = footnotes[i].id;
     new_item['content'] = footnotes[i].innerHTML;
 
+    new_item['content'] = new_item['content'].replace(/<a\b[^>]*>↩<\/a>/i,'');
+
     // Add the info for this sidenote
     // to our sidenotes array.
     sidenotes.push(new_item);
