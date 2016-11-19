@@ -51,5 +51,8 @@ require get_template_directory() . '/inc/menus.php';
 // Shortcodes.
 require get_template_directory() . '/inc/shortcodes.php';
 
+// Social.
+require get_template_directory() . '/inc/social.php';
+
 // Custom filters.
 // require get_template_directory() . '/inc/filters-actions.php';
