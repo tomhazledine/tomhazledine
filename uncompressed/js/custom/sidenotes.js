@@ -25,57 +25,61 @@ function convert_footnotes_to_sidenotes() {
     // (we'll need them when we want to position the
     // sidenotes) with the footnotes.
     var footnotes_wrapper = document.getElementsByClassName('footnotes');
-    var footnotes = footnotes_wrapper[0].getElementsByTagName("li");
 
-    // Create an array to store our sidenotes info.
-    var sidenotes = [];
+    // Only try to create our sidenotes if we actually
+    // have some footnotes...
+    if (footnotes_wrapper.length) {
+        var footnotes = footnotes_wrapper[0].getElementsByTagName("li");
 
-    // Loop through the footnotes and get their IDs
-    // (which we can use to find the in-text links)
-    // and their content.
-    for (var i = 0; i < footnotes.length; i++) {
-        var new_item = [];
-        new_item['link_id'] = footnotes[i].id;
-        new_item['content'] = footnotes[i].innerHTML;
+        // Create an array to store our sidenotes info.
+        var sidenotes = [];
 
-        // Remove the "back" link.
-        new_item['content'] = new_item['content'].replace(/(&nbsp;)<a\b[^>]*>↩<\/a>/i,'');
+        // Loop through the footnotes and get their IDs
+        // (which we can use to find the in-text links)
+        // and their content.
+        for (var i = 0; i < footnotes.length; i++) {
+            var new_item = [];
+            new_item['link_id'] = footnotes[i].id;
+            new_item['content'] = footnotes[i].innerHTML;
 
-        // Strip any start/end spaces.
-        new_item['content'] = new_item['content'].trim();
+            // Remove the "back" link.
+            new_item['content'] = new_item['content'].replace(/(&nbsp;)<a\b[^>]*>↩<\/a>/i,'');
 
-        // Add the info for this sidenote
-        // to our sidenotes array.
-        sidenotes.push(new_item);
+            // Strip any start/end spaces.
+            new_item['content'] = new_item['content'].trim();
+
+            // Add the info for this sidenote
+            // to our sidenotes array.
+            sidenotes.push(new_item);
+        }
+
+        // Loop through the sidenotes. Build the sidenote
+        // markup, then swap it with the link markup.
+        for (var i = 0; i < sidenotes.length; i++) {
+            var sidenote_content = sidenotes[i]['content'];
+            var sidenote_link_id = sidenotes[i]['link_id'];
+
+            // // Get the link element.
+            var sidenote_link = document.querySelectorAll("a[href='#" + sidenote_link_id + "']");
+
+            // Create a new element to hold our sidenote.
+            var sidenote_markup = document.createElement("span");
+            // Give it a class.
+            sidenote_markup.className = 'sidenote';
+            // Add the content.
+            sidenote_markup.innerHTML = '<span class="sidenote-bracket"> (</span>' + sidenote_content + '<span class="sidenote-bracket">)</span>';
+
+            // Swap the link with the new markup.
+            var sidenote_link_parent = sidenote_link[0].parentNode;
+            sidenote_link_parent.parentNode.replaceChild(sidenote_markup, sidenote_link_parent);
+        }
+
+        // Now we've added our sidenotes, we can remove the footnotes.
+        footnotes_wrapper[0].parentNode.removeChild(footnotes_wrapper[0]);
+
+        // Add has_sidenotes class to entry-content.
+        var entry_content_wrapper = document.getElementsByClassName('entry-content');
+        entry_content_wrapper[0].className += " has-sidenotes";
+
     }
-
-    // Loop through the sidenotes. Build the sidenote
-    // markup, then swap it with the link markup.
-    for (var i = 0; i < sidenotes.length; i++) {
-        var sidenote_content = sidenotes[i]['content'];
-        var sidenote_link_id = sidenotes[i]['link_id'];
-
-        // // Get the link element.
-        var sidenote_link = document.querySelectorAll("a[href='#" + sidenote_link_id + "']");
-
-        // Create a new element to hold our sidenote.
-        var sidenote_markup = document.createElement("span");
-        // Give it a class.
-        sidenote_markup.className = 'sidenote';
-        // Add the content.
-        sidenote_markup.innerHTML = '<span class="sidenote-bracket"> (</span>' + sidenote_content + '<span class="sidenote-bracket">)</span>';
-
-        // Swap the link with the new markup.
-        var sidenote_link_parent = sidenote_link[0].parentNode;
-        sidenote_link_parent.parentNode.replaceChild(sidenote_markup, sidenote_link_parent);
-    }
-
-    // Now we've added our sidenotes, we can remove the footnotes.
-    footnotes_wrapper[0].parentNode.removeChild(footnotes_wrapper[0]);
-
-    // Add has_sidenotes class to entry-content
-    
-    var entry_content_wrapper = document.getElementsByClassName('entry-content');
-    console.log(entry_content_wrapper);
-    entry_content_wrapper[0].className += " has-sidenotes";
 }
