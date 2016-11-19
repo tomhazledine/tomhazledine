@@ -15,7 +15,8 @@
 // on the page. We'll need to pair the in-text links
 // (we'll need them when we want to position the
 // sidenotes) with the footnotes.
-var footnotes = document.getElementsByClassName('footnotes')[0].getElementsByTagName("li");
+var footnotes_wrapper = document.getElementsByClassName('footnotes');
+var footnotes = footnotes_wrapper[0].getElementsByTagName("li");
 
 // Create an array to store our sidenotes info.
 var sidenotes = [];
@@ -55,3 +56,6 @@ for (var i = 0; i < sidenotes.length; i++) {
     var sidenote_link_parent = sidenote_link[0].parentNode;
     sidenote_link_parent.parentNode.replaceChild(sidenote_markup, sidenote_link_parent);
 }
+
+// Now we've added our sidenotes, we can remove the footnotes.
+footnotes_wrapper[0].parentNode.removeChild(footnotes_wrapper[0]);
