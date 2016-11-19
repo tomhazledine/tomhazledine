@@ -1,8 +1,14 @@
-.entry-content{
+.entry-content.has-sidenotes{
     width:85%;
+    @include bp(d1){
+        width:70%;
+    }
+    @include bp(d2){
+        width:100%;
+    }
 }
 
-.entry-content > p{
+.entry-content.has-sidenotes > p{
     position:relative;
 }
 
@@ -12,10 +18,30 @@
     // background:rgba($red,.5);
     position:absolute;
     left:100%;
-    width:30%;
+    width:25%;
     font-size:.9em;
     line-height:1.2;
     font-style:italic;
-
-    // top:0;
+    .sidenote_bracket{
+        display:none;
+    }
+    @include bp(u2){
+        width:30%;
+    }
+    @include bp(d1){
+        width:42%;
+    }
+    @include bp(d2){
+        position:relative;
+        padding-left:0;
+        display:inline;
+        font-size:1em;
+        line-height:inherit;
+        font-style:inherit;
+        left:auto;
+        width:auto;
+        .sidenote-bracket{
+            display:inline;
+        }
+    }
 }
