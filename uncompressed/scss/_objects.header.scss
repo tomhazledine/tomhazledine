@@ -36,6 +36,23 @@
             display:none;
         }
     }
+
+    .current-menu-item a{
+        position:relative;
+        display:inline-block;
+        cursor:default;
+        &:before{
+            content:'';
+            display:block;
+            width:1em;
+            height:.1rem;
+            background:$black;
+            position:absolute;
+            bottom:0;
+            left:50%;
+            margin-left:-.5em;
+        }
+    }
 }
 
 .home-link{
