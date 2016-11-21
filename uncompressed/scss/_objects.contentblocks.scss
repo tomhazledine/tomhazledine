@@ -52,3 +52,19 @@
     }
 
 }
+
+.wf-inactive .entry-content{
+
+    a{
+        text-decoration:underline;
+        color:$black;
+        cursor:pointer;
+        text-shadow:none;
+        box-shadow:none;
+        transition:color .2s;
+        &:hover{
+            color:$primary;
+            box-shadow:none;
+        }
+    }
+}
