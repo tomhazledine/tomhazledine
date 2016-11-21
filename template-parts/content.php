@@ -43,7 +43,7 @@
 		?>
 
 		<div class="tweet-link-wrapper">
-			Found this post interesting or uselful? <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Tweet about it!'); ?>
+			Found this post interesting or uselful? <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Click here to share it on Twitter!'); ?>
 		</div>
 	</div><!-- .entry-content -->
 
