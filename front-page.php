@@ -13,7 +13,7 @@ while ( have_posts() ) : the_post();
     <div id="primary" class="content-area">
         <main id="main" class="site-main has-sidenotes" role="main">
             
-            <span class="sidenote"><?php the_content(); ?></span>
+            <span class="sidenote home-content"><?php the_content(); ?></span>
 
             <?php
             $queryArgs = array(
