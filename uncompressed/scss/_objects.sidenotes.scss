@@ -1,5 +1,6 @@
-.entry-content.has-sidenotes{
+.has-sidenotes{
     width:85%;
+    position:relative;
     @include bp(d1){
         width:70%;
     }
@@ -8,7 +9,7 @@
     }
 }
 
-.entry-content.has-sidenotes > p{
+.has-sidenotes > p{
     position:relative;
 }
 
