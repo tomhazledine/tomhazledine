@@ -1,0 +1,117 @@
+.header-animation{
+    position:absolute;
+    top:0em;
+    left:0em;
+    height:10em;
+    width:10em;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.header-animation-inner{
+    position:absolute;
+    // background:rgba($grey,.5);
+    width:15em;
+    height:10em;
+    transform:rotate(-45deg);// translateY(5em);
+    // transform:translateX(-5em);
+    transform-origin:0% 100%;
+}
+
+.header-animation-item{
+    display:block;
+    width:1em;
+    height:1em;
+    animation:headerslide 2s linear infinite;
+    position:absolute;
+    bottom:0;
+    left:0;
+    .header-animation-item-inner{
+        display:block;
+        width:1em;
+        height:1em;
+        position:absolute;
+        top:0;
+        left:0;
+        transform:rotate(0deg);
+        border:rgba($primary,.6) solid .1rem;
+        animation:headerspin 2s linear infinite;
+    }
+}
+
+.header-animation-item-one{
+    bottom:0;
+    animation-duration:2s;
+    transform:rotate(35deg);
+    .header-animation-item-inner{
+        animation-duration:2s;
+    }
+}
+
+.header-animation-item-two{
+    bottom:1em;
+    animation-delay:.1s;
+    animation-duration:4s;
+    transform:rotate(45deg);
+    .header-animation-item-inner{
+        animation-duration:1s;
+    }
+}
+
+.header-animation-item-three{
+    bottom:2em;
+    animation-delay:.4s;
+    animation-duration:1.5s;
+    transform:rotate(55deg);
+    .header-animation-item-inner{
+        animation-duration:4s;
+    }
+}
+
+.header-animation-item-four{
+    bottom:3em;
+    animation-delay:.5s;
+    animation-duration:3.5s;
+    transform:rotate(65deg);
+    .header-animation-item-inner{
+        animation-duration:2s;
+    }
+}
+
+.header-animation-item-five{
+    bottom:4em;
+    animation-delay:1s;
+    animation-duration:3s;
+    transform:rotate(75deg);
+    .header-animation-item-inner{
+        animation-duration:3s;
+    }
+}
+
+.header-animation-item-six{
+    bottom:5em;
+    animation-delay:.2s;
+    animation-duration:2.5s;
+    transform:rotate(85deg);
+    .header-animation-item-inner{
+        animation-duration:1.5s;
+    }
+}
+
+@keyframes headerslide{
+    0%{
+        left:-2em;
+    }
+    100%{
+        left:15em;
+    }
+}
+
+@keyframes headerspin{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(-360deg);
+    }
+}

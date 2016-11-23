@@ -1,5 +1,15 @@
 <?php include"head.php"; ?>
 
+<div class="header-animation">
+    <div class="header-animation-inner">
+        <span class="header-animation-item header-animation-item-one"><span class="header-animation-item-inner"></span></span>
+        <span class="header-animation-item header-animation-item-two"><span class="header-animation-item-inner"></span></span>
+        <span class="header-animation-item header-animation-item-three"><span class="header-animation-item-inner"></span></span>
+        <span class="header-animation-item header-animation-item-four"><span class="header-animation-item-inner"></span></span>
+        <span class="header-animation-item header-animation-item-five"><span class="header-animation-item-inner"></span></span>
+        <span class="header-animation-item header-animation-item-six"><span class="header-animation-item-inner"></span></span>
+    </div>
+</div>
 
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'tomhazledine_theme' ); ?></a>
 
