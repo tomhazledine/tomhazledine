@@ -10,11 +10,9 @@
 
 .header-animation-inner{
     position:absolute;
-    // background:rgba($grey,.5);
     width:15em;
     height:10em;
-    transform:rotate(-45deg);// translateY(5em);
-    // transform:translateX(-5em);
+    transform:rotate(-45deg);
     transform-origin:0% 100%;
 }
 
