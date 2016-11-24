@@ -7,16 +7,15 @@
 
         $nextPost = new WP_Query( array('p'=>$next->ID) );
         while( $nextPost->have_posts() ): $nextPost->the_post();
-            $next_text = wp_trim_words( apply_filters( 'the_excerpt', get_the_excerpt() ), 7 );
+            // Get reading time.
+            $reading_time = reading_time( get_the_content() );
+            $reading_time_string = parse_read_time( $reading_time );
             ?>
-            <a class="nextPrevPost next" href="<?= get_the_permalink(); ?>">
-                <div>
-                    <span class="icon">&larr;</span>
-                    <strong><?= get_the_title(); ?></strong>
-                </div>
-                <div><?= $next_text; ?></div>
-                <div><em>Posted by <?= get_the_author(); ?> on <?php the_time('M dS, Y'); ?></em></div>
-            </a>
+            <div class="postNavigation">
+                <code><?php the_date('M Y'); ?></code>
+                <a href="<?= esc_url( get_permalink() ); ?>" rel="bookmark"><?php the_title(); ?></a>
+                <span class="readingTime"><em>Read time: <?= $reading_time_string; ?></em></span>
+            </div>
             <?php
         endwhile;
         wp_reset_postdata();
@@ -26,16 +25,15 @@
 
         $prevPost = new WP_Query( array('p'=>$prev->ID) );
         while( $prevPost->have_posts() ): $prevPost->the_post();
-            $prev_text = wp_trim_words( apply_filters( 'the_excerpt', get_the_excerpt() ), 7 );
+            // Get reading time.
+            $reading_time = reading_time( get_the_content() );
+            $reading_time_string = parse_read_time( $reading_time );
             ?>
-            <a class="nextPrevPost prev" href="<?= get_the_permalink(); ?>">
-                <div>
-                    <strong><?= get_the_title(); ?></strong>
-                    <span class="icon">&rarr;</span>
-                </div>
-                <div><?= $prev_text; ?></div>
-                <div><em>Posted by <?= get_the_author(); ?> on <?php the_time('M dS, Y'); ?></em></div>
-            </a>
+            <div class="postNavigation">
+                <code><?php the_date('M Y'); ?></code>
+                <a href="<?= esc_url( get_permalink() ); ?>" rel="bookmark"><?php the_title(); ?></a>
+                <span class="readingTime"><em>Read time: <?= $reading_time_string; ?></em></span>
+            </div>
             <?php
         endwhile;
         wp_reset_postdata();
