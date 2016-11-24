@@ -34,6 +34,8 @@
 		<div class="tweet-link-wrapper">
 			Found this post interesting or uselful? <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Click here to share it on Twitter!'); ?>
 		</div>
+
+		<?php get_template_part('template-parts/module','singlenavigation'); ?>
 	</div>
 
 	<footer class="entry-footer">
