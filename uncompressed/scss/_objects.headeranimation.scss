@@ -1,11 +1,15 @@
 .header-animation{
-    position:absolute;
+    position:fixed;
     top:0em;
     left:0em;
     height:10em;
     width:10em;
     overflow:hidden;
     z-index:-1;
+    @include bp(d3){
+        font-size:.5em;
+        position:absolute;
+    }
 }
 
 .header-animation-inner{
