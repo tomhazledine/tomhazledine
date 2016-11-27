@@ -1,3 +1,6 @@
+// We sometimes want our selection-notifier position to
+// persist, so we'll make a global variable for it.
+var global_position = [x=0,y=0];
 
 /**
  * ---------------------
@@ -10,10 +13,6 @@
  */
 function selection_handler(event){
 
-    // Get the mouse position (if it was a mouse
-    // event that triggered this function).
-    var position = get_selection_position(event);
-
     // Get the selected text
     var selection = get_selection();
 
@@ -25,8 +24,13 @@ function selection_handler(event){
     // Position widget markup on page.
 
     if (selection) {
-        console.log(selection);
-        console.log(position);
+
+        // Get the mouse position (if it was a mouse
+        // event that triggered this function).
+        var position = get_selection_position(event);
+        console.log(global_position);
+        // console.log(selection);
+        // console.log(position);
     }
 
 
@@ -61,6 +65,7 @@ function get_selection_position(event){
     if (event.clientX) {
         position['x'] = event.clientX;
         position['y'] = event.clientY;
+        global_position = position;
     } else {
         position = false;
     }
