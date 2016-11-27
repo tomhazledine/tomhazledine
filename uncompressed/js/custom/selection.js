@@ -1,3 +1,4 @@
+
 /**
  * ---------------------
  * ON-SELECTION TRIGGER
@@ -16,6 +17,13 @@ function selection_handler(event){
     // Get the selected text
     var selection = get_selection();
 
+    // Get page URL.
+    // Calculate remaining tweet length after URL and username have been added.
+    // Trim selected text to available length (if needed).
+    // Build tweet-link.
+    // Build widget markup.
+    // Position widget markup on page.
+
     if (selection) {
         console.log(selection);
         console.log(position);
@@ -24,6 +32,30 @@ function selection_handler(event){
 
 }
 
+/**
+ * ---------------------------
+ * ON-SELECTION EVENT LISTENER
+ *
+ * There is no direct listener
+ * for selection events, so we
+ * need to check for events if
+ * the mouse or a key has been
+ * pressed.
+ * ---------------------------
+ */
+document.addEventListener('keyup',selection_handler,false);
+document.addEventListener('mouseup',selection_handler,false);
+
+/**
+ * ----------------------
+ * GET SELECTION POSITION
+ *
+ * If trigger is a mouse-
+ * event, then get the x/
+ * y coordinates. If not,
+ * return false.
+ * ----------------------
+ */
 function get_selection_position(event){
     var position = [];
     if (event.clientX) {
@@ -35,6 +67,15 @@ function get_selection_position(event){
     return position;
 }
 
+/**
+ * ---------------------
+ * GET SELECTED TEXT
+ *
+ * If some text has been 
+ * selected, get it. If
+ * not, return false.
+ * ---------------------
+ */
 function get_selection(){
     var text = false;
     if (window.getSelection) {
@@ -43,24 +84,4 @@ function get_selection(){
         text = document.selection.createRange().text;
     }
     return text;
-}
-
-var entry_content = document.getElementsByClassName('entry-content');
-
-/**
- * ----------------
- * EVENT LISTENERS
- *
- * Trigger function
- * get_selection.
- * ----------------
- */
-
-// Whenever any key has finished being pressed.
-document.addEventListener('keyup',selection_handler,false);
-
-// Whenever the mouse has finished being pressed
-// inside an "entry-content" area.
-for (var i = 0; i < entry_content.length; i++) {
-    entry_content[i].addEventListener('mouseup',selection_handler,false);
 }
