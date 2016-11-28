@@ -97,10 +97,10 @@ function get_selection(){
         var selection = window.getSelection();
         text = selection.toString();
         // console.log('getSelection');
-        console.log(selection);
+        // console.log(selection);
         var range = selection.getRangeAt(0);
         var range_bounding_rect = range.getBoundingClientRect();
-        console.log(range_bounding_rect);
+        // console.log(range_bounding_rect);
         global_position['x'] = range_bounding_rect.bottom;
         global_position['y'] = range_bounding_rect.left;
     } else if (document.selection && document.selection.type != "Control") {
