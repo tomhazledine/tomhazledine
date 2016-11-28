@@ -10,6 +10,8 @@
  */
 
 ?>
+    
+    <div id="tweet-widget" class="tweet-widget">Tweet Widget</div>
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 

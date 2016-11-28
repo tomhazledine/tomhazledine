@@ -2,6 +2,8 @@
 // persist, so we'll make a global variable for it.
 var global_position = [x=0,y=0];
 
+var tweet_widget = document.getElementById('tweet-widget');
+
 /**
  * ---------------------
  * ON-SELECTION TRIGGER
@@ -27,10 +29,18 @@ function selection_handler(event){
 
         // Get the mouse position (if it was a mouse
         // event that triggered this function).
-        var position = get_selection_position(event);
-        console.log(global_position);
+        // var position = get_selection_position(event);
+        // console.log(global_position);
         // console.log(selection);
         // console.log(position);
+        // console.log(tweet_widget.style);
+        tweet_widget.style.display = 'block';
+        tweet_widget.style.top = global_position['x'] + 'px';
+        tweet_widget.style.left = global_position['y'] + 'px';
+        // console.log(tweet_widget.style);
+        
+    } else {
+        tweet_widget.style.display = 'none';
     }
 
 
@@ -84,8 +94,18 @@ function get_selection_position(event){
 function get_selection(){
     var text = false;
     if (window.getSelection) {
-        text = window.getSelection().toString();
+        var selection = window.getSelection();
+        text = selection.toString();
+        // console.log('getSelection');
+        console.log(selection);
+        var range = selection.getRangeAt(0);
+        var range_bounding_rect = range.getBoundingClientRect();
+        console.log(range_bounding_rect);
+        global_position['x'] = range_bounding_rect.bottom;
+        global_position['y'] = range_bounding_rect.left;
     } else if (document.selection && document.selection.type != "Control") {
+        // console.log('document.selection');
+        // console.log(document.selection);
         text = document.selection.createRange().text;
     }
     return text;

@@ -1,0 +1,9 @@
+.tweet-widget{
+    background:$primary;
+    color:$white;
+    position:absolute;
+    z-index:2;
+    border:.1rem solid $red;
+    // top:0;
+    left:0;
+}
