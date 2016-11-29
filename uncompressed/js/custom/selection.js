@@ -100,8 +100,9 @@ function get_selection(){
         // console.log(selection);
         var range = selection.getRangeAt(0);
         var range_bounding_rect = range.getBoundingClientRect();
+        var calculated_to_position = document.body.scrollTop + range_bounding_rect.bottom;
         // console.log(range_bounding_rect);
-        global_position['x'] = Math.round(range_bounding_rect.bottom);
+        global_position['x'] = Math.round(calculated_to_position);
         global_position['y'] = Math.round(range_bounding_rect.left);
     } else if (document.selection && document.selection.type != "Control") {
         // console.log('document.selection');
