@@ -96,14 +96,22 @@ function get_selection(){
     if (window.getSelection) {
         var selection = window.getSelection();
         text = selection.toString();
-        // console.log('getSelection');
-        // console.log(selection);
-        var range = selection.getRangeAt(0);
-        var range_bounding_rect = range.getBoundingClientRect();
-        var calculated_to_position = document.body.scrollTop + range_bounding_rect.bottom;
-        // console.log(range_bounding_rect);
-        global_position['x'] = Math.round(calculated_to_position);
-        global_position['y'] = Math.round(range_bounding_rect.left);
+        if (text.length > 0 && text != ' ') {
+
+            var tweet = build_tweet(text);
+            console.log(text);
+
+            // var tweet_url = build_tweet_url(text);
+
+            console.log(tweet);
+
+            var range = selection.getRangeAt(0);
+            var range_bounding_rect = range.getBoundingClientRect();
+            var calculated_to_position = document.body.scrollTop + range_bounding_rect.bottom;
+            // console.log(range_bounding_rect);
+            global_position['x'] = Math.round(calculated_to_position);
+            global_position['y'] = Math.round(range_bounding_rect.left);
+        }
     } else if (document.selection && document.selection.type != "Control") {
         // console.log('document.selection');
         // console.log(document.selection);
@@ -111,3 +119,41 @@ function get_selection(){
     }
     return text;
 }
+
+/**
+ * --------------------------------
+ * BUILD TWEET URL AND CONTENT
+ * 
+ * Trim the text to the appropriate
+ * length, then parse the text into
+ * tweet-friendly format, and add a
+ * page-link and my username.
+ * --------------------------------
+ */
+function build_tweet(text){
+    var result = {};
+    var username = '@thomashazledine';
+    var max_length = 139;
+    var username_length = username.length;
+    var max_tweet_length = max_length - username_length - 1;// "1" accounts for space before username.
+
+    var trimmed_text = text.substring(0,max_tweet_length);
+
+    result.parsed_text = trimmed_text.replace(/ /gi,'+');
+    return result;
+}
+
+
+// // Parse the text for the Twitter URL.
+//     $tweet_text = str_replace( ' ', '+', $text );
+
+//     // User to be @-mentioned in tweet.
+//     $tweet_username = '@thomashazledine';
+
+//     // Full tweet link.
+//     $tweet_href = 'https://twitter.com/intent/tweet?source=webclient&amp;text=' . $tweet_text .  '+' . $link . '+' . $tweet_username;
+
+//     $full_twitter_link = '<a href="' . $tweet_href . '" class="tweet-this" target="_blank">' . $message . '</a>';
+
+//     print( $full_twitter_link );
+// }
