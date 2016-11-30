@@ -133,13 +133,19 @@ function get_selection(){
 function build_tweet(text){
     var result = {};
     var username = '@thomashazledine';
+    var link = '';
     var max_length = 139;
     var username_length = username.length;
     var max_tweet_length = max_length - username_length - 1;// "1" accounts for space before username.
 
     var trimmed_text = text.substring(0,max_tweet_length);
+    var parsed_text = trimmed_text.replace(/ /gi,'+');
 
-    result.parsed_text = trimmed_text.replace(/ /gi,'+');
+    // Full tweet link.
+    var tweet_href = 'https://twitter.com/intent/tweet?source=webclient&amp;text=' + parsed_text +  '+' + link + '+' + username;
+
+    result.text = trimmed_text;
+    result.url = tweet_href;
     return result;
 }
 
