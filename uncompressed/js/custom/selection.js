@@ -27,6 +27,10 @@ function selection_handler(event){
 
     if (selection) {
 
+        var tweet_markup = build_tweet_markup(selection);
+
+        // console.log(tweet_markup);
+
         // Get the mouse position (if it was a mouse
         // event that triggered this function).
         // var position = get_selection_position(event);
@@ -37,6 +41,7 @@ function selection_handler(event){
         tweet_widget.style.display = 'block';
         tweet_widget.style.top = global_position['x'] + 'px';
         tweet_widget.style.left = global_position['y'] + 'px';
+        tweet_widget.appendChild(tweet_markup);
         // console.log(tweet_widget.style);
         
     } else {
@@ -98,26 +103,25 @@ function get_selection(){
         text = selection.toString();
         if (text.length > 0 && text != ' ') {
 
-            var tweet = build_tweet(text);
-            console.log(text);
-
-            // var tweet_url = build_tweet_url(text);
-
-            console.log(tweet);
-
             var range = selection.getRangeAt(0);
             var range_bounding_rect = range.getBoundingClientRect();
             var calculated_to_position = document.body.scrollTop + range_bounding_rect.bottom;
-            // console.log(range_bounding_rect);
+
             global_position['x'] = Math.round(calculated_to_position);
             global_position['y'] = Math.round(range_bounding_rect.left);
         }
     } else if (document.selection && document.selection.type != "Control") {
-        // console.log('document.selection');
-        // console.log(document.selection);
         text = document.selection.createRange().text;
     }
-    return text;
+
+    // Turn selection into "tweet" object.
+    if (text){
+        var tweet = build_tweet_content(text);
+    } else {
+        var tweet = false;
+    }
+    
+    return tweet;
 }
 
 /**
@@ -130,15 +134,16 @@ function get_selection(){
  * page-link and my username.
  * --------------------------------
  */
-function build_tweet(text){
+function build_tweet_content(text){
     var result = {};
     var username = '@thomashazledine';
-    var link = '';
+    var link = window.location.href;
     var max_length = 139;
     var username_length = username.length;
-    var max_tweet_length = max_length - username_length - 1;// "1" accounts for space before username.
+    var max_tweet_length = max_length - (username_length + 1) - (link + 1);// "1" accounts for space before username.
 
-    var trimmed_text = text.substring(0,max_tweet_length);
+    var trimmed_text = text.substring( 0, (max_tweet_length - 3) );
+    trimmed_text = trimmed_text + '…';
     var parsed_text = trimmed_text.replace(/ /gi,'+');
 
     // Full tweet link.
@@ -149,17 +154,16 @@ function build_tweet(text){
     return result;
 }
 
+function build_tweet_markup(tweet_object){
+    // var string = '';
+    console.log(tweet_object.text);
+    
+    var link_element = document.createElement('a');
+    var link_text = document.createTextNode(tweet_object.text);
 
-// // Parse the text for the Twitter URL.
-//     $tweet_text = str_replace( ' ', '+', $text );
+    link_element.className = 'tweet_widget_link';
+    link_element.setAttribute('href', tweet_object.url);
+    link_element.appendChild(link_text);
 
-//     // User to be @-mentioned in tweet.
-//     $tweet_username = '@thomashazledine';
-
-//     // Full tweet link.
-//     $tweet_href = 'https://twitter.com/intent/tweet?source=webclient&amp;text=' . $tweet_text .  '+' . $link . '+' . $tweet_username;
-
-//     $full_twitter_link = '<a href="' . $tweet_href . '" class="tweet-this" target="_blank">' . $message . '</a>';
-
-//     print( $full_twitter_link );
-// }
+    return link_element;
+}
