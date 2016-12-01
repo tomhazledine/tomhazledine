@@ -1,7 +1,23 @@
+/**
+ * ----------------
+ * GLOBAL VARIABLES
+ *
+ * We need to store
+ * a couple of vars
+ * for later. It is
+ * gross, I know, &
+ * will break if we
+ * use strict-mode,
+ * but it works...
+ * ----------------
+ */
+
 // We sometimes want our selection-notifier position to
 // persist, so we'll make a global variable for it.
 var global_position = [x=0,y=0];
 
+// We'll always want to use the same element as a wrapper
+// for our widget. This is it.
 var tweet_widget = document.getElementById('tweet-widget');
 
 /**
@@ -18,36 +34,32 @@ function selection_handler(event){
     // Get the selected text
     var selection = get_selection();
 
-    // Get page URL.
-    // Calculate remaining tweet length after URL and username have been added.
-    // Trim selected text to available length (if needed).
-    // Build tweet-link.
-    // Build widget markup.
-    // Position widget markup on page.
-
     if (selection) {
 
-        var tweet_markup = build_tweet_markup(selection);
+        // Turn selection into "tweet" object.
+        var tweet_object = build_tweet_content(selection);
 
-        // console.log(tweet_markup);
-
-        // Get the mouse position (if it was a mouse
-        // event that triggered this function).
-        // var position = get_selection_position(event);
-        // console.log(global_position);
-        // console.log(selection);
-        // console.log(position);
-        // console.log(tweet_widget.style);
+        // Get the markup (dom element) for the widget.
+        var tweet_markup = build_tweet_markup(tweet_object);
+        
+        // Make the widget visible.
         tweet_widget.style.display = 'block';
+
+        // Set the position for the tweet widget (using the
+        // global vars set by the get_selection function).
         tweet_widget.style.top = global_position['x'] + 'px';
         tweet_widget.style.left = global_position['y'] + 'px';
+
+        // Remove old markup (otherwise we'll see any previous selections as well as our new one).
+
+        // Add our new markup to the widget.
         tweet_widget.appendChild(tweet_markup);
-        // console.log(tweet_widget.style);
         
     } else {
+
+        // Hide the widget if there's no content to display.
         tweet_widget.style.display = 'none';
     }
-
 
 }
 
@@ -113,15 +125,8 @@ function get_selection(){
     } else if (document.selection && document.selection.type != "Control") {
         text = document.selection.createRange().text;
     }
-
-    // Turn selection into "tweet" object.
-    if (text){
-        var tweet = build_tweet_content(text);
-    } else {
-        var tweet = false;
-    }
     
-    return tweet;
+    return text;
 }
 
 /**
@@ -135,35 +140,69 @@ function get_selection(){
  * --------------------------------
  */
 function build_tweet_content(text){
-    var result = {};
-    var username = '@thomashazledine';
-    var link = window.location.href;
-    var max_length = 139;
-    var username_length = username.length;
-    var max_tweet_length = max_length - (username_length + 1) - (link.length + 1);// "1" accounts for space before username.
 
+    // Setup an object to hold our results.
+    var result = {};
+
+    // Which twitter username do we want to mention in the tweet?
+    var username = '@thomashazledine';
+
+    // What's the page's URL?
+    var link = window.location.href;
+
+    // How many characters can we use in a tweet?
+    var max_length = 140;
+
+    // How many characters is our username?
+    var username_length = username.length + 1;// "1" accounts for a space.
+
+    // How many characters is the page URL?
+    var link_length = link.length + 1;// "1" accounts for a space.
+    
+    // Calculate how many characters we have left over for text.
+    var max_tweet_length = max_length - username_length - link_length;
+
+    // Crop our text to fit the remaining character-count.
     var trimmed_text = text.substring( 0, (max_tweet_length - 3) );
     trimmed_text = trimmed_text + '…';
+
+    // Replace spaces with "+" (so the sharing-link works).
     var parsed_text = trimmed_text.replace(/ /gi,'+');
 
-    // Full tweet link.
+    // Build the full tweet link.
     var tweet_href = 'https://twitter.com/intent/tweet?source=webclient&amp;text=' + parsed_text +  '+' + link + '+' + username;
 
+    // Save our results to our "results" object.
     result.text = trimmed_text;
     result.url = tweet_href;
+
     return result;
 }
 
+/**
+ * ------------------
+ * BUILD TWEET MARKUP
+ *
+ * Using the provided
+ * text & url, create
+ * a new dom-node for
+ * our tweet-widget.
+ * ------------------
+ */
 function build_tweet_markup(tweet_object){
-    // var string = '';
-    console.log(tweet_object.text);
     
+    // Create a link element.
     var link_element = document.createElement('a');
-    var link_text = document.createTextNode(tweet_object.text);
 
+    // Give our new link element a class.
     link_element.className = 'tweet_widget_link';
-    link_element.setAttribute('href', tweet_object.url);
+    
+    // Set the text-content for the link.
+    var link_text = document.createTextNode(tweet_object.text);
     link_element.appendChild(link_text);
+    
+    // Set the HREF for our link.
+    link_element.setAttribute('href', tweet_object.url);
 
     return link_element;
 }
