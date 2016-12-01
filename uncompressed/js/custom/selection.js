@@ -140,7 +140,7 @@ function build_tweet_content(text){
     var link = window.location.href;
     var max_length = 139;
     var username_length = username.length;
-    var max_tweet_length = max_length - (username_length + 1) - (link + 1);// "1" accounts for space before username.
+    var max_tweet_length = max_length - (username_length + 1) - (link.length + 1);// "1" accounts for space before username.
 
     var trimmed_text = text.substring( 0, (max_tweet_length - 3) );
     trimmed_text = trimmed_text + '…';
