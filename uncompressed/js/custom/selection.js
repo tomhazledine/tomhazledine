@@ -53,7 +53,6 @@ function selection_handler(event){
 
         // Remove old markup (otherwise we'll see any previous selections as well as our new one).
         var old_links = document.getElementsByClassName('tweet_widget_link');
-        console.log(old_links);
         if (old_links.length) {
             for (var i = 0; i < old_links.length; i++) {
                 old_links[i].parentNode.removeChild(old_links[i]);
@@ -176,8 +175,13 @@ function build_tweet_content(text){
     var max_tweet_length = max_length - username_length - link_length;
 
     // Crop our text to fit the remaining character-count.
-    var trimmed_text = text.substring( 0, (max_tweet_length - 3) );
-    trimmed_text = trimmed_text + '…';
+    console.log(text.length);
+    if (text.length > max_tweet_length) {
+        var trimmed_text = text.substring( 0, (max_tweet_length - 3) );
+        trimmed_text = trimmed_text + '…';
+    } else {
+        var trimmed_text = text;
+    }
 
     // Replace spaces with "+" (so the sharing-link works).
     var parsed_text = trimmed_text.replace(/ /gi,'+');
