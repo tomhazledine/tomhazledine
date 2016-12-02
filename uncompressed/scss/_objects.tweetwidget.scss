@@ -1,10 +1,45 @@
 .tweet-widget{
     display:none;
-    background:$primary;
-    color:$white;
+    // background:$primary;
+    color:$black;
     position:absolute;
     z-index:2;
-    border:.1rem solid $red;
+    // border:.1rem solid $red;
     // top:0;
     left:0;
+    max-width:54em;
+    // width:25%;
+    // padding:.5em;
+    
+    .tweet-widget-inner{
+        margin-top:.5em;
+        background:$primary;
+        padding:.5em;
+        position:relative;
+        &:before{
+            content:'';
+            position:absolute;
+            display:block;
+            bottom:100%;
+            left:1em;
+            // width:.5em;
+            // height:.5em;
+            // background:red;
+            border-bottom:.5em solid $primary;
+            border-left:.5em solid transparent;
+            border-right:.5em solid transparent;
+        }
+    }
+
+
+    a{
+        color:$white;
+        font-style:italic;
+    }
+    .tweet-widget-intro{
+        display:inline-block;
+        font-size:.8em;
+        text-transform:uppercase;
+        font-weight:bold;
+    }
 }

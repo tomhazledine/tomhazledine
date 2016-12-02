@@ -19,6 +19,7 @@ var global_position = [x=0,y=0];
 // We'll always want to use the same element as a wrapper
 // for our widget. This is it.
 var tweet_widget = document.getElementById('tweet-widget');
+var tweet_widget_inner = document.getElementById('tweet-widget-inner');
 
 /**
  * ---------------------
@@ -51,9 +52,21 @@ function selection_handler(event){
         tweet_widget.style.left = global_position['y'] + 'px';
 
         // Remove old markup (otherwise we'll see any previous selections as well as our new one).
+        var old_links = document.getElementsByClassName('tweet_widget_link');
+        console.log(old_links);
+        if (old_links.length) {
+            for (var i = 0; i < old_links.length; i++) {
+                old_links[i].parentNode.removeChild(old_links[i]);
+            }
+        }
+        // old_links.parent.removeChild(old_links);
+        // while (tweet_widget_inner.hasChildNodes()) {
+        //     tweet_widget_inner.removeChild(tweet_widget_inner.lastChild);
+        // }
+
 
         // Add our new markup to the widget.
-        tweet_widget.appendChild(tweet_markup);
+        tweet_widget_inner.appendChild(tweet_markup);
         
     } else {
 
@@ -196,6 +209,7 @@ function build_tweet_markup(tweet_object){
 
     // Give our new link element a class.
     link_element.className = 'tweet_widget_link';
+    link_element.id = 'tweet_widget_link';
     
     // Set the text-content for the link.
     var link_text = document.createTextNode(tweet_object.text);

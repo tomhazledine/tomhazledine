@@ -11,7 +11,11 @@
 
 ?>
     
-    <div id="tweet-widget" class="tweet-widget">Tweet Widget</div>
+    <div id="tweet-widget" class="tweet-widget">
+        <div id="tweet-widget-inner" class="tweet-widget-inner">
+            <span class="tweet-widget-intro">Tweet this: </span>
+        </div>
+    </div>
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 
