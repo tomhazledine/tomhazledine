@@ -41,7 +41,8 @@ function selection_handler(event){
         var tweet_object = build_tweet_content(selection);
 
         // Get the markup (dom element) for the widget.
-        var tweet_markup = build_tweet_markup(tweet_object);
+        // var tweet_markup = build_tweet_markup(tweet_object);
+        tweet_widget.setAttribute('href', tweet_object.url);
         
         // Make the widget visible.
         tweet_widget.style.display = 'block';
@@ -52,12 +53,12 @@ function selection_handler(event){
         tweet_widget.style.left = global_position['y'] + 'px';
 
         // Remove old markup (otherwise we'll see any previous selections as well as our new one).
-        var old_links = document.getElementsByClassName('tweet_widget_link');
-        if (old_links.length) {
-            for (var i = 0; i < old_links.length; i++) {
-                old_links[i].parentNode.removeChild(old_links[i]);
-            }
-        }
+        // var old_links = document.getElementsByClassName('tweet_widget_link');
+        // if (old_links.length) {
+        //     for (var i = 0; i < old_links.length; i++) {
+        //         old_links[i].parentNode.removeChild(old_links[i]);
+        //     }
+        // }
         // old_links.parent.removeChild(old_links);
         // while (tweet_widget_inner.hasChildNodes()) {
         //     tweet_widget_inner.removeChild(tweet_widget_inner.lastChild);
@@ -65,7 +66,7 @@ function selection_handler(event){
 
 
         // Add our new markup to the widget.
-        tweet_widget_inner.appendChild(tweet_markup);
+        // tweet_widget_inner.appendChild(tweet_markup);
         
     } else {
 

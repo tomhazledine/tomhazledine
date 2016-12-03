@@ -11,11 +11,14 @@
 
 ?>
     
-    <div id="tweet-widget" class="tweet-widget">
-        <div id="tweet-widget-inner" class="tweet-widget-inner">
-            <span class="tweet-widget-intro">Tweet this: </span>
+    <a id="tweet-widget" class="tweet-widget">
+        <div class="tweet-widget-inner">
+            <svg class="twitter-icon">
+                <use xlink:href="#twitter" />
+            </svg>
+            <span class="visuallyhidden">Tweet this.</span>
         </div>
-    </div>
+    </a>
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 
