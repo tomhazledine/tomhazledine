@@ -39,9 +39,6 @@ function selection_handler(event){
 
         // Turn selection into "tweet" object.
         var tweet_object = build_tweet_content(selection);
-
-        // Get the markup (dom element) for the widget.
-        // var tweet_markup = build_tweet_markup(tweet_object);
         
         // Set the link for the widget.
         tweet_widget.setAttribute('href', tweet_object.url);
@@ -53,22 +50,6 @@ function selection_handler(event){
         // global vars set by the get_selection function).
         tweet_widget.style.top = global_position['x'] + 'px';
         tweet_widget.style.left = global_position['y'] + 'px';
-
-        // Remove old markup (otherwise we'll see any previous selections as well as our new one).
-        // var old_links = document.getElementsByClassName('tweet_widget_link');
-        // if (old_links.length) {
-        //     for (var i = 0; i < old_links.length; i++) {
-        //         old_links[i].parentNode.removeChild(old_links[i]);
-        //     }
-        // }
-        // old_links.parent.removeChild(old_links);
-        // while (tweet_widget_inner.hasChildNodes()) {
-        //     tweet_widget_inner.removeChild(tweet_widget_inner.lastChild);
-        // }
-
-
-        // Add our new markup to the widget.
-        // tweet_widget_inner.appendChild(tweet_markup);
         
     } else {
 
@@ -167,6 +148,9 @@ function build_tweet_content(text){
     // What's the page's URL?
     var link = window.location.href;
 
+    // t.co URL-shortener length
+    var tco_length = 20;
+
     // How many characters can we use in a tweet?
     var max_length = 140;
 
@@ -177,14 +161,18 @@ function build_tweet_content(text){
     var link_length = link.length + 1;// "1" accounts for a space.
     
     // Calculate how many characters we have left over for text.
-    var max_tweet_length = max_length - username_length - link_length;
+    var max_tweet_length = max_length - username_length - tco_length;
 
     // Crop our text to fit the remaining character-count.
     if (text.length > max_tweet_length) {
         var trimmed_text = text.substring( 0, (max_tweet_length - 3) );
+        // Remove start/end spaces.
+        trimmed_text = trimmed_text.replace(/^\s+|\s+$/g,'');
+        // Add an ellipsis if the text has been cropped.
         trimmed_text = trimmed_text + '…';
     } else {
-        var trimmed_text = text;
+        // Remove start/end spaces.
+        var trimmed_text = text.replace(/^\s+|\s+$/g,'');
     }
 
     // Replace spaces with "+" (so the sharing-link works).
@@ -194,37 +182,7 @@ function build_tweet_content(text){
     var tweet_href = 'https://twitter.com/intent/tweet?source=webclient&amp;text=' + parsed_text +  '+' + link + '+' + username;
 
     // Save our results to our "results" object.
-    result.text = trimmed_text;
     result.url = tweet_href;
 
     return result;
-}
-
-/**
- * ------------------
- * BUILD TWEET MARKUP
- *
- * Using the provided
- * text & url, create
- * a new dom-node for
- * our tweet-widget.
- * ------------------
- */
-function build_tweet_markup(tweet_object){
-    
-    // Create a link element.
-    var link_element = document.createElement('a');
-
-    // Give our new link element a class.
-    link_element.className = 'tweet_widget_link';
-    link_element.id = 'tweet_widget_link';
-    
-    // Set the text-content for the link.
-    var link_text = document.createTextNode(tweet_object.text);
-    link_element.appendChild(link_text);
-    
-    // Set the HREF for our link.
-    link_element.setAttribute('href', tweet_object.url);
-
-    return link_element;
 }
