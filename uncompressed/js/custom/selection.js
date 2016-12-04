@@ -42,6 +42,8 @@ function selection_handler(event){
 
         // Get the markup (dom element) for the widget.
         // var tweet_markup = build_tweet_markup(tweet_object);
+        
+        // Set the link for the widget.
         tweet_widget.setAttribute('href', tweet_object.url);
         
         // Make the widget visible.
@@ -130,10 +132,12 @@ function get_selection(){
 
             var range = selection.getRangeAt(0);
             var range_bounding_rect = range.getBoundingClientRect();
-            var calculated_to_position = document.body.scrollTop + range_bounding_rect.bottom;
+            var calculated_to_position = document.body.scrollTop + range_bounding_rect.top;
+
+            var center_point = (range_bounding_rect.left + range_bounding_rect.right) / 2;
 
             global_position['x'] = Math.round(calculated_to_position);
-            global_position['y'] = Math.round(range_bounding_rect.left);
+            global_position['y'] = Math.round(center_point);
         }
     } else if (document.selection && document.selection.type != "Control") {
         text = document.selection.createRange().text;
@@ -176,7 +180,6 @@ function build_tweet_content(text){
     var max_tweet_length = max_length - username_length - link_length;
 
     // Crop our text to fit the remaining character-count.
-    console.log(text.length);
     if (text.length > max_tweet_length) {
         var trimmed_text = text.substring( 0, (max_tweet_length - 3) );
         trimmed_text = trimmed_text + '…';
