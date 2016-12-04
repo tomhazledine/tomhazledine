@@ -149,7 +149,7 @@ function build_tweet_content(text){
     var link = window.location.href;
 
     // t.co URL-shortener length
-    var tco_length = 20;
+    var tco_length = 22;
 
     // How many characters can we use in a tweet?
     var max_length = 140;
