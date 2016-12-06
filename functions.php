@@ -33,6 +33,9 @@
 require get_template_directory() . '/inc/custom-setup.php';
 // require get_template_directory() . '/inc/theme-setup.php';
 
+// Images
+require get_template_directory() . '/inc/image-sizes.php';
+
 // Enqueuing Scripts & Styles.
 require get_template_directory() . '/inc/enqueuing.php';
 
