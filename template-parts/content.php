@@ -34,6 +34,15 @@
 		<div class="tweet-link-wrapper">
 			Found this post interesting or uselful? <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Click here to share it on Twitter!'); ?>
 		</div>
+
+		<div class="comments-block">
+			<?php
+            // If comments are open or we have at least one comment, load up the comment template
+            if ( comments_open() || '0' != get_comments_number() ) {
+                comments_template( '', true );
+            }
+        	?>
+		</div>
 	</div>
 
 	<?php get_template_part('template-parts/module','singlenavigation'); ?>
