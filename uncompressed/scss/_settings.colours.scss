@@ -29,15 +29,15 @@ $primary:#00b7c6;
 
 // Selection Colours
 $selection_primary:$white;
-$selection_secondary:$black;
-$selection_tertiary:$primary;
+$selection_secondary:#bbb;//rgba($primary,.8);
+$selection_tertiary:rgba($primary,.5);//rgba($black,.8);
 ::selection{
   color:$selection_primary;
   background:$selection_secondary;
 }
 a::selection{
-  color:$selection_primary;
-  background:$selection_tertiary;
+  color:$primary;
+  // text-decoration:none;
+  // background:$selection_tertiary;
   text-shadow:none !important;
-  box-shadow:none !important;
 }
