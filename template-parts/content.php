@@ -32,7 +32,10 @@
 		<?php the_content(); ?>
 
 		<div class="tweet-link-wrapper">
-			Found this post interesting or uselful? <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Click here to share it on Twitter!'); ?>
+			Join the discussion about this post on Twitter:
+            <input class="tweet-content-input" type="text" value="I think you're wrong because...">
+            <button class="tweet-content-submit">Tell me!</button>
+            <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Tell me!'); ?>
 		</div>
 		
 		<?php
