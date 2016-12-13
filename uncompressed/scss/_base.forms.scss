@@ -3,9 +3,7 @@ form{
 }
 input{
 	width:100%;
-	// margin-bottom:em;
 	border:.1rem solid $grey;
-	// border-radius:.5em;
 	padding:.5em;
 	font-size:1em;
 	line-height:1;
@@ -28,7 +26,7 @@ button{
 	background:$greyDark;
 	display:block;
 	font-size:1em;
-	border:none;//.15rem solid $primary;
+	border:none;
 	border-radius:.2em;
 	padding:.8em 1em;
 	line-height:1;
@@ -45,36 +43,5 @@ button{
 	}
 	&:hover{
 		background:$primary;
-		// color:$cream;
-		// box-shadow:inset rgba($black,.4) 0 .1em .1em 0;
 	}
 }
-// button.submitButton{
-// 	@extend %buttonReset;
-// 	font-size:1.2em;
-// 	@extend strong;
-// 	background:$cream;
-// 	display:block;
-// 	border:.15rem solid $primary;
-// 	border-radius:.5em;
-// 	padding:.5em;
-// 	color:$primary;
-// 	box-shadow:rgba($black,.4) 0 0 0 0;
-// 	// text-transform:uppercase;
-// 	// letter-spacing:.1em;
-// 	transition:background,color,box-shadow;
-// 	transition-duration:.2s;
-// 	// margin-bottom:1em;
-// 	position:relative;
-// 	z-index:1;
-
-// 	&:focus{
-// 		outline:none;
-// 		border-color:$green;
-// 	}
-// 	&:hover{
-// 		background:$primary;
-// 		color:$cream;
-// 		box-shadow:rgba($black,.4) 0 .1em .1em 0;
-// 	}
-// }
