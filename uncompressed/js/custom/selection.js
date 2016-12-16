@@ -139,6 +139,8 @@ function get_selection(){
  */
 function build_tweet_content(text){
 
+    // NOTE: use %23 rather than # if adding a hashtag.
+
     // Setup an object to hold our results.
     var result = {};
 
