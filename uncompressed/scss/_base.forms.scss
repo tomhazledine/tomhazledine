@@ -47,17 +47,46 @@ button{
 	}
 }
 
-a.button{
-	text-shadow:none !important;
-	display:inline-block;
-	color:$white !important;
-	// box-shadow:none !important;
-	box-shadow:rgba($black,.4) 0 0 0 0 !important;
-	transition:background .2s, color .2s !important;
-	&:hover{
-		text-shadow:none !important;
-		color:$white !important;
-		box-shadow:none !important;
+@include bp(d2_r){
+	.faux-button{
+		// @extend %buttonReset;
 		background:$primary;
+		background:$black;
+		background:$blackSoft;
+		display:block;
+		font-size:1em;
+		border:none;
+		border-radius:.2em;
+		padding:.8em 1em;
+		line-height:1;
+		color:$white;
+		box-shadow:rgba($black,.4) 0 0 0 0;
+		font-family:$text;
+		text-transform:uppercase;
+		font-size:.8em;
+		line-height:1;
+		cursor:pointer;
+		transition:background .2s, color .2s;
+		&:focus{
+			outline:none;
+		}
+		&:hover{
+			background:$primary;
+		}
+	}
+
+	a.faux-button{
+		text-shadow:none !important;
+		display:inline-block;
+		color:$white !important;
+		// box-shadow:none !important;
+		box-shadow:rgba($black,.4) 0 0 0 0 !important;
+		transition:background .2s, color .2s !important;
+		&:hover{
+			text-shadow:none !important;
+			color:$white !important;
+			box-shadow:none !important;
+			background:$primary;
+		}
 	}
 }
