@@ -24,11 +24,13 @@
         box-shadow:
             inset $white 0 -.15rem 0 0,
             inset $primary 0 -.2rem 0 0;
+            // inset $black 0 -.2rem 0 0;
         transition:box-shadow .2s;
         &:hover{
             box-shadow:
                 inset $white 0 -.1rem 0 0,
                 inset $primary 0 -.2rem 0 0;
+                // inset $black 0 -.2rem 0 0;
         }
         code{
             background:rgba($grey,.4);

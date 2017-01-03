@@ -2,12 +2,16 @@
     font-size:.8em;
     margin-top:4em;
     color:$greyDark;
+    // color:$blackSoft;
     // text-align:center;
     .twitter-icon{
         display:inline-block;
         width:1.6em;
         height:1.6em;
         fill:$primary;
+        fill:$black;
+        fill:$greyDark;
+        fill:$blackSoft;
         position:relative;
         top:.5em;
         margin-right:1em;
