@@ -12,7 +12,7 @@
             $reading_time_string = parse_read_time( $reading_time );
             ?>
             <div class="postNavigation">
-                <p>Next post:</p>
+                <p>Newer post:</p>
                 <!-- <code><?php the_date('M Y'); ?></code> -->
                 <a href="<?= esc_url( get_permalink() ); ?>" rel="bookmark"><?php the_title(); ?></a>
                 <!-- <span class="readingTime"><em>Read time: <?= $reading_time_string; ?></em></span> -->
@@ -31,7 +31,7 @@
             $reading_time_string = parse_read_time( $reading_time );
             ?>
             <div class="postNavigation">
-                <p>Previous post:</p>
+                <p>Older post:</p>
                 <!-- <code><?php the_date('M Y'); ?></code> -->
                 <a href="<?= esc_url( get_permalink() ); ?>" rel="bookmark"><?php the_title(); ?></a>
                 <!-- <span class="readingTime"><em>Read time: <?= $reading_time_string; ?></em></span> -->
