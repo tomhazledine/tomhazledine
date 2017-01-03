@@ -32,10 +32,13 @@
 		<?php the_content(); ?>
 
 		<div class="tweet-link-wrapper">
-			Join the discussion about this post on Twitter:
-            <input class="tweet-content-input" type="text" value="I think you're wrong because...">
-            <button class="tweet-content-submit">Tell me!</button>
-            <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Tell me!'); ?>
+			<!-- <label for="tweet-content">Join the discussion about this post on Twitter:</label> -->
+            <!-- <input name="tweet-content" class="tweet-content-input" type="text" value="I think you're wrong because..."> -->
+            <!-- <button class="tweet-content-submit">Tell me!</button> -->
+            <svg class="twitter-icon">
+                <use xlink:href="#twitter" />
+            </svg>
+            <em>Want to comment on this topic?</em> <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Join the discussion on Twitter'); ?>
 		</div>
 		
 		<?php

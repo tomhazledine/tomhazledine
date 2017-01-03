@@ -17,7 +17,7 @@ function tweet_this_link( $text, $link, $message ){
     // Full tweet link.
     $tweet_href = 'https://twitter.com/intent/tweet?source=webclient&amp;text=' . $tweet_text .  '+' . $link . '+' . $tweet_username;
 
-    $full_twitter_link = '<a href="' . $tweet_href . '" class="tweet-this" target="_blank">' . $message . '</a>';
+    $full_twitter_link = '<a href="' . $tweet_href . '" class="tweet-this button" target="_blank">' . $message . '</a>';
 
     print( $full_twitter_link );
 }

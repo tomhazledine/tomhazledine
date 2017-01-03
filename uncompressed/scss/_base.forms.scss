@@ -23,7 +23,7 @@ label{
 button{
 	@extend %buttonReset;
 	background:$primary;
-	background:$greyDark;
+	// background:$greyDark;
 	display:block;
 	font-size:1em;
 	border:none;
@@ -43,5 +43,20 @@ button{
 	}
 	&:hover{
 		background:$primary;
+	}
+}
+
+a.button{
+	text-shadow:none !important;
+	display:inline-block;
+	color:$white !important;
+	// box-shadow:none !important;
+	box-shadow:rgba($black,.4) 0 0 0 0 !important;
+	transition:background .2s, color .2s !important;
+	&:hover{
+		text-shadow:none !important;
+		color:$white !important;
+		box-shadow:none !important;
+		background:$greyDark;
 	}
 }

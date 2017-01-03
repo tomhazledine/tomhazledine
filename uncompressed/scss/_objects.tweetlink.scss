@@ -1,0 +1,19 @@
+.tweet-link-wrapper{
+    font-size:.8em;
+    margin-top:4em;
+    color:$greyDark;
+    // text-align:center;
+    .twitter-icon{
+        display:inline-block;
+        width:1.6em;
+        height:1.6em;
+        fill:$primary;
+        position:relative;
+        top:.5em;
+        margin-right:1em;
+    }
+    .tweet-this{
+        margin-left:1em;
+        letter-spacing:.1em;
+    }
+}
