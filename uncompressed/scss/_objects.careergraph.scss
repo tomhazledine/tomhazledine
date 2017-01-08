@@ -1,14 +1,18 @@
-.homeGraph{
-    width:100%;
-    // height:50%;
-    // height:15em;
-    padding-bottom:50%;
-    // background:rgba(red,.4);
-    margin:0 auto 4em;
+.homeGraphWrapper{
+    margin:4em auto 4em;
 }
 
 .homeGraph{
-    font-family:$display;
+    width:80%;
+    // height:50%;
+    // height:15em;
+    padding-bottom:30%;
+    // background:rgba(red,.4);
+    margin:0 auto;
+}
+
+.homeGraph{
+    // font-family:$display;
     cursor:pointer;
     color:$grey;
     position:relative;
@@ -20,7 +24,7 @@
     path { 
         stroke:$grey;
         // stroke:rgba($black,.4);
-        stroke-width:.2rem;
+        stroke-width:.1rem;
         fill:none;
         transition:stroke .2s;
         &.line_lego.selected{stroke:$blue;}
@@ -40,43 +44,48 @@
     .axis line {
         fill:none;
         stroke:$grey;
-        stroke-width:.2rem;
+        stroke-width:.1rem;
         shape-rendering:crispEdges;
     }
     .hover{
         stroke:none;//$grey;
         // stroke:rgba($black,.4);
         fill:none;//$grey;
-        stroke-width:.2rem;
-        r:.4rem;
+        // stroke-width:.1rem;
+        r:.2rem;
         display:none;
         &.active{
             display:block;
         }
-        // &.y_pilot{stroke:$white;}
+        // &.y_lego{stroke:$white;}
         // &.y_mus{stroke:$green;}
         // &.y_art{stroke:$grey;}
         // &.y_des{stroke:$black;}
         // &.y_dev{stroke:$primary;}
-        &.y_pilot.selected{
-            stroke:$blue;
-            fill:$cream;//$blue;
+        &.y_lego.selected{
+            // stroke:$blue;
+            fill:$blue;
+            // fill:$white;
         }
         &.y_mus.selected{
-            stroke:$green;
-            fill:$cream;//$green;
+            // stroke:$green;
+            fill:$green;
+            // fill:$white;
         }
         &.y_art.selected{
-            stroke:$red;
-            fill:$cream;//$red;
+            // stroke:$red;
+            fill:$red;
+            // fill:$white;
         }
         &.y_des.selected{
-            stroke:$black;
-            fill:$cream;//$black;
+            // stroke:$black;
+            fill:$black;
+            // fill:$white;
         }
         &.y_dev.selected{
-            stroke:$primary;
-            fill:$cream;//$primary;
+            // stroke:$primary;
+            fill:$primary;
+            // fill:$white;
         }
     }
     .chartarea{
@@ -98,16 +107,18 @@
 
 .homeGraphSelectors{
     text-align:center;
+    margin-top:4em;
     .homeGraphSelector{
         font-size:.8em;
         display:inline-block;
         padding-right:1em;
-        text-transform:uppercase;
-        letter-spacing:.1em;
-        font-family:$display;
+        // text-transform:uppercase;
+        // letter-spacing:.1em;
+        font-weight:bold;
+        // font-family:$display;
         .visibleLabel{
             user-select:none;
-            line-height:1;
+            line-height:1.4;
             padding:0 .4em 0 0;
         }
         .check{
@@ -117,4 +128,10 @@
             // font-size:.6em;
         }
     }
+}
+
+.caption{
+    display:block;
+    width:100%;
+    text-align:center;
 }

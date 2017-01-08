@@ -1,5 +1,5 @@
 <div class="homeGraphWrapper">
-    <h2 class="homeGraphTitle">My career aspirations over time&hellip;</h2>
+    <!-- <h2 class="homeGraphTitle"><em>fig #1: </em>My career aspirations over time&hellip;</h2> -->
     <div class="homeGraphSelectors">
         <div class="homeGraphSelector checkWrapper">
             <label for="developer" class="visibleLabel selectorTitle">Developer</label>
@@ -38,4 +38,5 @@
         </div>
     </div>
     <div id="career-graph" class="homeGraph"></div>
+    <span class="caption"><em>fig #1:</em> <strong>my career aspirations over time</strong></span>
 </div>
