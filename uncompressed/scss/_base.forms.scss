@@ -1,13 +1,17 @@
 form{
 	margin:0 0 1em 0;
 }
-input{
-	width:100%;
+input[type="text"]{
+	display:inline-block;
+	// width:100%;
 	border:.1rem solid $grey;
-	padding:.5em;
-	font-size:1em;
+	// padding:.5em;
+	padding:.8em .4em;
+	// font-size:1em;
+	font-size:.8em;
+	border-radius:.2em;
 	line-height:1;
-	height:2em;
+	// height:2em;
 	font-family:$text;
 	color:$black;
 	&:focus{
@@ -19,14 +23,15 @@ label{
 	display:block;
 	margin-bottom:.2em;
 }
+input[type="submit"],
 .button,
 button{
 	@extend %buttonReset;
 	background:$primary;
 	background:$black;
 	background:$blackSoft;
-	display:block;
-	font-size:1em;
+	display:inline-block;
+	// font-size:1em;
 	border:none;
 	border-radius:.2em;
 	padding:.8em 1em;
