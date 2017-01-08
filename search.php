@@ -40,6 +40,11 @@ get_header(); ?>
 
 		endif; ?>
 
+		<hr>
+		
+		<h2>Try again</h2>
+		<?php get_search_form(); ?>
+
 		</main><!-- #main -->
 	</section><!-- #primary -->
 

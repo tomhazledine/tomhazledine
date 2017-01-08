@@ -8,12 +8,9 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <code>
-    <?php
-    the_date('M Y');
-    // echo '';
-    ?>
-    </code>
+    
+    <code><?php the_date('M Y'); ?></code>
+    
     <a href="<?= esc_url( get_permalink() ); ?>" rel="bookmark"><?php the_title(); ?></a>
 
     <?php
@@ -23,4 +20,4 @@
     echo '<span class="readingTime"><em>Read time: ' . $reading_time_string . '</em></span>';
     ?>
 
-</article><!-- #post-## -->
+</article>
