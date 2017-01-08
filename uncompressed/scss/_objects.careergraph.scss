@@ -1,0 +1,120 @@
+.homeGraph{
+    width:100%;
+    // height:50%;
+    // height:15em;
+    padding-bottom:50%;
+    // background:rgba(red,.4);
+    margin:0 auto 4em;
+}
+
+.homeGraph{
+    font-family:$display;
+    cursor:pointer;
+    color:$grey;
+    position:relative;
+    > svg{
+        position:absolute;
+        top:0;
+        left:0;
+    }
+    path { 
+        stroke:$grey;
+        // stroke:rgba($black,.4);
+        stroke-width:.2rem;
+        fill:none;
+        transition:stroke .2s;
+        &.line_lego.selected{stroke:$blue;}
+        &.line_mus.selected{stroke:$green;}
+        &.line_art.selected{stroke:$red;}
+        &.line_des.selected{stroke:$black;}
+        &.line_dev.selected{stroke:$primary;}
+    }
+    .axis text{
+        color:$black;
+        fill:$black;
+        @include bp(d3){
+            font-size:.5em;
+        }
+    }
+    .axis path,
+    .axis line {
+        fill:none;
+        stroke:$grey;
+        stroke-width:.2rem;
+        shape-rendering:crispEdges;
+    }
+    .hover{
+        stroke:none;//$grey;
+        // stroke:rgba($black,.4);
+        fill:none;//$grey;
+        stroke-width:.2rem;
+        r:.4rem;
+        display:none;
+        &.active{
+            display:block;
+        }
+        // &.y_pilot{stroke:$white;}
+        // &.y_mus{stroke:$green;}
+        // &.y_art{stroke:$grey;}
+        // &.y_des{stroke:$black;}
+        // &.y_dev{stroke:$primary;}
+        &.y_pilot.selected{
+            stroke:$blue;
+            fill:$cream;//$blue;
+        }
+        &.y_mus.selected{
+            stroke:$green;
+            fill:$cream;//$green;
+        }
+        &.y_art.selected{
+            stroke:$red;
+            fill:$cream;//$red;
+        }
+        &.y_des.selected{
+            stroke:$black;
+            fill:$cream;//$black;
+        }
+        &.y_dev.selected{
+            stroke:$primary;
+            fill:$cream;//$primary;
+        }
+    }
+    .chartarea{
+        stroke:none;
+        fill:rgba($primary,0);//rgba($primary,.2);
+        transition:fill .2s;
+        &.area_lego.selected{fill:rgba($blue,.3);}
+        &.area_mus.selected{fill:rgba($green,.3);}
+        &.area_art.selected{fill:rgba($red,.3);}
+        &.area_des.selected{fill:rgba($black,.3);}
+        &.area_dev.selected{fill:rgba($primary,.3);}
+
+    }
+}
+
+.homeGraphTitle{
+    text-align:center;
+}
+
+.homeGraphSelectors{
+    text-align:center;
+    .homeGraphSelector{
+        font-size:.8em;
+        display:inline-block;
+        padding-right:1em;
+        text-transform:uppercase;
+        letter-spacing:.1em;
+        font-family:$display;
+        .visibleLabel{
+            user-select:none;
+            line-height:1;
+            padding:0 .4em 0 0;
+        }
+        .check{
+            position:relative;
+            top:-.2em;
+            // margin-top:.2em;
+            // font-size:.6em;
+        }
+    }
+}
