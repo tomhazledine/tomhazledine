@@ -32,6 +32,9 @@ get_header(); ?>
                 // endif;
 
             endwhile; // End of the loop.
+
+            get_template_part( 'template-parts/module', 'recentposts' );
+
             ?>
 
         </main><!-- #main -->
