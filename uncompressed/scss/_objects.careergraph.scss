@@ -1,18 +1,20 @@
+$colour_lego:$blue;
+$colour_mus:$green;
+$colour_art:$red;
+$colour_des:$black;
+$colour_dev:$primary;
+
 .homeGraphWrapper{
     margin:4em auto 4em;
 }
 
 .homeGraph{
     width:80%;
-    // height:50%;
-    // height:15em;
     padding-bottom:30%;
-    // background:rgba(red,.4);
     margin:0 auto;
 }
 
 .homeGraph{
-    // font-family:$display;
     cursor:pointer;
     color:$grey;
     position:relative;
@@ -23,19 +25,17 @@
     }
     path { 
         stroke:$grey;
-        // stroke:rgba($black,.4);
         stroke-width:.1rem;
         fill:none;
         transition:stroke .2s;
-        &.line_lego.selected{stroke:$blue;}
-        &.line_mus.selected{stroke:$green;}
-        &.line_art.selected{stroke:$red;}
-        &.line_des.selected{stroke:$black;}
-        &.line_dev.selected{stroke:$primary;}
+        &.line_lego.selected{stroke:$colour_lego;}
+        &.line_mus.selected{stroke:$colour_mus;}
+        &.line_art.selected{stroke:$colour_art;}
+        &.line_des.selected{stroke:$colour_des;}
+        &.line_dev.selected{stroke:$colour_dev;}
     }
     .axis text{
-        color:$black;
-        fill:$black;
+        fill:$greyDark;
         @include bp(d3){
             font-size:.5em;
         }
@@ -48,55 +48,28 @@
         shape-rendering:crispEdges;
     }
     .hover{
-        stroke:none;//$grey;
-        // stroke:rgba($black,.4);
-        fill:none;//$grey;
-        // stroke-width:.1rem;
+        stroke:none;
+        fill:none;
         r:.2rem;
         display:none;
         &.active{
             display:block;
         }
-        // &.y_lego{stroke:$white;}
-        // &.y_mus{stroke:$green;}
-        // &.y_art{stroke:$grey;}
-        // &.y_des{stroke:$black;}
-        // &.y_dev{stroke:$primary;}
-        &.y_lego.selected{
-            // stroke:$blue;
-            fill:$blue;
-            // fill:$white;
-        }
-        &.y_mus.selected{
-            // stroke:$green;
-            fill:$green;
-            // fill:$white;
-        }
-        &.y_art.selected{
-            // stroke:$red;
-            fill:$red;
-            // fill:$white;
-        }
-        &.y_des.selected{
-            // stroke:$black;
-            fill:$black;
-            // fill:$white;
-        }
-        &.y_dev.selected{
-            // stroke:$primary;
-            fill:$primary;
-            // fill:$white;
-        }
+        &.y_lego.selected{fill:$colour_lego;}
+        &.y_mus.selected{fill:$colour_mus;}
+        &.y_art.selected{fill:$colour_art;}
+        &.y_des.selected{fill:$colour_des;}
+        &.y_dev.selected{fill:$colour_dev;}
     }
     .chartarea{
         stroke:none;
-        fill:rgba($primary,0);//rgba($primary,.2);
+        fill:rgba($primary,0);
         transition:fill .2s;
-        &.area_lego.selected{fill:rgba($blue,.3);}
-        &.area_mus.selected{fill:rgba($green,.3);}
-        &.area_art.selected{fill:rgba($red,.3);}
-        &.area_des.selected{fill:rgba($black,.3);}
-        &.area_dev.selected{fill:rgba($primary,.3);}
+        &.area_lego.selected{fill:rgba($colour_lego,.3);}
+        &.area_mus.selected{fill:rgba($colour_mus,.3);}
+        &.area_art.selected{fill:rgba($colour_art,.3);}
+        &.area_des.selected{fill:rgba($colour_des,.3);}
+        &.area_dev.selected{fill:rgba($colour_dev,.3);}
 
     }
 }
@@ -107,15 +80,11 @@
 
 .homeGraphSelectors{
     text-align:center;
-    margin-top:4em;
     .homeGraphSelector{
         font-size:.8em;
         display:inline-block;
         padding-right:1em;
-        // text-transform:uppercase;
-        // letter-spacing:.1em;
-        font-weight:bold;
-        // font-family:$display;
+        // font-weight:bold;
         .visibleLabel{
             user-select:none;
             line-height:1.4;
@@ -124,8 +93,11 @@
         .check{
             position:relative;
             top:-.2em;
-            // margin-top:.2em;
-            // font-size:.6em;
+            &.lego label{border-color:$colour_lego;}
+            &.mus label{border-color:$colour_mus;}
+            &.art label{border-color:$colour_art;}
+            &.des label{border-color:$colour_des;}
+            &.dev label{border-color:$colour_dev;}
         }
     }
 }
