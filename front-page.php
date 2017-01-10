@@ -15,7 +15,7 @@ while ( have_posts() ) : the_post();
 
             <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
                 <svg class="pages-icon">
-                    <use xlink:href="#pages" />
+                    <use xlink:href="#pages_stack" />
                 </svg>
                 <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages.png"/>
                 <meta itemprop="url" content="http://www.mycorp.com/logo.jpg">
