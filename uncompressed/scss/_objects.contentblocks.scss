@@ -13,23 +13,23 @@
         color:$black;
         cursor:pointer;
         text-shadow:
-            $white .0rem .05rem,
-            $white .0rem -.05rem,
-            $white -.05rem 0rem,
+            $white .0rem .1rem,
+            $white .0rem -.1rem,
             $white -.1rem 0rem,
-            $white .05rem 0rem,
-            $white -.05rem .05rem,
-            $white .05rem .05rem,
+            $white -.2rem 0rem,
+            $white .1rem 0rem,
+            $white -.1rem .1rem,
+            $white .1rem .1rem,
             ;
         box-shadow:
-            inset $white 0 -.15rem 0 0,
-            inset $primary 0 -.2rem 0 0;
+            inset $white 0 -.2rem 0 0,
+            inset $primary 0 -.3rem 0 0;
             // inset $black 0 -.2rem 0 0;
         transition:box-shadow .2s;
         &:hover{
             box-shadow:
-                inset $white 0 -.1rem 0 0,
-                inset $primary 0 -.2rem 0 0;
+                inset $white 0 -.2rem 0 0,
+                inset $primary 0 -.4rem 0 0;
                 // inset $black 0 -.2rem 0 0;
         }
         code{
