@@ -1,0 +1,32 @@
+.pages-icon{
+    display:block;
+    width:4em;
+    height:4em;
+    fill:$primary;
+    margin:0 auto 2em;
+}
+
+hr{
+    display:block;
+    border:none;
+    border-top:.1rem solid $grey;
+    width:50%;
+    margin:2em auto;
+    position:relative;
+    &:before{
+        position:absolute;
+        content:'';
+        display:block;
+        width:.8rem;
+        height:.8rem;
+        background:$red;
+        top:50%;
+        left:50%;
+        margin-top:-.4rem;
+        margin-left:-.4rem;
+        background:$white;
+        border:.1rem solid $grey;
+        box-shadow:$white 0 0 0 .3em;
+        transform:rotate(45deg);
+    }
+}

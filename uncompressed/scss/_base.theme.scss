@@ -83,13 +83,6 @@ sup {
   top:-0.5em;
 }
 
-hr{
-    border:none;
-    border-top:.1rem solid $grey;
-    width:50%;
-    margin:2em auto;
-}
-
 sub {
   // Move the subscripted text down, but only half as far down as the superscript moved up.
   bottom:-0.25em;

@@ -12,6 +12,16 @@ while ( have_posts() ) : the_post();
 
     <div id="primary" class="content-area">
         <main id="main" class="site-main has-sidenotes" role="main">
+
+            <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                <svg class="pages-icon">
+                    <use xlink:href="#pages" />
+                </svg>
+                <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages.png"/>
+                <meta itemprop="url" content="http://www.mycorp.com/logo.jpg">
+                <meta itemprop="width" content="32">
+                <meta itemprop="height" content="32">
+            </div>
             
             <span class="sidenote home-content"><?php the_content(); ?></span>
 
