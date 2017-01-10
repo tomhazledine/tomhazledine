@@ -33,9 +33,23 @@
 
             <?php } else { ?>
 
+                <?php
+                $raw_category = get_the_category();
+                $category_slug = $raw_category[0]->slug;
+
+                switch ($category_slug) {
+                    case 'code':
+                        $icon_id = 'code';
+                        break;
+                    default:
+                        $icon_id = 'pages';
+                        break;
+                }
+                ?>
+
                 <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
                     <svg class="pages-icon">
-                        <use xlink:href="#pages" />
+                        <use xlink:href="#<?= $icon_id; ?>" />
                     </svg>
                     <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages.png"/>
                     <meta itemprop="url" content="http://www.mycorp.com/logo.jpg">
