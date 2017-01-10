@@ -28,6 +28,7 @@ $colour_dev:$primary;
         stroke-width:.1rem;
         fill:none;
         transition:stroke .2s;
+        &.selected{stroke-width:.2rem;}
         &.line_lego.selected{stroke:$colour_lego;}
         &.line_mus.selected{stroke:$colour_mus;}
         &.line_art.selected{stroke:$colour_art;}
@@ -50,7 +51,7 @@ $colour_dev:$primary;
     .hover{
         stroke:none;
         fill:none;
-        r:.2rem;
+        r:.3rem;
         display:none;
         &.active{
             display:block;
@@ -92,12 +93,27 @@ $colour_dev:$primary;
         }
         .check{
             position:relative;
-            top:-.2em;
-            &.lego label{border-color:$colour_lego;}
-            &.mus label{border-color:$colour_mus;}
-            &.art label{border-color:$colour_art;}
-            &.des label{border-color:$colour_des;}
-            &.dev label{border-color:$colour_dev;}
+            top:.1em;
+            &.lego .symLabel{
+                border-color:$colour_lego;
+                &:before{background:$colour_lego;}
+            }
+            &.mus .symLabel{
+                border-color:$colour_mus;
+                &:before{background:$colour_mus;}
+            }
+            &.art .symLabel{
+                border-color:$colour_art;
+                &:before{background:$colour_art;}
+            }
+            &.des .symLabel{
+                border-color:$colour_des;
+                &:before{background:$colour_des;}
+            }
+            &.dev .symLabel{
+                border-color:$colour_dev;
+                &:before{background:$colour_dev;}
+            }
         }
     }
 }

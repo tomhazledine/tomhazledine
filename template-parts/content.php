@@ -10,7 +10,15 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope="" itemprop="mainEntity" itemtype="http://schema.org/BlogPosting">
+
 	<header class="entry-header">
+
+        <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+            <img src="<?= get_template_directory_uri(); ?>/favicon.png"/>
+            <meta itemprop="url" content="http://www.mycorp.com/logo.jpg">
+            <meta itemprop="width" content="32">
+            <meta itemprop="height" content="32">
+        </div>
 
 		<h1 class="entry-title" itemprop="name headline"><?php the_title(); ?></h1>
 
@@ -44,32 +52,15 @@
 	</header>
 
 	<div class="entry-content" itemprop="articleBody mainEntityOfPage">
-
-        <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-            <img src="<?= get_template_directory_uri(); ?>/favicon.png"/>
-            <meta itemprop="url" content="http://www.mycorp.com/logo.jpg">
-            <meta itemprop="width" content="32">
-            <meta itemprop="height" content="32">
-        </div>
 		
 		<?php the_content(); ?>
 
 		<div class="tweet-link-wrapper">
-			<!-- <label for="tweet-content">Join the discussion about this post on Twitter:</label> -->
-            <!-- <input name="tweet-content" class="tweet-content-input" type="text" value="I think you're wrong because..."> -->
-            <!-- <button class="tweet-content-submit">Tell me!</button> -->
             <svg class="twitter-icon">
                 <use xlink:href="#twitter" />
             </svg>
             <em>Want to comment on this topic?</em> <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Join the discussion on Twitter'); ?>
 		</div>
-		
-		<?php
-        // If comments are open or we have at least one comment, load up the comment template
-        // if ( comments_open() || '0' != get_comments_number() ) {
-        //     comments_template( '', true );
-        // }
-    	?>
     	
 	</div>
 

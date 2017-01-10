@@ -1,8 +1,8 @@
 // The visible checkbox
 .check{
     @extend .clearfix;
-    width:1.5rem;
-    height:1.5rem;
+    width:1.6rem;
+    height:1.6rem;
     position:relative;
     margin:0 auto;
     float:left;
@@ -12,21 +12,24 @@
         height:100%;
         display:block;
         position:absolute;
-        border:.1rem solid $grey;
+        border:.2rem solid $grey;
         cursor:pointer;
+        border-radius:50%;
         &:before{
             content:'';
             display:block;
             position:absolute;
             opacity:0;
-            transition:opacity .5s ease-in-out;
-            width:.5rem;
-            height:.9rem;
-            transform:rotate(40deg);
+            transition:opacity .3s ease-in-out;
+            width:.8rem;
+            height:.8rem;
+            border-radius:50%;
+            // transform:rotate(40deg);
             top:.2rem;
-            left:.4rem;
-            border-right:.2rem solid $primary;
-            border-bottom:.2rem solid $primary;
+            left:.2rem;
+            // border-right:.2rem solid $black;
+            // border-bottom:.2rem solid $black;
+            background:$primary;
         }
     }
 
