@@ -1,10 +1,8 @@
-var homeGraphCheck = document.getElementById('career-graph');//$('.homeGraph');
+var homeGraphCheck = document.getElementById('career-graph');
 
-// console.log(homeGraphCheck);
+if (homeGraphCheck) {
 
-// console.log(global_custom_vars.template_path);
-
-if (typeof homeGraphCheck != 'undefined') {
+    console.log('loading career graph');
 
     // Set the dimensions of the canvas / graph
     var margin = {top: 0, right: 20, bottom: 30, left: 20},
