@@ -35,12 +35,14 @@
 
                 <?php
                 $raw_category = get_the_category();
-                $category_slug = $raw_category[0]->slug;
+                $category_slug = strtolower( $raw_category[0]->slug );
 
                 switch ($category_slug) {
                     case 'code':
                         $icon_id = 'code';
                         break;
+                    case 'events':
+                    case 'general':
                     default:
                         $icon_id = 'pages';
                         break;
