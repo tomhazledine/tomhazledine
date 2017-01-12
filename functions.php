@@ -57,5 +57,8 @@ require get_template_directory() . '/inc/shortcodes.php';
 // Social.
 require get_template_directory() . '/inc/social.php';
 
+// Utilities.
+require get_template_directory() . '/inc/utilities.php';
+
 // Custom filters.
 // require get_template_directory() . '/inc/filters-actions.php';
