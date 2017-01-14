@@ -26,7 +26,7 @@
                     <use xlink:href="#<?= $icon_id; ?>" />
                 </svg>
                 <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages.png"/>
-                <meta itemprop="url" content="http://www.mycorp.com/logo.jpg">
+                <meta itemprop="url" content="<?= get_template_directory_uri(); ?>/assets/images/pages.png">
                 <meta itemprop="width" content="32">
                 <meta itemprop="height" content="32">
             </div>
@@ -53,8 +53,8 @@
                 <span class="visuallyhidden" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
                     <meta itemprop="name" content="Tom Hazledine">
                     <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-                        <img src="<?= get_template_directory_uri(); ?>/favicon.png"/>
-                        <meta itemprop="url" content="http://www.mycorp.com/logo.jpg">
+                        <img src="<?= get_template_directory_uri(); ?>/assets/images/pages.png"/>
+                        <meta itemprop="url" content="<?= get_template_directory_uri(); ?>/assets/images/pages.png">
                         <meta itemprop="width" content="32">
                         <meta itemprop="height" content="32">
                     </div>
