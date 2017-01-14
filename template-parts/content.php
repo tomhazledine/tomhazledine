@@ -16,39 +16,20 @@
 
         <header class="entry-header">
 
-            <?php 
-            $thumbnail_id = get_post_thumbnail_id( $post->ID );
-            $image_url_raw = wp_get_attachment_image_src( $thumbnail_id, 'medium' );
-            $image_url = ( $image_url_raw ? $image_url_raw[0] : false );
+            <?php
+            $raw_category = get_the_category();
+            $icon_id = parse_category_for_icon_slug( $raw_category );
             ?>
 
-            <?php if ( $image_url ) { ?>
-
-                <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <img src="<?= $image_url; ?>"/>
-                    <meta itemprop="url" content="<?= $image_url; ?>">
-                    <!-- <meta itemprop="width" content="32"> -->
-                    <!-- <meta itemprop="height" content="32"> -->
-                </div>
-
-            <?php } else { ?>
-
-                <?php
-                $raw_category = get_the_category();
-                $icon_id = parse_category_for_icon_slug( $raw_category );
-                ?>
-
-                <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <svg class="pages-icon">
-                        <use xlink:href="#<?= $icon_id; ?>" />
-                    </svg>
-                    <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages.png"/>
-                    <meta itemprop="url" content="http://www.mycorp.com/logo.jpg">
-                    <meta itemprop="width" content="32">
-                    <meta itemprop="height" content="32">
-                </div>
-
-            <?php } ?>
+            <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                <svg class="pages-icon">
+                    <use xlink:href="#<?= $icon_id; ?>" />
+                </svg>
+                <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages.png"/>
+                <meta itemprop="url" content="http://www.mycorp.com/logo.jpg">
+                <meta itemprop="width" content="32">
+                <meta itemprop="height" content="32">
+            </div>
 
             <h1 class="entry-title" itemprop="name headline"><?php the_title(); ?></h1>
 
@@ -80,6 +61,23 @@
                 </span>
             </div>
         </header>
+
+        <?php 
+        $thumbnail_id = get_post_thumbnail_id( $post->ID );
+        $image_url_raw = wp_get_attachment_image_src( $thumbnail_id, 'large' );
+        $image_url = ( $image_url_raw ? $image_url_raw[0] : false );
+        ?>
+
+        <?php if ( $image_url ) { ?>
+
+            <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                <img src="<?= $image_url; ?>"/>
+                <meta itemprop="url" content="<?= $image_url; ?>">
+                <!-- <meta itemprop="width" content="32"> -->
+                <!-- <meta itemprop="height" content="32"> -->
+            </div>
+
+        <?php } ?>
 		
 		<?php the_content(); ?>
 
