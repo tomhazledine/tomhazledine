@@ -25,3 +25,13 @@ function print_pre( $stuff_to_print ) {
 	var_dump( $stuff_to_print );
 	echo '</pre>';
 }
+
+/**
+ * Set a cookie so analytics can tell 
+ */
+function th_disable_ga_tracking() {
+    if (empty($_COOKIE[''])) {
+        setcookie( 'user_is_th_admin', 'true', $expire_time, '/' );
+    }
+}
+add_action('admin_init', 'th_disable_ga_tracking');
