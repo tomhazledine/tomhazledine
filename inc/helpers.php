@@ -31,6 +31,7 @@ function print_pre( $stuff_to_print ) {
  */
 function th_disable_ga_tracking() {
     if (empty($_COOKIE[''])) {
+    	$expire_time = time() + 60 * 60 * 24 * 180;
         setcookie( 'user_is_th_admin', 'true', $expire_time, '/' );
     }
 }

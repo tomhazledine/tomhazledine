@@ -34,7 +34,7 @@
         ga('create', 'UA-36655973-1', 'auto');
 
         <?php
-        if( isset( $_COOKIE['user_is_admin'] ) ) {
+        if( isset( $_COOKIE['user_is_th_admin'] ) ) {
             echo 'ga(\'set\', \'dimension1\', \'true\');';
         }
         ?>
