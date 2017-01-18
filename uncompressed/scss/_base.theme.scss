@@ -1,5 +1,6 @@
 body{
     font-size:1.6em;
+    width:90%;
     max-width:54em;
     padding:2em .5em;
     margin:0 auto 4em;
@@ -9,6 +10,9 @@ body{
     font-family:$text;
     line-height:1.7;
     // background:$cream;
+    @include bp(d3){
+        font-size:1.4em;
+    }
 }
 
 h1,h2,h3,h4,h5,h6{
