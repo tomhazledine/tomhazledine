@@ -1,0 +1,8 @@
+.post-snippet{
+    .readingTime{
+        // font-size:.8em;
+        @include bp(d2){
+            // display:none;
+        }
+    }
+}
