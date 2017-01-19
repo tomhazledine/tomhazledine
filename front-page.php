@@ -22,31 +22,37 @@ while ( have_posts() ) : the_post();
                 <meta itemprop="width" content="32">
                 <meta itemprop="height" content="32">
             </div>
-            
-            <span class="sidenote home-content"><?php the_content(); ?></span>
 
-            <?php
-            $queryArgs = array(
-                'post_type' => 'post',
-                'posts_per_page' => -1,
-            );
-            $postList = new WP_Query($queryArgs);
+            <div class="clearfix homepage-sidenote-wrapper">
 
-            if ( $postList->have_posts() ) :
+                <?php
+                $queryArgs = array(
+                    'post_type' => 'post',
+                    'posts_per_page' => -1,
+                );
+                $postList = new WP_Query($queryArgs);
 
-                while( $postList->have_posts() ): $postList->the_post();
+                if ( $postList->have_posts() ) :
 
-                    get_template_part( 'template-parts/content', 'mini' );
+                    while( $postList->have_posts() ): $postList->the_post();
 
-                endwhile;
-                wp_reset_postdata();
+                        get_template_part( 'template-parts/content', 'mini' );
 
-            else:
+                    endwhile;
+                    wp_reset_postdata();
 
-                get_template_part( 'template-parts/content', 'none' );
+                else:
 
-            endif;
-            ?>
+                    get_template_part( 'template-parts/content', 'none' );
+
+                endif;
+                ?>
+
+                <hr class="homepage-sidenote-hr">
+
+                <span class="sidenote home-content"><?php the_content(); ?></span>
+
+            </div>
 
         </main>
     </div>
