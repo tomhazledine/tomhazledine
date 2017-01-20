@@ -13,3 +13,17 @@
     font-size:.8em;
     font-style:italic;
 }
+
+.featured-image-wrapper{
+    position:relative;
+    line-height:1;
+    padding-bottom:2em;
+    img{
+        width:100% !important;
+        height:auto;
+    }
+    .sidenote{
+        top:0;
+        transform:none;
+    }
+}

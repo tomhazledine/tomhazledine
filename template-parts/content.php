@@ -13,23 +13,44 @@
 
 	<div class="entry-content" itemprop="articleBody mainEntityOfPage">
 
+        <?php
+        // Get image details
+        $thumbnail_id = get_post_thumbnail_id( $post->ID );
+        $image_url_raw = wp_get_attachment_image_src( $thumbnail_id, 'large' );
+        $image_url = ( $image_url_raw ? $image_url_raw[0] : false );
+        
+        // Get category details.
+        $raw_category = get_the_category();
+        $icon_id = parse_category_for_icon_slug( $raw_category );
+        ?>
+
 
         <header class="entry-header">
-
-            <?php
-            $raw_category = get_the_category();
-            $icon_id = parse_category_for_icon_slug( $raw_category );
-            ?>
-
-            <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                <svg class="pages-icon">
-                    <use xlink:href="#<?= $icon_id; ?>" />
-                </svg>
-                <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages.png"/>
-                <meta itemprop="url" content="<?= get_template_directory_uri(); ?>/assets/images/pages.png">
-                <meta itemprop="width" content="32">
-                <meta itemprop="height" content="32">
-            </div>
+            
+            <?php if ($image_url) { ?>
+                <?php 
+                // If there is a featured image, we'll just show the basic category icon here.
+                ?>
+                <div itemprop="image">
+                    <svg class="pages-icon">
+                        <use xlink:href="#<?= $icon_id; ?>" />
+                    </svg>
+                </div>
+            <?php } else { ?>
+                <?php
+                // If there is no featured image, we'll add the schema data to the category icon
+                // so we have a sensible fallback for the required image schema data.
+                ?>
+                <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                    <svg class="pages-icon">
+                        <use xlink:href="#<?= $icon_id; ?>" />
+                    </svg>
+                    <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages.png"/>
+                    <meta itemprop="url" content="<?= get_template_directory_uri(); ?>/assets/images/pages.png">
+                    <meta itemprop="width" content="32">
+                    <meta itemprop="height" content="32">
+                </div>
+            <?php } ?>
 
             <h1 class="entry-title" itemprop="name headline"><?php the_title(); ?></h1>
 
@@ -62,19 +83,24 @@
             </div>
         </header>
 
-        <?php 
-        $thumbnail_id = get_post_thumbnail_id( $post->ID );
-        $image_url_raw = wp_get_attachment_image_src( $thumbnail_id, 'large' );
-        $image_url = ( $image_url_raw ? $image_url_raw[0] : false );
-        ?>
-
         <?php if ( $image_url ) { ?>
 
-            <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                <img src="<?= $image_url; ?>"/>
+            <?php
+            $image_details = wp_get_attachment_metadata( $thumbnail_id );
+            $image_data = get_post( $thumbnail_id );
+            $image_title = $image_data->post_title;
+            $image_caption = $image_data->post_excerpt;
+            $image_alt = $image_data->post_content;
+            ?>
+
+            <div class="featured-image-wrapper" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                <img title="<?= $image_title; ?>" alt="<?= $image_alt; ?>" src="<?= $image_url; ?>"/>
                 <meta itemprop="url" content="<?= $image_url; ?>">
-                <!-- <meta itemprop="width" content="32"> -->
-                <!-- <meta itemprop="height" content="32"> -->
+                <meta itemprop="width" content="<?= $image_details['width']; ?>">
+                <meta itemprop="height" content="<?= $image_details['height']; ?>">
+                <?php if ( !empty($image_caption) ) { ?>
+                    <span class="sidenote"><?= $image_caption; ?></span>
+                <?php } ?>
             </div>
 
         <?php } ?>

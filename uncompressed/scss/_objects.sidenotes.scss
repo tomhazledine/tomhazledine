@@ -29,6 +29,7 @@
     font-size:.9em;
     line-height:1.2;
     font-style:italic;
+    transform:translateY(-1.6em);
     .sidenote-bracket{
         display:none;
     }
@@ -47,6 +48,7 @@
         font-style:inherit;
         left:auto;
         width:auto;
+        transform:none;
         .sidenote-bracket{
             display:inline;
         }
@@ -59,6 +61,7 @@
 
 .home .sidenote{
     top:0;
+    transform:none;
     @include bp(d1_5){
         position:relative;
         padding-left:0;
