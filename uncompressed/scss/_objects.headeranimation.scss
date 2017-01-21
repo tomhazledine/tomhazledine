@@ -26,6 +26,7 @@
     height:1em;
     animation:headerslide 2s linear infinite;
     position:absolute;
+    transform:translateZ(0);
     bottom:0;
     left:0;
     .header-animation-item-inner{
