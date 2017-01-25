@@ -22,7 +22,18 @@
         // Get category details.
         $raw_category = get_the_category();
         $icon_id = parse_category_for_icon_slug( $raw_category );
+
+        $yoast_meta_description = get_post_meta( $post->ID, '_yoast_wpseo_metadesc' );
         ?>
+
+        <!-- <meta name="twitter:card" content="summary" /> -->
+        <meta name="twitter:site" content="@thomashazledine" />
+        <meta name="twitter:title" content="<?php the_title(); ?>"/>
+        <?php if ( !empty( $yoast_meta_description ) ) { ?>
+            <meta name="twitter:description" content="<?= $yoast_meta_description; ?>" />
+        <?php } else { ?>
+            <meta name="twitter:description" content="<?php the_excerpt(); ?>" />
+        <?php } ?>
 
 
         <header class="entry-header">
@@ -49,6 +60,9 @@
                     <meta itemprop="url" content="<?= get_template_directory_uri(); ?>/assets/images/pages.png">
                     <meta itemprop="width" content="32">
                     <meta itemprop="height" content="32">
+                    
+                    <meta name="twitter:card" content="summary" />
+                    <meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />
                 </div>
             <?php } ?>
 
@@ -98,8 +112,13 @@
                 <meta itemprop="url" content="<?= $image_url; ?>">
                 <meta itemprop="width" content="<?= $image_details['width']; ?>">
                 <meta itemprop="height" content="<?= $image_details['height']; ?>">
+                
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:image" content="<?= $image_url; ?>" />
+                
                 <?php if ( !empty($image_caption) ) { ?>
                     <span class="sidenote"><?= $image_caption; ?></span>
+                    <meta name="twitter:image:alt" content="<?= $image_caption; ?>" />
                 <?php } ?>
             </div>
 
