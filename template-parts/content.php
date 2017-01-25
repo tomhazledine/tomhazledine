@@ -23,7 +23,7 @@
         $raw_category = get_the_category();
         $icon_id = parse_category_for_icon_slug( $raw_category );
 
-        $yoast_meta_description = get_post_meta( $post->ID, '_yoast_wpseo_metadesc' );
+        $yoast_meta_description = get_post_meta( $post->ID, '_yoast_wpseo_metadesc', true );
         ?>
 
         <!-- <meta name="twitter:card" content="summary" /> -->
@@ -62,7 +62,7 @@
                     <meta itemprop="height" content="32">
                     
                     <meta name="twitter:card" content="summary" />
-                    <meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />
+                    <meta name="twitter:image" content="<?= get_template_directory_uri(); ?>/assets/images/pages.png" />
                 </div>
             <?php } ?>
 
