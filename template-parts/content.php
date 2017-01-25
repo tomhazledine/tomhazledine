@@ -30,7 +30,7 @@
         <meta name="twitter:site" content="@thomashazledine" />
         <meta name="twitter:title" content="<?php the_title(); ?>"/>
         <?php if ( !empty( $yoast_meta_description ) ) { ?>
-            <meta name="twitter:description" content="<?= $yoast_meta_description; ?>" />
+            <meta name="twitter:description" content="<?= esc_attr( $yoast_meta_description ); ?>" />
         <?php } else { ?>
             <meta name="twitter:description" content="<?php the_excerpt(); ?>" />
         <?php } ?>
