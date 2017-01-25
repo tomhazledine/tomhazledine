@@ -1,13 +1,13 @@
 <?php
 /**
- * Template Name: About Page
+ * Template Name: Style Free Audio Landing Page
  *
  * @package Tom_Hazledine_Theme
  */
 
 get_header(); ?>
 
-    <?php get_template_part( 'template-parts/module', 'careergraph' ); ?>
+    <?php //get_template_part( 'template-parts/module', 'careergraph' ); ?>
 
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
@@ -25,9 +25,7 @@ get_header(); ?>
             endwhile; // End of the loop.
             ?>
 
-            <hr>
-
-            <?php get_template_part( 'template-parts/module', 'recentposts' ); ?>
+            <?php //get_template_part( 'template-parts/module', 'recentposts' ); ?>
 
         </main><!-- #main -->
     </div><!-- #primary -->
