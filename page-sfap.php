@@ -12,6 +12,10 @@ get_header(); ?>
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
 
+            <audio class="customPlayer" src="http://audio.eatenbymonsters.com/reviews/daughter/human.mp3" title="Human" data-artist="Daughter" controls>
+                Your browser does not support the <code>audio</code> element.
+            </audio>
+
             <?php
             while ( have_posts() ) : the_post();
 
