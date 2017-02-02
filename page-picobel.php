@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Style Free Audio Landing Page
+ * Template Name: Picobel Landing Page
  *
  * @package Tom_Hazledine_Theme
  */
