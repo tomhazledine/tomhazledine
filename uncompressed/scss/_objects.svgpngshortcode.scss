@@ -1,31 +1,41 @@
-.svg_vs_png{
+.svg-vs-png{
     text-align:center;
+    .item-wrapper{
+        display:inline-block;
+        overflow:hidden;
+        padding:.5em;
+        margin:.5em;
+        border:.1rem solid $grey;
+    }
+    .item-mask{
+        width:64px;
+        height:64px;
+        // overflow:hidden;
+        position:relative;
+    }
     .svg{
         fill:$primary;
     }
     .svg,
-    img{
-        display:inline-block;
+    .masked-image{
+        display:block;
+        position:absolute;
+        top:0;
+        left:0;
+        max-width:none;
     }
-    .one_x{
+    .one-x{
         .svg,
         img{
-            width:64px;
+            width:64px !important;
             height:64px;
         }
     }
-    .two_x{
+    .two-x{
         .svg,
         img{
-            width:128px;
+            width:128px !important;
             height:128px;
-        }
-    }
-    .half_x{
-        .svg,
-        img{
-            width:32px;
-            height:32px;
         }
     }
 }

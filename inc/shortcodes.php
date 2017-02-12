@@ -30,18 +30,35 @@ function svg_vs_png_shortcode( $atts ) {
 
     // print_pre($content);
     ?>
-    <div class="svg_vs_png">
-        <div class="one_x">
-            <svg class="svg">
-                <use xlink:href="#code" />
-            </svg>
-            <img src="<?= get_template_directory_uri(); ?>/assets/images/code_128.png"/>
+    <div class="svg-vs-png">
+        <span class="visuallyhidden"><em>If you're reading this post through some kind of syndication feed (RSS, etc.) you may need to visit <a href="<?php the_permalink(); ?>">the original post</a> to view this image-demo correctly.</em></span>
+        <div class="one-x clearfix">
+            <div class="item-wrapper">
+                <div class="item-mask">
+                    <svg class="svg">
+                        <use xlink:href="#code" />
+                    </svg>
+                </div>
+            </div>
+            <div class="item-wrapper">
+                <div class="item-mask">
+                    <img class="masked-image" src="<?= get_template_directory_uri(); ?>/assets/images/code.png"/>
+                </div>
+            </div>
         </div>
-        <div class="two_x">
-            <svg class="svg">
-                <use xlink:href="#code" />
-            </svg>
-            <img src="<?= get_template_directory_uri(); ?>/assets/images/code_128.png"/>
+        <div class="two-x clearfix">
+            <div class="item-wrapper">
+                <div class="item-mask">
+                    <svg class="svg">
+                        <use xlink:href="#code" />
+                    </svg>
+                </div>
+            </div>
+            <div class="item-wrapper">
+                <div class="item-mask">
+                    <img class="masked-image" src="<?= get_template_directory_uri(); ?>/assets/images/code.png"/>
+                </div>
+            </div>
         </div>
     </div>
     <?php
