@@ -25,7 +25,7 @@ add_shortcode( 'sidenote', 'sidenote_shortcode' );
  * zoom (1x, 2x, & 1/2x)
  * ---------------------
  */
-// [svg_vs_png foo="foo-value"]
+// [svg_vs_png]
 function svg_vs_png_shortcode( $atts ) {
 
     // print_pre($content);
@@ -61,8 +61,49 @@ function svg_vs_png_shortcode( $atts ) {
             </div>
         </div>
     </div>
+
+    <div class="clearfix">
+        <div class="half">
+            <img src="<?= get_template_directory_uri(); ?>/assets/images/svg_demo_1.svg" width="100px" height="100px" alt="">
+        </div>
+        <div class="half right">
+            <img src="<?= get_template_directory_uri(); ?>/assets/images/svg_demo_2.svg" width="100px" height="100px" alt="">
+        </div>
+    </div>
     <?php
 
     // return $output;
 }
 add_shortcode( 'svg_vs_png', 'svg_vs_png_shortcode' );
+
+/**
+ * -----------------
+ * IMAGE BLOCK
+ *
+ * Display an image
+ * without using the
+ * default WP image
+ * size rules.
+ * -----------------
+ */
+// [image_block]
+function image_block_shortcode( $atts ) {
+
+    // Parse the width & height from the attributes.
+    $width = !empty($atts['width']) ? $atts['width'] : '';
+    $height = !empty($atts['height']) ? $atts['height'] : '';
+
+    // Build the image url using slug from attributes.
+    $image_url = get_template_directory_uri() . '/assets/images/' . $atts['image_slug'];
+
+    // Display the image with width & height.
+    printf(
+        '<img class="inline-image-block" src="%s" style="width:%s !important;height:%s !important;" width="%s" height="%s" alt="">',
+        $image_url,
+        $width,
+        $height,
+        $width,
+        $height
+    );
+}
+add_shortcode( 'image_block', 'image_block_shortcode' );
