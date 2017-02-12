@@ -1,0 +1,31 @@
+.svg_vs_png{
+    text-align:center;
+    .svg{
+        fill:$primary;
+    }
+    .svg,
+    img{
+        display:inline-block;
+    }
+    .one_x{
+        .svg,
+        img{
+            width:64px;
+            height:64px;
+        }
+    }
+    .two_x{
+        .svg,
+        img{
+            width:128px;
+            height:128px;
+        }
+    }
+    .half_x{
+        .svg,
+        img{
+            width:32px;
+            height:32px;
+        }
+    }
+}
