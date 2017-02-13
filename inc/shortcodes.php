@@ -32,7 +32,11 @@ function svg_vs_png_shortcode( $atts ) {
     ?>
     <div class="svg-vs-png">
         <span class="visuallyhidden"><em>If you're reading this post through some kind of syndication feed (RSS, etc.) you may need to visit <a href="<?php the_permalink(); ?>">the original post</a> to view this image-demo correctly.</em></span>
+        
         <div class="one-x clearfix">
+            <div class="item-label">
+                <p>An .SVG and .PNG icon, side-by-side</p>
+            </div>
             <div class="item-wrapper">
                 <div class="item-mask">
                     <svg class="svg">
@@ -42,11 +46,15 @@ function svg_vs_png_shortcode( $atts ) {
             </div>
             <div class="item-wrapper">
                 <div class="item-mask">
-                    <img class="masked-image" src="<?= get_template_directory_uri(); ?>/assets/images/code.png"/>
+                    <img class="masked-image" src="<?= get_template_directory_uri(); ?>/assets/images/code_128.png"/>
                 </div>
             </div>
         </div>
+        
         <div class="two-x clearfix">
+            <div class="item-label">
+                <p>The same files, increased to double-size</p>
+            </div>
             <div class="item-wrapper">
                 <div class="item-mask">
                     <svg class="svg">
@@ -56,19 +64,29 @@ function svg_vs_png_shortcode( $atts ) {
             </div>
             <div class="item-wrapper">
                 <div class="item-mask">
-                    <img class="masked-image" src="<?= get_template_directory_uri(); ?>/assets/images/code.png"/>
+                    <img class="masked-image" src="<?= get_template_directory_uri(); ?>/assets/images/code_128.png"/>
                 </div>
             </div>
         </div>
-    </div>
+        
+        <div class="ten-x clearfix">
+            <div class="item-label">
+                <p>...and to 10x the original size</p>
+            </div>
+            <div class="item-wrapper">
+                <div class="item-mask">
+                    <svg class="svg">
+                        <use xlink:href="#code" />
+                    </svg>
+                </div>
+            </div>
+            <div class="item-wrapper">
+                <div class="item-mask">
+                    <img class="masked-image" src="<?= get_template_directory_uri(); ?>/assets/images/code_128.png"/>
+                </div>
+            </div>
+        </div>
 
-    <div class="clearfix">
-        <div class="half">
-            <img src="<?= get_template_directory_uri(); ?>/assets/images/svg_demo_1.svg" width="100px" height="100px" alt="">
-        </div>
-        <div class="half right">
-            <img src="<?= get_template_directory_uri(); ?>/assets/images/svg_demo_2.svg" width="100px" height="100px" alt="">
-        </div>
     </div>
     <?php
 

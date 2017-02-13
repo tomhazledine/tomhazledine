@@ -1,8 +1,20 @@
 .svg-vs-png{
     text-align:center;
+
+    .item-label{
+        display:inline-block;
+        width:10em;
+        font-size:.8em;
+        line-height:1.2;
+        font-style:italic;
+        text-align:right;
+        vertical-align:top;
+        padding-top:2em;
+    }
     .item-wrapper{
         display:inline-block;
         overflow:hidden;
+        text-align:middle;
         padding:.5em;
         margin:.5em;
         border:.1rem solid $grey;
@@ -36,6 +48,14 @@
         img{
             width:128px !important;
             height:128px;
+        }
+    }
+    .ten-x{
+        .svg,
+        img{
+            width:640px !important;
+            height:640px;
+            top:-90px;
         }
     }
 }
