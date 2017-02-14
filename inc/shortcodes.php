@@ -102,9 +102,11 @@ add_shortcode( 'svg_vs_png', 'svg_vs_png_shortcode' );
  * without using the
  * default WP image
  * size rules.
+ *
+ * use:
+ * [image_block]
  * -----------------
  */
-// [image_block]
 function image_block_shortcode( $atts ) {
 
     // Parse the width & height from the attributes.
@@ -125,3 +127,35 @@ function image_block_shortcode( $atts ) {
     );
 }
 add_shortcode( 'image_block', 'image_block_shortcode' );
+
+/**
+ * --------------
+ * SVG TRIO BLOCK
+ *
+ * Displays three
+ * identical icons
+ * side by side,
+ * with differing
+ * classes.
+ *
+ * use:
+ * [svg_trio]
+ * --------------
+ */
+function svg_trio_shortcode( $atts ) {
+
+    // Parse the width & height from the attributes.
+    $icon = !empty($atts['icon']) ? $atts['icon'] : 'twitter';
+    $count = !empty($atts['count']) ? (int)$atts['count'] : 3;
+
+    echo '<ul class="example_svg_list">';
+    for ( $i = 1; $i <= $count; $i++ ) { 
+        printf(
+            '<li><svg class="example_svg_%s"><use xlink:href="#%s"/></svg></li>',
+            $i,
+            $icon
+            );
+    }
+    echo '</ul>';
+}
+add_shortcode( 'svg_trio', 'svg_trio_shortcode' );

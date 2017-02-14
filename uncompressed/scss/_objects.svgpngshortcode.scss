@@ -67,3 +67,27 @@
     margin:.5em auto;
     display:block;
 }
+
+.example_svg_list{
+    display:block;
+    text-align:center;
+    padding:2em 0;
+    li{
+        list-style:none;
+        display:inline-block;
+        width:30%;
+        padding:0;
+        margin:0;
+        &:before{
+            display:none;
+        }
+    }
+    svg{
+        width:4em;
+        height:4em;
+    }
+    .example_svg_1{fill:$primary;}
+    .example_svg_2{fill:$black;}
+    .example_svg_3{fill:$grey;}
+
+}
