@@ -28,12 +28,11 @@ add_shortcode( 'sidenote', 'sidenote_shortcode' );
 // [svg_vs_png]
 function svg_vs_png_shortcode( $atts ) {
 
-    // print_pre($content);
-    ?>
-    <div class="svg-vs-png">
-        <span class="visuallyhidden"><em>If you're reading this post through some kind of syndication feed (RSS, etc.) you may need to visit <a href="<?php the_permalink(); ?>">the original post</a> to view this image-demo correctly.</em></span>
+    $output = '<div class="svg-vs-png">
+        <span class="visuallyhidden"><em>If you\'re reading this post through some kind of syndication feed (RSS, etc.) you may need to visit <a href="<?php the_permalink(); ?>">the original post</a> to view this image-demo correctly.</em></span>';
         
-        <div class="one-x clearfix">
+    $output .= sprintf(
+        '<div class="one-x clearfix">
             <div class="item-label">
                 <p>An .SVG and .PNG icon, side-by-side</p>
             </div>
@@ -46,12 +45,15 @@ function svg_vs_png_shortcode( $atts ) {
             </div>
             <div class="item-wrapper">
                 <div class="item-mask">
-                    <img class="masked-image" src="<?= get_template_directory_uri(); ?>/assets/images/code_128.png"/>
+                    <img class="masked-image" src="%s/assets/images/code_128.png"/>
                 </div>
             </div>
-        </div>
+        </div>',
+        get_template_directory_uri()
+    );
         
-        <div class="two-x clearfix">
+    $output .= sprintf(
+        '<div class="two-x clearfix">
             <div class="item-label">
                 <p>The same files, increased to double-size</p>
             </div>
@@ -64,12 +66,15 @@ function svg_vs_png_shortcode( $atts ) {
             </div>
             <div class="item-wrapper">
                 <div class="item-mask">
-                    <img class="masked-image" src="<?= get_template_directory_uri(); ?>/assets/images/code_128.png"/>
+                    <img class="masked-image" src="%s/assets/images/code_128.png"/>
                 </div>
             </div>
-        </div>
+        </div>',
+        get_template_directory_uri()
+    );
         
-        <div class="ten-x clearfix">
+    $output .= sprintf(
+        '<div class="ten-x clearfix">
             <div class="item-label">
                 <p>...and to 10x the original size</p>
             </div>
@@ -82,15 +87,16 @@ function svg_vs_png_shortcode( $atts ) {
             </div>
             <div class="item-wrapper">
                 <div class="item-mask">
-                    <img class="masked-image" src="<?= get_template_directory_uri(); ?>/assets/images/code_128.png"/>
+                    <img class="masked-image" src="%s/assets/images/code_128.png"/>
                 </div>
             </div>
-        </div>
+        </div>',
+        get_template_directory_uri()
+    );
 
-    </div>
-    <?php
+    $output .= '</div>';
 
-    // return $output;
+    return $output;
 }
 add_shortcode( 'svg_vs_png', 'svg_vs_png_shortcode' );
 
@@ -117,7 +123,7 @@ function image_block_shortcode( $atts ) {
     $image_url = get_template_directory_uri() . '/assets/images/' . $atts['image_slug'];
 
     // Display the image with width & height.
-    printf(
+    $output = sprintf(
         '<img class="inline-image-block" src="%s" style="width:%s !important;height:%s !important;" width="%s" height="%s" alt="">',
         $image_url,
         $width,
@@ -125,6 +131,8 @@ function image_block_shortcode( $atts ) {
         $width,
         $height
     );
+
+    return $output;
 }
 add_shortcode( 'image_block', 'image_block_shortcode' );
 
@@ -148,14 +156,16 @@ function svg_trio_shortcode( $atts ) {
     $icon = !empty($atts['icon']) ? $atts['icon'] : 'twitter';
     $count = !empty($atts['count']) ? (int)$atts['count'] : 3;
 
-    echo '<ul class="example_svg_list">';
+    $output = '<ul class="example_svg_list">';
     for ( $i = 1; $i <= $count; $i++ ) { 
-        printf(
+        $output .= sprintf(
             '<li><svg class="example_svg_%s"><use xlink:href="#%s"/></svg></li>',
             $i,
             $icon
         );
     }
-    echo '</ul>';
+    $output .= '</ul>';
+
+    return $output;
 }
 add_shortcode( 'svg_trio', 'svg_trio_shortcode' );
