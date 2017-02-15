@@ -106,9 +106,14 @@ svgConfig = {
         dest: 'intermediate'
     },
     mode: {
-        bust: true,
-        sprite: 'sprite.<mode>.svg',
+        sprite: 'sprite.svg',
         symbol: true
+    },
+    svg: {
+        xmlDeclaration: false,
+        doctypeDeclaration: false,
+        namespaceIDs: false,
+        namespaceClassnames: false
     }
 };
 gulp.task( 'svg', function() {
