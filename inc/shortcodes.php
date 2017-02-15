@@ -154,7 +154,7 @@ function svg_trio_shortcode( $atts ) {
             '<li><svg class="example_svg_%s"><use xlink:href="#%s"/></svg></li>',
             $i,
             $icon
-            );
+        );
     }
     echo '</ul>';
 }
