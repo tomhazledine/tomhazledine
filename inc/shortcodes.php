@@ -29,7 +29,7 @@ add_shortcode( 'sidenote', 'sidenote_shortcode' );
 function svg_vs_png_shortcode( $atts ) {
 
     $output = '<div class="svg-vs-png">
-        <span class="visuallyhidden"><em>If you\'re reading this post through some kind of syndication feed (RSS, etc.) you may need to visit <a href="<?php the_permalink(); ?>">the original post</a> to view this image-demo correctly.</em></span>';
+        <span class="visuallyhidden"><em>If you\'re reading this post through some kind of syndication feed (RSS, etc.) you may need to visit <a href="' . get_the_permalink() . '">the original post</a> to view this image-demo correctly.</em></span>';
         
     $output .= sprintf(
         '<div class="one-x clearfix">
