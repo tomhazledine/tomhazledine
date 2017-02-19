@@ -56,13 +56,13 @@
                     <svg class="pages-icon">
                         <use xlink:href="#<?= $icon_id; ?>" />
                     </svg>
-                    <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages.png"/>
-                    <meta itemprop="url" content="<?= get_template_directory_uri(); ?>/assets/images/pages.png">
+                    <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages_stack_bg.jpg"/>
+                    <meta itemprop="url" content="<?= get_template_directory_uri(); ?>/assets/images/pages_stack_bg.jpg">
                     <meta itemprop="width" content="32">
                     <meta itemprop="height" content="32">
                     
                     <meta name="twitter:card" content="summary" />
-                    <meta name="twitter:image" content="<?= get_template_directory_uri(); ?>/assets/images/pages.png" />
+                    <meta name="twitter:image" content="<?= get_template_directory_uri(); ?>/assets/images/pages_stack_bg.jpg" />
                 </div>
             <?php } ?>
 
