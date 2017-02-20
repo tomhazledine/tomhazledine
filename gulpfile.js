@@ -106,7 +106,6 @@ svgConfig = {
         dest: 'intermediate'
     },
     mode: {
-        sprite: 'sprite.svg',
         symbol: true
     },
     svg: {
@@ -117,8 +116,15 @@ svgConfig = {
     }
 };
 gulp.task( 'svg', function() {
-    gulp.src( 'uncompressed/icons/**/*.svg' )
+    return gulp.src( 'uncompressed/icons/**/*.svg' )
     .pipe( svgSprite( svgConfig ) )
+    .pipe( gulp.dest( 'assets/icons' ) );
+
+});
+
+gulp.task( 'svg_rename', function() {
+    return gulp.src( 'assets/icons/symbol/svg/*.svg' )
+    .pipe( rename( 'iconsprite.svg.php' ) )
     .pipe( gulp.dest( 'assets/icons' ) );
 });
 
@@ -194,6 +200,7 @@ gulp.task( 'watch', function() {
     gulp.watch( 'uncompressed/icons/**/*.svg', ['svg'] );
     gutil.log( 'Watching source files for changes... Press ' + gutil.colors.cyan( 'CTRL + C' ) + ' to stop.' );
 
+    gulp.watch( 'assets/icons/symbol/svg/*.svg', ['svg_rename']);
     gulp.watch( ['*.html', '*.php', 'assets/css/*.css', 'assets/js/'] ).on( 'change', function( file ) {
         livereload( server ).changed( file.path );
     });
