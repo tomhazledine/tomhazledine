@@ -41,5 +41,5 @@
 
 <body <?php body_class(); ?>>
     <div class="svgSpriteWrapper hidden">
-        <?php //get_template_part('assets/icons/iconsprite.svg'); ?>
+        <?php get_template_part('assets/icons/iconsprite.svg'); ?>
     </div>
