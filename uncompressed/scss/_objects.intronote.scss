@@ -5,5 +5,13 @@
     margin-bottom:2em;
     a{
         text-shadow:none;
+        box-shadow:
+            inset $primary_light 0 -.2rem 0 0,
+            inset $white 0 -.3rem 0 0;
+        &:hover{
+            box-shadow:
+                inset $primary_light 0 -.2rem 0 0,
+                inset $white 0 -.4rem 0 0;
+        }
     }
 }
