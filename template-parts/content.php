@@ -123,6 +123,16 @@
             </div>
 
         <?php } ?>
+
+        <?php
+        jetpack_require_lib( 'markdown' );
+        $intro_note = get_field('intro_note');
+        if ( !empty($intro_note) ) {
+            echo '<div class="intro-note">';
+                echo WPCom_Markdown::get_instance()->transform( $intro_note );
+            echo '</div>';
+        }
+        ?>
 		
 		<?php the_content(); ?>
 
