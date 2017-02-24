@@ -125,14 +125,21 @@
         <?php } ?>
 
         <?php
-        jetpack_require_lib( 'markdown' );
-        $intro_note = get_field('intro_note');
-        if ( !empty($intro_note) ) {
-            echo '<div class="intro-note">';
-                echo WPCom_Markdown::get_instance()->transform( $intro_note );
-            echo '</div>';
-        }
+        $show_intro_note = get_field( 'show_intro_note' );
+        $intro_note = esc_attr( get_field( 'intro_note' ) );
+        $intro_link = get_field( 'intro_link' );
         ?>
+
+        <?php if ( !empty($intro_note) && $show_intro_note ) { ?>
+            <div class="intro-note">
+                <span class="intro-note-text"><?= $intro_note; ?></span>
+                <?php if ( !empty( $intro_link ) ) { ?>
+                    <?php $intro_link_anchor = get_the_permalink( $intro_link ); ?>
+                    <?php $intro_link_title = get_the_title( $intro_link ); ?>
+                    <a href="<?= $intro_link_anchor; ?>"><?= $intro_link_title; ?></a>
+                <?php } ?>
+            </div>
+        <?php } ?>
 		
 		<?php the_content(); ?>
 
