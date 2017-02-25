@@ -136,7 +136,7 @@
                 <?php if ( !empty( $intro_link ) ) { ?>
                     <?php $intro_link_anchor = get_the_permalink( $intro_link ); ?>
                     <?php $intro_link_title = get_the_title( $intro_link ); ?>
-                    <a href="<?= $intro_link_anchor; ?>"><?= $intro_link_title; ?></a>
+                    <a href="<?= $intro_link_anchor; ?>" class="intro-note-link"><?= $intro_link_title; ?></a>
                 <?php } ?>
             </div>
         <?php } ?>
