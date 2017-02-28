@@ -19,6 +19,19 @@ function audio_module_shortcode( $atts ) {
     $type = !empty($atts['type']) ? $atts['type'] : 'frequency';
 
     $output = 'testing audio module';
+    $output .= ' | mode = ' . $type;
+
+    // Draw
+    //  - visualizer wrapper
+    //  - keyboard [with data-attr for pitch, set by $atts if available]
+    //  - volume
+    //  - player controls (if wanted): play/pause | loop
+    //  - wave type selectors
+    // Load JS
+    //  - wave type
+    //  - key pitches
+    //  - frequency scope?
+    //  - volume
 
     return $output;
 }
