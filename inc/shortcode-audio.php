@@ -62,6 +62,18 @@ function audio_module_shortcode( $atts ) {
         ['pitch' => 987.77, 'note' => "B",  'type' => 'natural'],
     ];
 
+    $keyboard = '<ul class="audio-module-keyboard clearfix">';
+
+    foreach ($pitches as $pitch) {
+        $keyboard .= '<li class="audio-module-key ' . $pitch['type'] . '" data-pitch="' . $pitch['pitch'] . '">';
+        $keyboard .= '<span class="visuallyhidden">' . $pitch['note'] . '</span>';
+        $keyboard .= '</li>';
+    }
+
+    $keyboard .= '</ul>';
+
+    $output .= $keyboard;
+
     return $output;
 }
 add_shortcode( 'audio_module', 'audio_module_shortcode' );
