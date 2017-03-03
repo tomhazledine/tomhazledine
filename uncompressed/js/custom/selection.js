@@ -32,6 +32,8 @@ var tweet_widget_inner = document.getElementById('tweet-widget-inner');
  */
 function selection_handler(event){
 
+    console.log(event);
+
     // Get the selected text
     var selection = get_selection();
 

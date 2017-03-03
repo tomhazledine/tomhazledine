@@ -13,12 +13,17 @@
  */
 function audio_module_shortcode( $atts ) {
 
+    $output = '';
+
+    // Close main content div.
+    $output .= '</div>';
+
     // Parse the width & height from the attributes.
     
     // Do we want to show a frequency graph, or an oscilloscope display?
     $type = !empty($atts['type']) ? $atts['type'] : 'frequency';
 
-    $output = 'testing audio module';
+    $output .= 'testing audio module';
     $output .= ' | mode = ' . $type;
 
     // Draw
@@ -73,6 +78,9 @@ function audio_module_shortcode( $atts ) {
     $keyboard .= '</ul>';
 
     $output .= $keyboard;
+
+    // Re-open main content.
+    $output .= '<div class="entry-content" itemprop="articleBody mainEntityOfPage">';
 
     return $output;
 }
