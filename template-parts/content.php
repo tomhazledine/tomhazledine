@@ -11,7 +11,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope="" itemprop="mainEntity" itemtype="http://schema.org/BlogPosting">
 
-	<div class="entry-content" itemprop="articleBody mainEntityOfPage">
+    <div class="entry-content" itemprop="articleBody mainEntityOfPage">
 
         <?php
         // Get image details
@@ -140,23 +140,25 @@
                 <?php } ?>
             </div>
         <?php } ?>
-		
-		<?php the_content(); ?>
+        
+        <div class="selectable-area">
+            <?php the_content(); ?>
+        </div>
 
-		<div class="tweet-link-wrapper">
+        <div class="tweet-link-wrapper">
             <svg class="twitter-icon">
                 <use xlink:href="#twitter" />
             </svg>
             <em>Want to comment on this topic?</em> <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Join the discussion on Twitter'); ?>
-		</div>
-    	
-	</div>
+        </div>
+        
+    </div>
 
     <hr>
 
-	<?php get_template_part('template-parts/module','singlenavigation'); ?>
+    <?php get_template_part('template-parts/module','singlenavigation'); ?>
 
-	<footer class="entry-footer">
-		<?php //tomhazledine_theme_entry_footer(); ?>
-	</footer>
+    <footer class="entry-footer">
+        <?php //tomhazledine_theme_entry_footer(); ?>
+    </footer>
 </article>

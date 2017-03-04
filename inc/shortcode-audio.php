@@ -80,7 +80,7 @@ function audio_module_shortcode( $atts ) {
     $output .= $keyboard;
 
     // Re-open main content.
-    $output .= '<div class="entry-content" itemprop="articleBody mainEntityOfPage">';
+    $output .= '<div class="selectable-area">';
 
     return $output;
 }

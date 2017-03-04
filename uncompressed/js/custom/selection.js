@@ -32,31 +32,43 @@ var tweet_widget_inner = document.getElementById('tweet-widget-inner');
  */
 function selection_handler(event){
 
-    console.log(event);
+    // console.log(event.target);
+    var click_target = event.target;
+    var selectable_wrapper = document.getElementsByClassName( 'selectable-area' );
 
-    // Get the selected text
-    var selection = get_selection();
+    for (var i = selectable_wrapper.length - 1; i >= 0; i--) {
+        var parent = selectable_wrapper[i];
+        var is_child = check_relationship( parent, click_target );
+    }
 
-    if (selection) {
+    // Only run the selection-code if the click
+    // happens inside a `.selectable-area` element.
+    if ( is_child ) {
 
-        // Turn selection into "tweet" object.
-        var tweet_object = build_tweet_content(selection);
-        
-        // Set the link for the widget.
-        tweet_widget.setAttribute('href', tweet_object.url);
-        
-        // Make the widget visible.
-        tweet_widget.style.display = 'block';
+        // Get the selected text
+        var selection = get_selection();
 
-        // Set the position for the tweet widget (using the
-        // global vars set by the get_selection function).
-        tweet_widget.style.top = global_position['x'] + 'px';
-        tweet_widget.style.left = global_position['y'] + 'px';
-        
-    } else {
+        if (selection) {
 
-        // Hide the widget if there's no content to display.
-        tweet_widget.style.display = 'none';
+            // Turn selection into "tweet" object.
+            var tweet_object = build_tweet_content(selection);
+            
+            // Set the link for the widget.
+            tweet_widget.setAttribute('href', tweet_object.url);
+            
+            // Make the widget visible.
+            tweet_widget.style.display = 'block';
+
+            // Set the position for the tweet widget (using the
+            // global vars set by the get_selection function).
+            tweet_widget.style.top = global_position['x'] + 'px';
+            tweet_widget.style.left = global_position['y'] + 'px';
+            
+        } else {
+
+            // Hide the widget if there's no content to display.
+            tweet_widget.style.display = 'none';
+        }
     }
 
 }
@@ -74,6 +86,26 @@ function selection_handler(event){
  */
 document.addEventListener('keyup',selection_handler,false);
 document.addEventListener('mouseup',selection_handler,false);
+
+/**
+ * ---------------------
+ * CHECK RELATIONSHIP
+ *
+ * Work out if element-1
+ * is a descendant of
+ * element-2.
+ * ---------------------
+ */
+function check_relationship( parent, child ) {
+    var node = child.parentNode;
+    while (node != null) {
+        if (node == parent) {
+            return true;
+        }
+        node = node.parentNode;
+    }
+    return false;
+}
 
 /**
  * ----------------------
