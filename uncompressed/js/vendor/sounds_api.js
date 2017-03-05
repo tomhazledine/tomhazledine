@@ -154,15 +154,11 @@ var Sounds_API = (function sounds_API(){
      * -------------------------------------
      */
     function noteStart(note){
-        // console.log('the note is: ' + note);
         vco1.frequency.value = note;// Set note pitch
         vco2.frequency.value = (note / vco2PM);// Set note pitch
         vca.gain.value = 1;// Start note
-        addPressedClass(note);
     }
-    function noteEnd(note){
-        removePressedClass(note);
-        // console.log('The note has ended.');
+    function noteEnd(){
         vca.gain.value = 0;// End note
     }
 
@@ -274,28 +270,6 @@ var Sounds_API = (function sounds_API(){
                 stringWaveValue = 'sine';
         }
         return stringWaveValue;
-    }
-
-    /**
-     * ----------------------------
-     * TOGGLE CLASSES TO STYLE KEYS
-     *
-     * Requires "noQuery" module
-     * ----------------------------
-     */
-    
-    function addPressedClass(note){
-        targetPitch = Math.floor(note);
-        targetClass = 'pitchClass' + targetPitch;
-        targetKey = document.getElementsByClassName(targetClass);
-        noQuery.addClass(targetKey[0],'pressed');
-    }
-
-    function removePressedClass(note){
-        targetPitch = Math.floor(note);
-        targetClass = 'pitchClass' + targetPitch;
-        targetKey = document.getElementsByClassName(targetClass);
-        noQuery.removeClass(targetKey[0],'pressed');
     }
 
     /**

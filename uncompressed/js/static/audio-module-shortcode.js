@@ -18,6 +18,5 @@ function noteStart(){
     Sounds_API.noteStart( noteValue );
 }
 function noteEnd(){
-    var noteValue = this.getAttribute('data-pitch');
-    Sounds_API.noteEnd(noteValue);
+    Sounds_API.noteEnd();
 }
