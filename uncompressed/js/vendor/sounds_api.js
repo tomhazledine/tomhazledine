@@ -248,21 +248,30 @@ var Sounds_API = (function sounds_API(){
      * oscillator type.
      * ----------------------------
      */
-    function _handleWaveType(int){
-        var rawWaveValue = parseInt(int);
+    function _handleWaveType(rawWaveValue){
         switch (rawWaveValue) {
             case 0:
+            case '0':
+            case 'sine':
                 stringWaveValue = 'sine';
                 break;
             case 1:
+            case '1':
+            case 'square':
                 stringWaveValue = 'square';
                 break;
             case 2:
+            case '2':
+            case 'sawtooth':
                 stringWaveValue = 'sawtooth';
                 break;
             case 3:
+            case '3':
+            case 'triangle':
                 stringWaveValue = 'triangle';
                 break;
+            default:
+                stringWaveValue = 'sine';
         }
         return stringWaveValue;
     }
