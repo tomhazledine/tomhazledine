@@ -13,6 +13,9 @@
  */
 function audio_module_shortcode( $atts ) {
 
+    // Setup audio-module JS:
+    wp_enqueue_script( 'tomhazledine_audio-module-scripts', get_template_directory_uri() . '/assets/js/static/audio-module-shortcode.js', array( 'tomhazledine_theme-scripts' ), null, true );
+
     $output = '';
 
     // Close main content div.
