@@ -152,6 +152,24 @@ function Sounds_API( options ) {
     master.connect(context.destination);
 
     /**
+     * ---------------------
+     * AUXILIARY CONNECTIONS
+     *
+     * Expose aux in and out
+     * ---------------------
+     */
+    function aux_out(){
+        var aux_out_object = {
+            context: context,
+            signal: master
+        };
+        return aux_out_object;
+    }
+    function aux_in(input){
+        input.connect(context.destination);
+    }
+
+    /**
      * -------------------------------------
      * NOTE CONTROLS
      *
@@ -314,7 +332,9 @@ function Sounds_API( options ) {
         handleWaveType: _handleWaveType,
         controlChanged: _controlRouter,
         noteStart: noteStart,
-        noteEnd: noteEnd
+        noteEnd: noteEnd,
+        aux_out: aux_out,
+        aux_in: aux_in
     };
     
     return publicAPI;
