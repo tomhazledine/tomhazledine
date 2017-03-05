@@ -1,7 +1,6 @@
 console.log('audio shortcode scripts loaded!');
 
-var wave = Sounds_API.handleWaveType('1');
-console.log(wave);
+var audio_module_synth = Sounds_API();
 
 var keys = document.getElementsByClassName('audio-module-key');
 
@@ -15,8 +14,8 @@ for (var i = 0; i < keys.length; i++) {
 
 function noteStart(){
     var noteValue = this.getAttribute('data-pitch');
-    Sounds_API.noteStart( noteValue );
+    audio_module_synth.noteStart( noteValue );
 }
 function noteEnd(){
-    Sounds_API.noteEnd();
+    audio_module_synth.noteEnd();
 }

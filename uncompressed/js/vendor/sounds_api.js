@@ -1,35 +1,34 @@
 /**
- * ------------------------------------------------
+ * ---------------------------------------------------------------------------
  * SOUNDS A.P.I.
  *
- * Call this function to invoke a new instance of a
- * synth. Simplified example:
+ * --------
+ * OVERVIEW
+ * --------
+ * 
+ * Call this function to invoke a new instance of a synth. Simplified example:
  *     
  * var new_synth = Sounds_API(window.AudioContext);
  *
- * This function creates a simplified API that will
- * generate synthesier-sounds. To be of any use, it
- * requires some sort of input handling.
+ * This function creates a simplified API that generates synthesier-sounds. To
+ * be of any use, it requires some sort of input handling.
  *
- * This synth is mono-phonic. It creates one single
- * oscillator which it leaves running continously.
- * Whether we hear it or not is set by a volume
- * control for the oscillator. When we change note,
- * we're altering the pitch of our main oscillator.
- * If we wanted a polyphonic synth, we would need
- * to initialise an oscillator for each individual
- * note.
+ * This synth is mono-phonic. It creates one single oscillator which it leaves
+ * running continously. Audible output is set by a volume control for the main
+ * oscillator. When we change note, we're altering the pitch of our oscillator
+ * (so if we wanted a polyphonic synth, we would need to run an oscillator for
+ * each individual note).
  *
- * We are using a second oscillator to add an extra
- * texture to the notes we make. This runs in
- * tandem with the first oscillator, and is
- * controlled by the same volume setting.
+ * We are using a second oscillator to add an extra texture to the notes. This
+ * runs in tandem with the first oscillator & is slaved to the volume level of
+ * the primary oscillator.
  *
+ * --------------
  * PUBLIC METHODS
+ * --------------
  * 
  * 1. handleWaveType( wave_int ):
- * Takes an integer and converts it to a string for
- * a wave-type.
+ * Takes an integer and converts it to a string for a wave-type.
  * 0 = sine, 1 = square, 2 = sawtooth, 3 = triangle
  * 
  * 2. controlChanged( option_string, value ):
@@ -42,9 +41,25 @@
  * 
  * 4. noteEnd:
  * Ends the audible note.
- * ------------------------------------------------
+ * ---------------------------------------------------------------------------
  */
-var Sounds_API = (function sounds_API(){
+function Sounds_API( options ) {
+
+    /**
+     * -----------------------
+     * PARSE OPTIONS
+     *
+     * Make sure we have valid
+     * options. If we don't we
+     * should provide sensible
+     * fallbacks.
+     * -----------------------
+     */
+    options = typeof options !== 'undefined' ? options : {};
+    options.masterVolume = options.masterVolume || 0.5;
+    options.vco2PM = options.vco2PM || 2;
+    options.vco1wav = options.vco1wav || 'sine';
+    options.vco2wav = options.vco2wav || 'triangle';
 
     var contextClass = (window.AudioContext || window.webkitAudioContext);
 
@@ -53,14 +68,14 @@ var Sounds_API = (function sounds_API(){
         context = new contextClass();
 
     var // Controller Values
-        masterVolume = 0.5,
+        masterVolume = options.masterVolume,
         currentPitch = null,
         currentNote = null;
 
     var // Controller Starting Values
-        vco2PM = 2, // (PM = Pitch Multiplier)
-        vco1wav = 'sine',
-        vco2wav = 'triangle';
+        vco2PM = options.vco2PM, // (PM = Pitch Multiplier)
+        vco1wav = options.vco1wav,
+        vco2wav = options.vco2wav;
 
     /**
      * -----------------------------------
@@ -304,4 +319,4 @@ var Sounds_API = (function sounds_API(){
     
     return publicAPI;
 
-})();
+};
