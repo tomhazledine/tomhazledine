@@ -48,7 +48,9 @@ function selection_handler(event){
         // Get the selected text
         var selection = get_selection();
 
-        if (selection) {
+        // If there is a selection & the selection
+        // is more than 15 characters long...
+        if ( selection && selection.length > 15) {
 
             // Turn selection into "tweet" object.
             var tweet_object = build_tweet_content(selection);
@@ -69,6 +71,10 @@ function selection_handler(event){
             // Hide the widget if there's no content to display.
             tweet_widget.style.display = 'none';
         }
+    } else {
+
+        // Hide the widget if there's no content to display.
+        tweet_widget.style.display = 'none';
     }
 
 }
