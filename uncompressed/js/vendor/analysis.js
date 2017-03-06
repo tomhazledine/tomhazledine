@@ -30,8 +30,10 @@ var TOP_THRESHOLD = 20000;
 
 // context = current audio API context
 // input = audio from source
-function audioAnalysis( context, input ){
+function audioAnalysis( context, input, callback ){
     
+    callback = typeof callback !== 'undefined' ? callback : false;
+
     // Setup an analyser node
     var volume_analyser = context.createAnalyser();
     // Set our FFT (Fast Fourier Transform) size
@@ -76,6 +78,10 @@ function audioAnalysis( context, input ){
         // logArray(array);
 
         var parsed_array = array;//parseFreqArray(array);
+
+        if ( callback ) {
+            callback( volume );
+        }
 
         // Update the volume display
         // console.log( volume );

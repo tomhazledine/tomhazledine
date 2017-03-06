@@ -23,7 +23,32 @@ function noteEnd(){
 var dry_output = audio_module_synth.aux_out();
 var wet_output = audio_module_synth.master_out();
 
-audioAnalysis( wet_output.context, wet_output.signal);
+audioAnalysis( wet_output.context, wet_output.signal, volume_callback);
+
+function volume_callback( volume ){
+    var volume_wrapper = document.getElementById('volume-display-wrapper');
+    var volume_display = document.getElementById('volume-display');
+    
+    var volume_wrapper_height = volume_wrapper.offsetHeight;
+    // console.log(volume_wrapper_height);
+    var display_height = map_range(volume,[0,100],[0,volume_wrapper_height]);
+    console.log(volume + ' | ' + display_height);
+    volume_display.style.height = display_height + 'px';
+}
+
+function map_range(value, srcRange, dstRange){
+    // value is outside source range return
+    if (value < srcRange[0] || value > srcRange[1]){
+        return NaN; 
+    }
+
+    var srcMax = srcRange[1] - srcRange[0],
+        dstMax = dstRange[1] - dstRange[0],
+        adjValue = value - srcRange[0];
+
+    return (adjValue * dstMax / srcMax) + dstRange[0];
+}
+
 // console.log(dry_output);
 
 // DELAY
