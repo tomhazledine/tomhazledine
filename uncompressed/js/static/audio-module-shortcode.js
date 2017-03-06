@@ -14,13 +14,14 @@ for (var i = 0; i < keys.length; i++) {
 
 function noteStart(){
     var noteValue = this.getAttribute('data-pitch');
-    audio_module_synth.noteStart( noteValue );
+    audio_module_synth.note_start( noteValue );
 }
 function noteEnd(){
-    audio_module_synth.noteEnd();
+    audio_module_synth.note_end();
 }
 
 var dry_output = audio_module_synth.aux_out();
+var wet_output = audio_module_synth.master_out();
 // console.log(dry_output);
 
 // DELAY

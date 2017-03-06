@@ -1,10 +1,6 @@
 /**
  * ---------------------------------------------------------------------------
  * SOUNDS A.P.I.
- *
- * --------
- * OVERVIEW
- * --------
  * 
  * Call this function to invoke a new instance of a synth. Simplified example:
  *     
@@ -22,25 +18,6 @@
  * We are using a second oscillator to add an extra texture to the notes. This
  * runs in tandem with the first oscillator & is slaved to the volume level of
  * the primary oscillator.
- *
- * --------------
- * PUBLIC METHODS
- * --------------
- * 
- * 1. handleWaveType( wave_int ):
- * Takes an integer and converts it to a string for a wave-type.
- * 0 = sine, 1 = square, 2 = sawtooth, 3 = triangle
- * 
- * 2. controlChanged( option_string, value ):
- * Sets a new value for an option.
- * masterVolume, oscOneVolume, oscTwoVolume,
- * oscOneWave, oscTwoWave, oscTwoPitch
- * 
- * 3. noteStart( pitch ):
- * Starts a note with a given pitch.
- * 
- * 4. noteEnd:
- * Ends the audible note.
  * ---------------------------------------------------------------------------
  */
 function Sounds_API( options ) {
@@ -56,26 +33,24 @@ function Sounds_API( options ) {
      * -----------------------
      */
     options = typeof options !== 'undefined' ? options : {};
-    options.masterVolume = options.masterVolume || 0.5;
-    options.vco2PM = options.vco2PM || 2;
-    options.vco1wav = options.vco1wav || 'sine';
-    options.vco2wav = options.vco2wav || 'triangle';
+    options.master_volume = options.master_volume || 0.5;
+    options.vco2_pitch_mulitplier = options.vco2_pitch_mulitplier || 2;
+    options.vco1_wave = options.vco1_wave || 'sine';
+    options.vco2_wave = options.vco2_wave || 'triangle';
 
-    var contextClass = (window.AudioContext || window.webkitAudioContext);
+    var context_class = (window.AudioContext || window.webkitAudioContext);
 
     var // Set up audio context (set as a param so
         // we can use the browser-specific version)
-        context = new contextClass();
+        context = new context_class();
 
     var // Controller Values
-        masterVolume = options.masterVolume,
-        currentPitch = null,
-        currentNote = null;
+        master_volume = options.master_volume;
 
     var // Controller Starting Values
-        vco2PM = options.vco2PM, // (PM = Pitch Multiplier)
-        vco1wav = options.vco1wav,
-        vco2wav = options.vco2wav;
+        vco2_pitch_mulitplier = options.vco2_pitch_mulitplier, // (PM = Pitch Multiplier)
+        vco1_wave = options.vco1_wave,
+        vco2_wave = options.vco2_wave;
 
     /**
      * -----------------------------------
@@ -98,7 +73,7 @@ function Sounds_API( options ) {
     // Create an oscillator using the API:
     var vco1 = context.createOscillator();
     // Set the waveform for our new VCO:
-    vco1.type = vco1wav;// OPTIONS: sine, square, sawtooth, triangle
+    vco1.type = vco1_wave;// OPTIONS: sine, square, sawtooth, triangle
     // Set the starting frequency for the VCO
     vco1.frequency.value = 440.00;// 440.00Hz = "A", the standard note all orchestras tune to.
     // Get the VCO running
@@ -107,7 +82,7 @@ function Sounds_API( options ) {
     // VCO #2
     // Repeat the process for our second oscillator:
     var vco2 = context.createOscillator();
-    vco2.type = vco2wav;
+    vco2.type = vco2_wave;
     vco2.frequency.value = 440.00;
     vco2.start(0);
 
@@ -119,13 +94,13 @@ function Sounds_API( options ) {
 
     // VCO#1 VOLUME
     // Gain node for VCO#1
-    var vco1vol = context.createGain();
-    vco1vol.gain.value = 1;
+    var vco1_volume = context.createGain();
+    vco1_volume.gain.value = 1;
 
     // VCO#2 VOLUME
     // Gain node for VCO#2
-    var vco2vol = context.createGain();
-    vco2vol.gain.value = 0.6;
+    var vco2_volume = context.createGain();
+    vco2_volume.gain.value = 0.6;
 
     // PRE-AUX VCA & MASTER VCA
     // When we trigger a note, the normal
@@ -140,10 +115,10 @@ function Sounds_API( options ) {
     // the final arbiter of volume before
     // the signal is passed to our final
     // destination.
-    var preAuxGain = context.createGain();
-    preAuxGain.gain.value = 0.1;
-    var master = context.createGain();
-    master.gain.value = 0.1;
+    var pre_aux_gain = context.createGain();
+    pre_aux_gain.gain.value = 1;
+    var master_gain = context.createGain();
+    master_gain.gain.value = 0.1;
 
     // CONNECTIONS
     // Here we link all our nodes
@@ -152,14 +127,14 @@ function Sounds_API( options ) {
     // pipes the resulting sounds
     // to our audio output, so we
     // can hear it.
-    vco1.connect(vco1vol);
-    vco1vol.connect(vca);
-    vco2.connect(vco2vol);
-    vco2vol.connect(vca);
-    vca.connect(preAuxGain);
-    vca.connect(preAuxGain);
-    preAuxGain.connect(master);
-    master.connect(context.destination);
+    vco1.connect(vco1_volume);
+    vco1_volume.connect(vca);
+    vco2.connect(vco2_volume);
+    vco2_volume.connect(vca);
+    vca.connect(pre_aux_gain);
+    vca.connect(pre_aux_gain);
+    pre_aux_gain.connect(master_gain);
+    master_gain.connect(context.destination);
 
     /**
      * ---------------------
@@ -171,17 +146,17 @@ function Sounds_API( options ) {
     function aux_out(){
         var aux_out_object = {
             context: context,
-            signal: preAuxGain
+            signal: pre_aux_gain
         };
         return aux_out_object;
     }
     function aux_in(input){
-        input.connect(context.destination);
+        input.connect(master_gain);
     }
     function master_out(input){
         var master_object = {
             context: context,
-            signal: master
+            signal: master_gain
         };
         return master_object;
     }
@@ -192,7 +167,7 @@ function Sounds_API( options ) {
      *
      * These methods begin and end our note.
      * 
-     * `noteStart()` is passed a frequency,
+     * `note_start()` is passed a frequency,
      * sets that frequency to the VCOs and
      * then makes sure the VCA is set to 1
      * (a.k.a. full volume). Then it adds a
@@ -203,12 +178,12 @@ function Sounds_API( options ) {
      * `noteEnd()` reverses this process.
      * -------------------------------------
      */
-    function noteStart(note){
+    function note_start(note){
         vco1.frequency.value = note;// Set note pitch
-        vco2.frequency.value = (note / vco2PM);// Set note pitch
+        vco2.frequency.value = (note / vco2_pitch_mulitplier);// Set note pitch
         vca.gain.value = 1;// Start note
     }
-    function noteEnd(){
+    function note_end(){
         vca.gain.value = 0;// End note
     }
 
@@ -222,30 +197,30 @@ function Sounds_API( options ) {
      * ------------------------
      */
     
-    function masterVolumeControl(volume){
-        master.gain.value = volume;
+    function master_volume_control(volume){
+        master_gain.gain.value = volume;
     }
     
-    function oscOneVolumeControl(osc1volume){
-        vco1vol.gain.value = osc1volume;
+    function vco1_volume_control(volume){
+        vco1_volume.gain.value = volume;
     }
     
-    function oscTwoVolumeControl(osc2volume){
-        vco2vol.gain.value = osc2volume;
+    function vco2_volume_control(volume){
+        vco2_volume.gain.value = volume;
     }
     
-    function oscOneWaveControl(oscOneWaveType){
-        vco1wav = _handleWaveType(oscOneWaveType);
-        vco1.type = vco1wav;
+    function vco1_wave_control(wave_type){
+        vco1_wave = _handle_wave_type(wave_type);
+        vco1.type = vco1_wave;
     }
     
-    function oscTwoWaveControl(oscTwoWaveType){
-        vco2wav = _handleWaveType(oscTwoWaveType);
-        vco2.type = vco2wav;
+    function vco2_wave_control(wave_type){
+        vco2_wave = _handle_wave_type(wave_type);
+        vco2.type = vco2_wave;
     }
     
-    function oscTwoPitchControl(pitchMultiplier){
-        vco2PM = pitchMultiplier;
+    function vco2_pitch_control(pitch_multiplier){
+        vco2_pitch_mulitplier = pitch_multiplier;
     }
 
     /**
@@ -258,26 +233,26 @@ function Sounds_API( options ) {
      * correct controller.
      * -------------------
      */
-    function _controlRouter(name,value){
+    function _control_router(name,value){
         // console.log('the ' + name + ' control has been set to ' + value);
         switch (name) {
-            case 'masterVolume':
-                masterVolumeControl(value);
+            case 'master_volume':
+                master_volume_control(value);
                 break;
             case 'oscOneVolume':
-                oscOneVolumeControl(value);
+                vco1_volume_control(value);
                 break;
             case 'oscTwoVolume':
-                oscTwoVolumeControl(value);
+                vco2_volume_control(value);
                 break;
             case 'oscOneWave':
-                oscOneWaveControl(value);
+                vco1_wave_control(value);
                 break;
             case 'oscTwoWave':
-                oscTwoWaveControl(value);
+                vco2_wave_control(value);
                 break;
             case 'oscTwoPitch':
-                oscTwoPitchControl(value);
+                vco2_pitch_control(value);
                 break;
         }
 
@@ -294,7 +269,7 @@ function Sounds_API( options ) {
      * oscillator type.
      * ----------------------------
      */
-    function _handleWaveType(rawWaveValue){
+    function _handle_wave_type(rawWaveValue){
         switch (rawWaveValue) {
             case 0:
             case '0':
@@ -346,10 +321,10 @@ function Sounds_API( options ) {
      * ------------------------------
      */
     var publicAPI = {
-        handleWaveType: _handleWaveType,
-        controlChanged: _controlRouter,
-        noteStart: noteStart,
-        noteEnd: noteEnd,
+        handle_wave_type: _handle_wave_type,
+        control_changed: _control_router,
+        note_start: note_start,
+        note_end: note_end,
         aux_out: aux_out,
         aux_in: aux_in,
         master_out: master_out
