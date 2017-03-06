@@ -127,13 +127,21 @@ function Sounds_API( options ) {
     var vco2vol = context.createGain();
     vco2vol.gain.value = 0.6;
 
-    // MASTER VCA
-    // This is our overall volume control
+    // PRE-AUX VCA & MASTER VCA
     // When we trigger a note, the normal
     // VCA goes from 0 to full. Having a
     // master volume control allows us to
     // set the global volume without
     // affecting the notes' on/off function.
+    // 
+    // Pre-Aux gives us some gain control
+    // *before* sending out our signal to
+    // third-party modules, and Master is
+    // the final arbiter of volume before
+    // the signal is passed to our final
+    // destination.
+    var preAuxGain = context.createGain();
+    preAuxGain.gain.value = 0.1;
     var master = context.createGain();
     master.gain.value = 0.1;
 
@@ -148,7 +156,9 @@ function Sounds_API( options ) {
     vco1vol.connect(vca);
     vco2.connect(vco2vol);
     vco2vol.connect(vca);
-    vca.connect(master);
+    vca.connect(preAuxGain);
+    vca.connect(preAuxGain);
+    preAuxGain.connect(master);
     master.connect(context.destination);
 
     /**
@@ -161,12 +171,19 @@ function Sounds_API( options ) {
     function aux_out(){
         var aux_out_object = {
             context: context,
-            signal: master
+            signal: preAuxGain
         };
         return aux_out_object;
     }
     function aux_in(input){
         input.connect(context.destination);
+    }
+    function master_out(input){
+        var master_object = {
+            context: context,
+            signal: master
+        };
+        return master_object;
     }
 
     /**
@@ -334,7 +351,8 @@ function Sounds_API( options ) {
         noteStart: noteStart,
         noteEnd: noteEnd,
         aux_out: aux_out,
-        aux_in: aux_in
+        aux_in: aux_in,
+        master_out: master_out
     };
     
     return publicAPI;
