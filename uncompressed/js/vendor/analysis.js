@@ -14,6 +14,7 @@ var FFT_SIZE = 1024;
 var BIN_SIZE = FFT_SIZE / 2;
 var BOTTOM_THRESHOLD = 20;
 var TOP_THRESHOLD = 20000;
+var DECAY_RATE = 0.9;
 
 /**
  * ---------------
@@ -43,7 +44,7 @@ function audioAnalysis( context, input, callback ){
     var sample_rate = context.sampleRate;// returns in Hz (not kHz).
     // Do we want our analyser to smooth the transitions for us?
     // If we do: set a time value. Otherwise set "0" to have no smoothing.
-    volume_analyser.smoothingTimeConstant = 0;
+    volume_analyser.smoothingTimeConstant = 0.55;
     // The buffer size is the number of "bins" of data
     // we get (e.g. the number of items in our array).
     // This will be half the FFT size.
@@ -137,6 +138,9 @@ function audioAnalysis( context, input, callback ){
      * into a single number
      * --------------------
      */
+    
+    // var previous_volume = 0;
+
     function _get_average_volume( array ){
         var values = 0;
         var count = 0;
@@ -157,9 +161,6 @@ function audioAnalysis( context, input, callback ){
         } else {
             average = 0;
         }
-
-        // Limit to 2 decimal places
-        average = average.toFixed( 2 );
         
         // Remove any negative numbers
         if ( average < 0 ) {
@@ -170,6 +171,15 @@ function audioAnalysis( context, input, callback ){
         if ( average > 150 ) {
             average = 150;
         }
+
+        // console.log('prev = ' + previous_volume);
+
+        // average = Math.max(average, previous_volume * DECAY_RATE);
+
+        // Limit to 2 decimal places
+        average = average.toFixed( 2 );
+
+        // previous_volume = average;
 
         return average;
     }

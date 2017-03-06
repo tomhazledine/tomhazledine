@@ -32,6 +32,8 @@ function volume_callback( volume ){
     var volume_wrapper_height = volume_wrapper.offsetHeight;
     // console.log(volume_wrapper_height);
     var display_height = map_range(volume,[0,100],[0,volume_wrapper_height]);
+    // Limit to 0 decimal places
+    display_height = display_height.toFixed();
     console.log(volume + ' | ' + display_height);
     volume_display.style.height = display_height + 'px';
 }
