@@ -22,6 +22,8 @@ function noteEnd(){
 
 var dry_output = audio_module_synth.aux_out();
 var wet_output = audio_module_synth.master_out();
+
+audioAnalysis( wet_output.context, wet_output.signal);
 // console.log(dry_output);
 
 // DELAY
