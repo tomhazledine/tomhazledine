@@ -173,8 +173,13 @@ function audioAnalysis( context, input, callback ){
         }
 
         // console.log('prev = ' + previous_volume);
+        
+        // function f(x) {
+        //     return Math.pow(10, Math.floor(Math.log(x) / Math.log(10)));
+        // }
 
         // average = Math.max(average, previous_volume * DECAY_RATE);
+        // average = f( average );
 
         // Limit to 2 decimal places
         average = average.toFixed( 2 );

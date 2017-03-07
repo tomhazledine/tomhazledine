@@ -51,23 +51,30 @@ function map_range(value, srcRange, dstRange){
     return (adjValue * dstMax / srcMax) + dstRange[0];
 }
 
-// console.log(dry_output);
+/**
+ * -----------------------------
+ * DELAY FUNCTION
+ *
+ * Expects input to be an object
+ * with `context` and `signal`.
+ * -----------------------------
+ */
+function delay( input ) {
+    var delay = input.context.createDelay();
+    delay.delayTime.value = 0.2;
+    var delay_feedback = input.context.createGain();
+    delay_feedback.gain.value = 0.3;
+    var delay_filter = input.context.createBiquadFilter();
+    delay_filter.frequency.value = 2000;
 
-// DELAY
-var delay = dry_output.context.createDelay();
-delay.delayTime.value = 0.2;
-var delay_feedback = dry_output.context.createGain();
-delay_feedback.gain.value = 0.3;
-var delay_filter = dry_output.context.createBiquadFilter();
-delay_filter.frequency.value = 2000;
+    input.signal.connect(delay);
+    delay.connect(delay_feedback);
+    delay_feedback.connect(delay_filter);
+    delay_filter.connect(delay);
 
-dry_output.signal.connect(delay);
-delay.connect(delay_feedback);
-delay_feedback.connect(delay_filter);
-delay_filter.connect(delay);
+    return delay;
+}
 
-// With effects:
-// vca.connect(distortion);
-// distortion.connect(delay);
-// delay.connect(master);
-audio_module_synth.aux_in(delay);
+// Apply delay.
+// var delay = delay( dry_output );
+// audio_module_synth.aux_in(delay);
