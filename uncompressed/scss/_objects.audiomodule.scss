@@ -55,3 +55,36 @@
         background:$primary;
     }
 }
+
+.controlStrip{
+    font-size:.5em;
+    width:5.5em;
+    height:10em;
+    float:left;
+    // margin:0 auto;
+    // height:5em;
+    // padding:0 1em;
+    // background:rgba(red,.5);
+    // font-size:.8em;
+    .controlStripInner{
+      width:10em;
+      height:5.5em;
+      position:relative;
+      top:100%;
+      transform:rotate(270deg);
+      transform-origin:0% 0%;
+      // background:rgba(blue,.5);
+    }
+    input[type="range"]{
+      display:block;
+      width:10em;
+      font-size:1em;
+      // margin:2em 0 2em 0;
+      position:absolute;
+      top:2em;
+      left:0;
+    //   width:50%;
+    //   margin:0;
+    //   // height:3em;
+    }
+  }

@@ -106,3 +106,11 @@ intermediate_gain.connect( wet_output.context.destination );
 
 
 audioAnalysis( wet_output.context, intermediate_gain, volume_2_callback);
+
+var master_gain = document.getElementById('master_gain');
+master_gain.addEventListener('change',_master_gain,false);
+
+function _master_gain(){
+    var sliderValue = this.value;
+    intermediate_gain.gain.value = sliderValue;
+};

@@ -87,6 +87,13 @@ function audio_module_shortcode( $atts ) {
 
     $output .= '<div class="clearfix">';
         $output .= $volume_1_display;
+
+        $output .= '<div class="controlStrip clearfix">
+                <div class="controlStripInner">
+                    <input class="pianoController master_gain" id="master_gain" data-controlName="master_gain" type="range" min="0" max="1" value="0.8" step="0.01">
+                </div>
+            </div>';
+
         $output .= $volume_2_display;
     $output .= '</div>';
 
