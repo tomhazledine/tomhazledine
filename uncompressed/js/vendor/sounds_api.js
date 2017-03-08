@@ -100,7 +100,7 @@ function Sounds_API( options ) {
     // VCO#2 VOLUME
     // Gain node for VCO#2
     var vco2_volume = context.createGain();
-    vco2_volume.gain.value = 0.6;
+    vco2_volume.gain.value = 1;
 
     // PRE-AUX VCA & MASTER VCA
     // When we trigger a note, the normal
@@ -134,7 +134,7 @@ function Sounds_API( options ) {
     vca.connect(pre_aux_gain);
     vca.connect(pre_aux_gain);
     pre_aux_gain.connect(master_gain);
-    master_gain.connect(context.destination);
+    // master_gain.connect(context.destination);
 
     /**
      * ---------------------

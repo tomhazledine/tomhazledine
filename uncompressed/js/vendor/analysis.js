@@ -14,7 +14,7 @@ var FFT_SIZE = 1024;
 var BIN_SIZE = FFT_SIZE / 2;
 var BOTTOM_THRESHOLD = 20;
 var TOP_THRESHOLD = 20000;
-var DECAY_RATE = 0.9;
+var DECAY_RATE = 0.1;
 
 /**
  * ---------------
@@ -44,7 +44,7 @@ function audioAnalysis( context, input, callback ){
     var sample_rate = context.sampleRate;// returns in Hz (not kHz).
     // Do we want our analyser to smooth the transitions for us?
     // If we do: set a time value. Otherwise set "0" to have no smoothing.
-    volume_analyser.smoothingTimeConstant = 0.55;
+    volume_analyser.smoothingTimeConstant = DECAY_RATE;
     // The buffer size is the number of "bins" of data
     // we get (e.g. the number of items in our array).
     // This will be half the FFT size.
@@ -62,8 +62,10 @@ function audioAnalysis( context, input, callback ){
 
     listenerNode.onaudioprocess = function(){
 
-        // Create an array to store our data
         var array = new Uint8Array( buffer_size );
+
+        // Create an array to store our data
+        // var array = new Uint8Array( buffer_size );
         // Get the audio data and store it in our array
         volume_analyser.getByteFrequencyData( array );
         // If we wanted information about the waveform
@@ -71,23 +73,17 @@ function audioAnalysis( context, input, callback ){
         // volume_analyser.getByteTimeDomainData(array);
         
         // Trim data to audible frequencies
-        array = _trim_frequencies( array, sample_rate, fft_size );
+        // array = _trim_frequencies( array, sample_rate, fft_size );
 
         // Calculate the mean value of the frequency frame
         var volume = _get_average_volume( array );
 
-        // logArray(array);
-
-        var parsed_array = array;//parseFreqArray(array);
+        // Get the peak frequency value.
+        var peak = _get_max_of_array( array );
 
         if ( callback ) {
-            callback( volume );
+            callback( peak );
         }
-
-        // Update the volume display
-        // console.log( volume );
-        // redrawVolume(volume);
-        // redrawFrequency(parsed_array);
 
     }
 
@@ -109,7 +105,6 @@ function audioAnalysis( context, input, callback ){
         var result = [];
 
         for ( var i = 1; i <= bins.length; i++ ) {
-            // console.log(i);
             // Calculate the frequency for each "bin".
             var frequency = i * sample_rate / fft_size;
             if ( frequency > bottom_threshold && frequency < top_threshold ) {
@@ -120,12 +115,22 @@ function audioAnalysis( context, input, callback ){
             }
         }
 
-        // var start = [];
-        // start['frequency'] = 0;
-        // start['value'] = 0;
-        // result.unshift(start);
-
         return result;
+    }
+
+    /**
+     * --------------------------
+     * GET MAX OF ARRAY
+     *
+     * Get the highest value
+     * from an array of numbers
+     * (because Math.max()
+     * expects a list of numbers,
+     * not an array).
+     * --------------------------
+     */
+    function _get_max_of_array( number_array ) {
+        return Math.max.apply( null, number_array );
     }
 
     /**
@@ -142,49 +147,18 @@ function audioAnalysis( context, input, callback ){
     // var previous_volume = 0;
 
     function _get_average_volume( array ){
-        var values = 0;
-        var count = 0;
-        var average = 0;
+        
         var length = array.length;
 
         // Sum all the frequency values
-        for ( var i = 0; i < length; i++ ) {
-            if ( array[i]['value'] > 0 ) {
-                values += array[i]['value'];
-                count++;
-            }
-        }
-
+        var values = array.reduce(add, 0);
+        
         // Get the mean value
-        if ( values > 0 && count > 0 ) {
-            average = values / count;
-        } else {
-            average = 0;
+        var average = values / length;
+
+        function add(a, b) {
+            return a + b;
         }
-        
-        // Remove any negative numbers
-        if ( average < 0 ) {
-            average = 0;
-        }
-
-        // Flatten peaks
-        if ( average > 150 ) {
-            average = 150;
-        }
-
-        // console.log('prev = ' + previous_volume);
-        
-        // function f(x) {
-        //     return Math.pow(10, Math.floor(Math.log(x) / Math.log(10)));
-        // }
-
-        // average = Math.max(average, previous_volume * DECAY_RATE);
-        // average = f( average );
-
-        // Limit to 2 decimal places
-        average = average.toFixed( 2 );
-
-        // previous_volume = average;
 
         return average;
     }
