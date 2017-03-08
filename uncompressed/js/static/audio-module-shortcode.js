@@ -33,7 +33,7 @@ function volume_1_callback( volume ){
     
     var volume_wrapper_height = volume_wrapper.offsetHeight;
     // console.log(volume_wrapper_height);
-    var max_input_value = Math.log(255);
+    var max_input_value = 255;//Math.log(255);
     // console.log(max_input_value);
     var display_height = map_range(volume,[0,max_input_value],[0,volume_wrapper_height]);
     // Limit to 0 decimal places
@@ -48,7 +48,7 @@ function volume_2_callback( volume ){
     
     var volume_wrapper_height = volume_wrapper.offsetHeight;
     // console.log(volume_wrapper_height);
-    var max_input_value = Math.log(255);
+    var max_input_value = 255;//Math.log(255);
     var display_height = map_range(volume,[0,max_input_value],[0,volume_wrapper_height]);
     // Limit to 0 decimal places
     display_height = display_height.toFixed();

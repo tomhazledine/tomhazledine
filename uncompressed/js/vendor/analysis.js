@@ -92,7 +92,7 @@ function audioAnalysis( context, input, callback ){
 
 
         if ( callback ) {
-            callback( log_peak );
+            callback( peak );
         }
 
     }
