@@ -85,14 +85,14 @@ function audioAnalysis( context, input, callback ){
 
         // Get the peak frequency value.
         var peak = _get_max_of_array( array );
-        // peak = 255 - peak;
+        peak = 255 - peak;
         var log_peak = peak < 1 ? 0 : Math.log( peak );
 
         // console.log( peak + ' | ' + log_peak );
 
 
         if ( callback ) {
-            callback( peak );
+            callback( log_peak );
         }
 
     }

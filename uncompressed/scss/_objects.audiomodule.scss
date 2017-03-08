@@ -44,15 +44,15 @@
     width:1em;
     height:10em;
     position:relative;
-    background:$black;
+    background:$primary;
     float:left;
     .volume-display{
         width:1em;
         height:0;
         position:absolute;
-        bottom:0;
+        top:0;
         left:0;
-        background:$primary;
+        background:$black;
     }
 }
 
