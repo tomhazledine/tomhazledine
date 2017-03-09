@@ -298,19 +298,6 @@ function Sounds_API( options ) {
     }
 
     /**
-     * ---------------
-     * AUDIO ANALYSIS
-     *
-     * Send our audio
-     * output and the
-     * context to our
-     * analysis tools. 
-     * ---------------
-     */
-    // audioAnalysis(context,master);
-
-
-    /**
      * ------------------------------
      * Public API
      *

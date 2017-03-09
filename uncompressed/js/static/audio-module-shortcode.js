@@ -1,17 +1,29 @@
-console.log('audio shortcode scripts loaded!');
 
+// Initialise our audio module.
 var audio_module_synth = Sounds_API({
     vco1wav: 'sawtooth'
 });
 
+/**
+ * -----------------------
+ * TRIGGER AUDIO
+ *
+ * Use the keys in the DOM
+ * to trigger sounds from 
+ * our audio module.
+ * -----------------------
+ */
+
+// Get the key elements.
 var keys = document.getElementsByClassName('audio-module-key');
 
-// SETUP EVENT LISTENERS
+// Setup event listeners.
 for (var i = 0; i < keys.length; i++) {
     keys[i].addEventListener('mousedown',noteStart,false);
     keys[i].addEventListener('mouseup',noteEnd,false);
 };
 
+// Handle note start and end.
 function noteStart(){
     var noteValue = this.getAttribute('data-pitch');
     audio_module_synth.note_start( noteValue );
@@ -20,54 +32,52 @@ function noteEnd(){
     audio_module_synth.note_end();
 }
 
+// Get the aux-in and aux-out connections for our module.
 var dry_output = audio_module_synth.aux_out();
 var wet_output = audio_module_synth.master_out();
 
-// Connect master to output
-// master_gain.connect(context.destination);
-// wet_output.signal.connect( wet_output.context.destination );
+// Apply delay.
+var delay = delay( dry_output );
+audio_module_synth.aux_in(delay);
 
-function volume_1_callback( volume ){
-    var volume_wrapper = document.getElementById('volume-1-display-wrapper');
-    var volume_display = document.getElementById('volume-1-display');
-    
-    var volume_wrapper_height = volume_wrapper.offsetHeight;
-    // console.log(volume_wrapper_height);
-    var max_input_value = Math.log(255);
-    // console.log(max_input_value);
-    var display_height = map_range(volume,[0,max_input_value],[0,volume_wrapper_height]);
-    // Limit to 0 decimal places
-    display_height = display_height.toFixed();
-    // console.log('dry: ' + volume);
-    volume_display.style.height = display_height + 'px';
-}
+/**
+ * ------------------
+ * INTERMEDIATE GAIN
+ *
+ * Create a gain node
+ * to sit between the
+ * wet_output and the
+ * audio destination.
+ * ------------------
+ */
+var intermediate_gain = dry_output.context.createGain();
+intermediate_gain.gain.value = .5;
+wet_output.signal.connect( intermediate_gain );
 
-function volume_2_callback( volume ){
-    var volume_wrapper = document.getElementById('volume-2-display-wrapper');
-    var volume_display = document.getElementById('volume-2-display');
-    
-    var volume_wrapper_height = volume_wrapper.offsetHeight;
-    // console.log(volume_wrapper_height);
-    var max_input_value = Math.log(255);
-    var display_height = map_range(volume,[0,max_input_value],[0,volume_wrapper_height]);
-    // Limit to 0 decimal places
-    display_height = display_height.toFixed();
-    // console.log('wet: ' + volume);
-    volume_display.style.height = display_height + 'px';
-}
+// Send the final signal to our audio-output.
+intermediate_gain.connect( wet_output.context.destination );
 
-function map_range(value, srcRange, dstRange){
-    // value is outside source range return
-    if (value < srcRange[0] || value > srcRange[1]){
-        return NaN; 
-    }
+// Set the intermediate gain node value with a slider.
+var master_gain = document.getElementById('master_gain');
+master_gain.addEventListener('change',_master_gain,false);
+function _master_gain(){
+    var sliderValue = this.value;
+    intermediate_gain.gain.value = sliderValue;
+};
 
-    var srcMax = srcRange[1] - srcRange[0],
-        dstMax = dstRange[1] - dstRange[0],
-        adjValue = value - srcRange[0];
 
-    return (adjValue * dstMax / srcMax) + dstRange[0];
-}
+/**
+ * ---------------
+ * AUDIO ANALYSIS
+ *
+ * Send our audio
+ * output and the
+ * context to our
+ * analysis tools. 
+ * ---------------
+ */
+audioAnalysis( wet_output.context, wet_output.signal, volume_1_callback);
+audioAnalysis( wet_output.context, intermediate_gain, volume_2_callback);
 
 /**
  * -----------------------------
@@ -93,27 +103,54 @@ function delay( input ) {
     return delay;
 }
 
-// Apply delay.
-var delay = delay( dry_output );
-audio_module_synth.aux_in(delay);
+// Visualiser function for volume_1
+function volume_1_callback( volume ){
+    var volume_wrapper = document.getElementById('volume-1-display-wrapper');
+    var volume_display = document.getElementById('volume-1-display');
+    
+    var volume_wrapper_height = volume_wrapper.offsetHeight;
+    // console.log(volume_wrapper_height);
+    var max_input_value = Math.log(255);
+    // console.log(max_input_value);
+    var display_height = map_range(volume,[0,max_input_value],[0,volume_wrapper_height]);
+    // Limit to 0 decimal places
+    display_height = display_height.toFixed();
+    // console.log('dry: ' + volume);
+    volume_display.style.height = display_height + 'px';
+}
 
-audioAnalysis( wet_output.context, wet_output.signal, volume_1_callback);
+// Visualiser function for volume_2
+function volume_2_callback( volume ){
+    var volume_wrapper = document.getElementById('volume-2-display-wrapper');
+    var volume_display = document.getElementById('volume-2-display');
+    
+    var volume_wrapper_height = volume_wrapper.offsetHeight;
+    // console.log(volume_wrapper_height);
+    var max_input_value = Math.log(255);
+    var display_height = map_range(volume,[0,max_input_value],[0,volume_wrapper_height]);
+    // Limit to 0 decimal places
+    display_height = display_height.toFixed();
+    // console.log('wet: ' + volume);
+    volume_display.style.height = display_height + 'px';
+}
 
-var intermediate_gain = dry_output.context.createGain();
-intermediate_gain.gain.value = .5;
+/**
+ * --------------------
+ * MAP RANGE
+ *
+ * Map a value from one
+ * scale to another.
+ * --------------------
+ */
+function map_range(value, srcRange, dstRange){
+    // If value is outside source range, return.
+    if (value < srcRange[0] || value > srcRange[1]){
+        return NaN; 
+    }
 
-wet_output.signal.connect( intermediate_gain );
-// delay.connect( intermediate_gain );
+    var srcMax = srcRange[1] - srcRange[0],
+        dstMax = dstRange[1] - dstRange[0],
+        adjValue = value - srcRange[0];
 
-intermediate_gain.connect( wet_output.context.destination );
-
-
-audioAnalysis( wet_output.context, intermediate_gain, volume_2_callback);
-
-var master_gain = document.getElementById('master_gain');
-master_gain.addEventListener('change',_master_gain,false);
-
-function _master_gain(){
-    var sliderValue = this.value;
-    intermediate_gain.gain.value = sliderValue;
-};
+    return (adjValue * dstMax / srcMax) + dstRange[0];
+}
