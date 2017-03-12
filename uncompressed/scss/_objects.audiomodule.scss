@@ -40,12 +40,29 @@
     }
 }
 
+.volume-section{
+    position:relative;
+    float:left;
+    width:3em;
+    padding:1em;
+    font-family:$code;
+    .volume-label{
+        position:absolute;
+        left:0;
+        width:100%;
+        font-size:.6em;
+        text-align:center;
+        &.max{top:0;}
+        &.min{bottom:0;}
+    }
+}
+
 .volume-display-wrapper{
     width:1em;
     height:10em;
     position:relative;
     background:$primary;
-    float:left;
+    // float:left;
     .volume-display{
         width:1em;
         height:0;

@@ -82,8 +82,22 @@ function audio_module_shortcode( $atts ) {
 
     $output .= $keyboard;
 
-    $volume_1_display = '<div id="volume-1-display-wrapper" class="volume-display-wrapper"><div id="volume-1-display" class="volume-display"></div></div>';
-    $volume_2_display = '<div id="volume-2-display-wrapper" class="volume-display-wrapper"><div id="volume-2-display" class="volume-display"></div></div>';
+    $volume_1_display = '
+        <div id="volume-1-section" class="volume-section">
+            <div id="volume-1-display-wrapper" class="volume-display-wrapper">
+                <div id="volume-1-display" class="volume-display"></div>
+            </div>
+            <span class="volume-label max">0dB</span>
+            <span class="volume-label min">-96dB</span>
+        </div>';
+    $volume_2_display = '
+        <div id="volume-2-section" class="volume-section">
+            <div id="volume-2-display-wrapper" class="volume-display-wrapper">
+                <div id="volume-2-display" class="volume-display"></div>
+            </div>
+            <span class="volume-label max">0dB</span>
+            <span class="volume-label min">-96dB</span>
+        </div>';
 
     $output .= '<div class="clearfix">';
         $output .= $volume_1_display;

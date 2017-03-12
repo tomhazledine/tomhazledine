@@ -127,7 +127,9 @@ function volume_2_callback( volume ){
     var volume_wrapper_height = volume_wrapper.offsetHeight;
     // console.log(volume_wrapper_height);
     var max_input_value = Math.log(255);
-    var display_height = map_range(volume,[0,max_input_value],[0,volume_wrapper_height]);
+    var decibel_value = map_range(volume,[0,max_input_value],[0,96]);
+    console.log( decibel_value.toFixed( 2 ) + ' dBFS' );
+    var display_height = map_range(decibel_value,[0,96],[0,volume_wrapper_height]);
     // Limit to 0 decimal places
     display_height = display_height.toFixed();
     // console.log('wet: ' + volume);
@@ -159,7 +161,9 @@ function draw_db_ticks( target_element ){
         tick.className = 'tick-mark';
         var tick_position = i * tick_distance;
         tick_position = Math.log( tick_position );
-        tick_position = map_range(tick_position,[0,max_input_value],[0,target_element_height]);
+        // tick_position = map_range(tick_position,[0,max_input_value],[0,target_element_height]);
+        var decibel_value = map_range(tick_position,[0,max_input_value],[0,96]);
+        tick_position = map_range(decibel_value,[0,96],[0,target_element_height]);
         tick.style.bottom = tick_position + 'px';
         ticks.appendChild( tick );
     }
