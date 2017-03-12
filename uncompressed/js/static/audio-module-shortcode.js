@@ -105,14 +105,14 @@ function delay( input ) {
 
 // Visualiser function for volume_1
 function volume_1_callback( volume ){
-    var volume_wrapper = document.getElementById('volume-1-display-wrapper');
-    var volume_display = document.getElementById('volume-1-display');
+    var volume_wrapper = document.getElementById( 'volume-1-display-wrapper' );
+    var volume_display = document.getElementById( 'volume-1-display' );
     
     var volume_wrapper_height = volume_wrapper.offsetHeight;
     // console.log(volume_wrapper_height);
-    var max_input_value = Math.log(255);
+    var max_input_value = Math.log( 255 );
     // console.log(max_input_value);
-    var display_height = map_range(volume,[0,max_input_value],[0,volume_wrapper_height]);
+    var display_height = map_range( volume, [ 0, max_input_value ], [ 0, volume_wrapper_height ] );
     // Limit to 0 decimal places
     display_height = display_height.toFixed();
     // console.log('dry: ' + volume);
@@ -132,6 +132,40 @@ function volume_2_callback( volume ){
     display_height = display_height.toFixed();
     // console.log('wet: ' + volume);
     volume_display.style.height = display_height + 'px';
+}
+
+var volume_wrapper = document.getElementById( 'volume-1-display-wrapper' );
+draw_db_ticks( volume_wrapper );
+var volume_wrapper = document.getElementById( 'volume-2-display-wrapper' );
+draw_db_ticks( volume_wrapper );
+
+function draw_db_ticks( target_element ){
+
+    // Create a wrapper for our tick marks.
+    var ticks = document.createElement( 'ul' );
+    ticks.className = 'tick-marks';
+
+    // Target element's height.
+    var target_element_height = target_element.offsetHeight;
+    var number_of_ticks = 10;
+    var tick_distance = 255 / number_of_ticks;
+    var max_input_value = Math.log(255);
+
+
+
+    for (var i = 1; i < number_of_ticks; i++) {
+        // Create elements for each tick.
+        var tick = document.createElement( 'li' );
+        tick.className = 'tick-mark';
+        var tick_position = i * tick_distance;
+        tick_position = Math.log( tick_position );
+        tick_position = map_range(tick_position,[0,max_input_value],[0,target_element_height]);
+        tick.style.bottom = tick_position + 'px';
+        ticks.appendChild( tick );
+    }
+
+    // Add the ticks to our target.
+    target_element.appendChild( ticks );
 }
 
 /**
