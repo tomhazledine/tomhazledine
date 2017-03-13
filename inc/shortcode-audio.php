@@ -86,6 +86,7 @@ function audio_module_shortcode( $atts ) {
         <div id="volume-1-section" class="volume-section">
             <div id="volume-1-display-wrapper" class="volume-display-wrapper">
                 <div id="volume-1-display" class="volume-display"></div>
+                <div id="volume-1-peak" class="volume-peak"></div>
             </div>
             <span class="volume-label max">0dB</span>
             <span class="volume-label min">-96dB</span>
@@ -94,6 +95,7 @@ function audio_module_shortcode( $atts ) {
         <div id="volume-2-section" class="volume-section">
             <div id="volume-2-display-wrapper" class="volume-display-wrapper">
                 <div id="volume-2-display" class="volume-display"></div>
+                <div id="volume-2-peak" class="volume-peak"></div>
             </div>
             <span class="volume-label max">0dB</span>
             <span class="volume-label min">-96dB</span>

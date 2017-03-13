@@ -103,20 +103,36 @@ function delay( input ) {
     return delay;
 }
 
+var volume_1_last_peak = 0;
+
 // Visualiser function for volume_1
 function volume_1_callback( volume ){
+
+    // Get the target elements (can these be turned into globals or params?).
     var volume_wrapper = document.getElementById( 'volume-1-display-wrapper' );
     var volume_display = document.getElementById( 'volume-1-display' );
-    
+    var volume_peak_display = document.getElementById( 'volume-1-peak' );
+
+    // Get the max height of the display.
     var volume_wrapper_height = volume_wrapper.offsetHeight;
-    // console.log(volume_wrapper_height);
+    // Get the max value that volume could possibly be.
     var max_input_value = Math.log( 255 );
-    // console.log(max_input_value);
+    // Map the volume-scale to the display-scale.
     var display_height = map_range( volume, [ 0, max_input_value ], [ 0, volume_wrapper_height ] );
     // Limit to 0 decimal places
     display_height = display_height.toFixed();
-    // console.log('dry: ' + volume);
+    // Set the height of the display mask.
     volume_display.style.height = display_height + 'px';
+
+    // Set the peak-monitor (decays to zero more slowly than standard volume display).
+    // If the new volume is louder than our persistent value, show that.
+    var peak_position = Math.min( display_height, volume_1_last_peak );
+    // Set the peak-display position.
+    volume_peak_display.style.top = peak_position + 'px';
+
+    // Set the persistent value.
+    var incremented_peak = display_height + 10;
+    volume_1_last_peak = incremented_peak <= volume_wrapper_height ? incremented_peak : volume_wrapper_height ;
 }
 
 // Visualiser function for volume_2
@@ -128,7 +144,7 @@ function volume_2_callback( volume ){
     // console.log(volume_wrapper_height);
     var max_input_value = Math.log(255);
     var decibel_value = map_range(volume,[0,max_input_value],[0,96]);
-    console.log( decibel_value.toFixed( 2 ) + ' dBFS' );
+    // console.log( decibel_value.toFixed( 2 ) + ' dBFS' );
     var display_height = map_range(decibel_value,[0,96],[0,volume_wrapper_height]);
     // Limit to 0 decimal places
     display_height = display_height.toFixed();
@@ -149,7 +165,7 @@ function draw_db_ticks( target_element ){
 
     // Target element's height.
     var target_element_height = target_element.offsetHeight;
-    var number_of_ticks = 16;
+    var number_of_ticks = 10;
     var tick_distance = 255 / number_of_ticks;
     var max_input_value = Math.log(255);
 
