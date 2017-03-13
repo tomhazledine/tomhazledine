@@ -149,7 +149,7 @@ function draw_db_ticks( target_element ){
 
     // Target element's height.
     var target_element_height = target_element.offsetHeight;
-    var number_of_ticks = 10;
+    var number_of_ticks = 16;
     var tick_distance = 255 / number_of_ticks;
     var max_input_value = Math.log(255);
 
