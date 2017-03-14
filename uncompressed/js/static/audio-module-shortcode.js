@@ -126,12 +126,13 @@ function volume_1_callback( volume ){
 
     // Set the peak-monitor (decays to zero more slowly than standard volume display).
     // If the new volume is louder than our persistent value, show that.
+    console.log( display_height + ' | ' + volume_1_last_peak );
     var peak_position = Math.min( display_height, volume_1_last_peak );
     // Set the peak-display position.
     volume_peak_display.style.top = peak_position + 'px';
 
     // Set the persistent value.
-    var incremented_peak = display_height + 10;
+    var incremented_peak = Math.min( display_height * 1.00001, incremented_peak * 1.00001 );
     volume_1_last_peak = incremented_peak <= volume_wrapper_height ? incremented_peak : volume_wrapper_height ;
 }
 
