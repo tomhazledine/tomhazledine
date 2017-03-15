@@ -4,6 +4,221 @@ var audio_module_synth = Sounds_API({
     vco1wav: 'sawtooth'
 });
 
+Sounds_API_Triggers( audio_module_synth );
+
+/**
+ * ---------------------------------------------------
+ * MegaSuperSynthInputs
+ * 
+ * handles event- and data-input for MegaSuperSynth.
+ * 
+ * @param {element} controls Wrapper ID for controls
+ * @param {element} keys     Wrapper ID for piano keys
+ * ---------------------------------------------------
+ */
+function Sounds_API_Triggers( sounds_api, options ){
+
+    /**
+     * -----------------------
+     * PARSE OPTIONS
+     *
+     * Make sure we have valid
+     * options. If we don't we
+     * should provide sensible
+     * fallbacks.
+     * -----------------------
+     */
+    options = typeof options !== 'undefined' ? options : {};
+
+    // Get the key elements.
+    var keys = document.getElementsByClassName('audio-module-key');
+
+    // var // Note Inputs (the keyboard)
+    //     synthKeys = keys.getElementsByClassName('synthKey');
+    
+    // var // Controller Inputs
+    //     masterVolumeSlider = controls.getElementsByClassName('masterVolume'),
+    //     oscOneVolumeSlider = controls.getElementsByClassName('oscOneVolume'),
+    //     oscTwoVolumeSlider = controls.getElementsByClassName('oscTwoVolume'),
+    //     oscOneWaveSlider = controls.getElementsByClassName('oscOneWave'),
+    //     oscTwoWaveSlider = controls.getElementsByClassName('oscTwoWave'),
+    //     oscTwoPitchSlider = controls.getElementsByClassName('oscTwoPitch');
+
+    var // Utility Variables
+        keyIsDown = false,
+        keysDown = [];
+
+    var // Map keys as array
+        keyToKey = {
+             65: '261.63',//'Cl',
+             87: '277.18',//'C#l',
+             83: '293.66',//'Dl',
+             69: '311.13',//'D#l',
+             68: '329.63',//'El',
+             70: '349.23',//'Fl',
+             84: '369.99',//'F#l',
+             71: '392.00',//'Gl',
+             89: '415.30',//'G#l',
+             72: '440.00',//'Al',
+             85: '466.16',//'A#l',
+             74: '493.88',//'Bl',
+             75: '523.25',//'Cu',
+             79: '554.37',//'C#u',
+             76: '587.33',//'Du',
+             80: '622.25',//'D#u',
+            186: '659.26',//'Eu',
+            222: '698.46',//'Fu',
+            221: '739.99',//'F#u',
+            220: '783.99',//'Gu',
+            // 13: '830.61'//'G#u'
+        };
+
+    /**
+     * ---------------------
+     * SETUP EVENT LISTENERS
+     * ---------------------
+     */
+    for (var i = 0; i < keys.length; i++) {
+        keys[i].addEventListener('mousedown',_notePress,false);
+        keys[i].addEventListener('mouseover',_noteMouseover,false);
+        keys[i].addEventListener('mouseout',_noteMouseout,false);
+        keys[i].addEventListener('mouseup',_noteMouseup,false);
+    };
+    document.addEventListener('keydown',_noteKeydown,false);
+    document.addEventListener('keyup',_noteKeyup,false);
+    // masterVolumeSlider[0].addEventListener('change',_controlPress,false);
+    // oscOneVolumeSlider[0].addEventListener('change',_controlPress,false);
+    // oscTwoVolumeSlider[0].addEventListener('change',_controlPress,false);
+    // oscOneWaveSlider[0].addEventListener('change',_controlPress,false);
+    // oscTwoWaveSlider[0].addEventListener('change',_controlPress,false);
+    // oscTwoPitchSlider[0].addEventListener('change',_controlPress,false);
+
+    /**
+     * ----------------------------
+     * HANDLE LISTENER ROUTING
+     * 
+     * Different types of event
+     * trigger the same end-results
+     * but require different paths
+     * (e.g. mousedown and
+     * mouseover)
+     * ----------------------------
+     */
+    
+    function _notePress(){
+        keyIsDown = true;
+        var noteValue = this.getAttribute('data-pitch');
+        sounds_api.note_start( noteValue );
+    }
+
+    function _noteMouseover(){
+        if (keyIsDown) {
+            var noteValue = this.getAttribute('data-pitch');
+            sounds_api.note_start( noteValue );
+        }
+    }
+
+    function _noteMouseout(){
+        if (keyIsDown) {
+            var noteValue = this.getAttribute('data-pitch');
+            sounds_api.note_end();
+        }
+    }
+
+    function _noteMouseup(){
+        keyIsDown = false;
+        var noteValue = this.getAttribute('data-pitch');
+        sounds_api.note_end();
+    }
+
+    // /**
+    //  * ---------------------
+    //  * CONTROLLER ROUTING
+    //  * 
+    //  * Sends controller data
+    //  * to controller
+    //  * ---------------------
+    //  */
+    // function _controlPress(){
+    //     var sliderValue = this.value;
+    //     var sliderName = this.getAttribute('data-controlName');
+    //     newSynth.controlChanged(sliderName,sliderValue);
+    //     sliderChange(sliderName,sliderValue);
+    // }
+
+    // /**
+    //  * ---------------
+    //  * CONTROL DISPLAY
+    //  * 
+    //  * Show live value
+    //  * for the control
+    //  * sliders.
+    //  * ---------------
+    //  */
+    // function sliderChange(name,value){
+    //     var targetClass = "controlLabel_" + name;
+    //     var target = document.getElementsByClassName(targetClass);
+    //     var outputValue;
+
+    //     switch (name) {
+    //         case 'masterVolume':
+    //             outputValue = value * 10;
+    //             break;
+    //         case 'oscOneVolume':
+    //             outputValue = value * 10;
+    //             break;
+    //         case 'oscTwoVolume':
+    //             outputValue = value * 10;
+    //             break;
+    //         case 'oscOneWave':
+    //             outputValue = newSynth.handleWaveType(value);
+    //             break;
+    //         case 'oscTwoWave':
+    //             outputValue = newSynth.handleWaveType(value);
+    //             break;
+    //         case 'oscTwoPitch':
+    //             outputValue = 0 - value;
+    //             console.log()
+    //             break;
+    //     }
+
+    //     target[0].textContent = outputValue;
+    // }
+
+    /**
+     * ------------
+     * KEY BINDINGS
+     * ------------
+     */
+    function _noteKeydown(key){
+        // If the key is already being held down, abort function.
+        if (key.keyCode in keysDown){
+            key.preventDefault();
+            return;
+        }
+        // Log the key in keysDown
+        keysDown[key.keyCode] = true;
+        if (typeof keyToKey[key.keyCode] !== 'undefined'){
+            key.preventDefault();
+            noteValue = keyToKey[key.keyCode];
+            sounds_api.note_start( noteValue );
+        }
+    }
+
+    function _noteKeyup(key){
+        delete keysDown[key.keyCode];
+        if (typeof keyToKey[key.keyCode] !== 'undefined'){
+            key.preventDefault();
+            noteValue = keyToKey[key.keyCode];
+            //console.log(noteValue);
+            sounds_api.note_end();
+        }
+    }
+
+    
+}
+
+
 /**
  * -----------------------
  * TRIGGER AUDIO
@@ -14,23 +229,23 @@ var audio_module_synth = Sounds_API({
  * -----------------------
  */
 
-// Get the key elements.
-var keys = document.getElementsByClassName('audio-module-key');
+// // Get the key elements.
+// var keys = document.getElementsByClassName('audio-module-key');
 
-// Setup event listeners.
-for (var i = 0; i < keys.length; i++) {
-    keys[i].addEventListener('mousedown',noteStart,false);
-    keys[i].addEventListener('mouseup',noteEnd,false);
-};
+// // Setup event listeners.
+// for (var i = 0; i < keys.length; i++) {
+//     keys[i].addEventListener('mousedown',noteStart,false);
+//     keys[i].addEventListener('mouseup',noteEnd,false);
+// };
 
-// Handle note start and end.
-function noteStart(){
-    var noteValue = this.getAttribute('data-pitch');
-    audio_module_synth.note_start( noteValue );
-}
-function noteEnd(){
-    audio_module_synth.note_end();
-}
+// // Handle note start and end.
+// function noteStart(){
+//     var noteValue = this.getAttribute('data-pitch');
+//     audio_module_synth.note_start( noteValue );
+// }
+// function noteEnd(){
+//     audio_module_synth.note_end();
+// }
 
 // Get the aux-in and aux-out connections for our module.
 var dry_output = audio_module_synth.aux_out();
