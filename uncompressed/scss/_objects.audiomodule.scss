@@ -1,15 +1,18 @@
 .audio-module-container{
     display:block;
     position:relative;
-    height:10em;
+    min-height:10em;
+    padding-right:10em;
 }
 
 .audio-module-keyboard{
     border:.2rem solid $black;
+    width:100%;
     border-top-width:.4em;
     padding:0 1em 1em 1em;
-    width:80%;
-    float:left;
+    margin-top:1em;
+    // width:80%;
+    // float:left;
 }
 
 .audio-module-key{
