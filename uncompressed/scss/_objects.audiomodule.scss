@@ -51,7 +51,8 @@
         border-bottom-width:.4rem;
         z-index:2;
     }
-    &:active{
+    &.playing{
+    // &:active{
         background:$primary;
     }
     @include bp(d2){
