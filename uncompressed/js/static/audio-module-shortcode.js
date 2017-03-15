@@ -145,24 +145,51 @@ function volume_1_callback( volume ){
 
     // Set the persistent value.
     var incremented_peak = Math.min( display_height, volume_1_last_peak);
-    volume_1_last_peak = incremented_peak <= volume_wrapper_height ? incremented_peak + 8; : volume_wrapper_height ;
+    volume_1_last_peak = incremented_peak <= volume_wrapper_height ? incremented_peak + 8 : volume_wrapper_height ;
 }
+
+var volume_2_last_peak = 0;
 
 // Visualiser function for volume_2
 function volume_2_callback( volume ){
-    var volume_wrapper = document.getElementById('volume-2-display-wrapper');
-    var volume_display = document.getElementById('volume-2-display');
-    
+    // Get the target elements (can these be turned into globals or params?).
+    var volume_wrapper = document.getElementById( 'volume-2-display-wrapper' );
+    var volume_display = document.getElementById( 'volume-2-display' );
+    var volume_peak_display = document.getElementById( 'volume-2-peak' );
+
+    // Get the max height of the display.
     var volume_wrapper_height = volume_wrapper.offsetHeight;
-    // console.log(volume_wrapper_height);
-    var max_input_value = Math.log(255);
-    var decibel_value = map_range(volume,[0,max_input_value],[0,96]);
-    // console.log( decibel_value.toFixed( 2 ) + ' dBFS' );
-    var display_height = map_range(decibel_value,[0,96],[0,volume_wrapper_height]);
+    // Get the max value that volume could possibly be.
+    var max_input_value = Math.log( 255 );
+    // Map the volume-scale to the display-scale.
+    var display_height = map_range( volume, [ 0, max_input_value ], [ 0, volume_wrapper_height ] );
     // Limit to 0 decimal places
     display_height = display_height.toFixed();
-    // console.log('wet: ' + volume);
+    // Set the height of the display mask.
     volume_display.style.height = display_height + 'px';
+
+    // Set the peak-monitor (decays to zero more slowly than standard volume display).
+    // If the new volume is louder than our persistent value, show that.
+    var peak_position = Math.min( display_height, volume_2_last_peak );
+    
+    // Set the peak-display position.
+    volume_peak_display.style.top = peak_position + 'px';
+    
+    // Set the colour of the peak-marker based on the clipping level.
+    // if (peak_position < ( volume_wrapper_height * 0.1 ) ) {
+    //     // If the volume is in the top 10%, show red.
+    //     volume_peak_display.style.borderColor = 'red';
+    // } else if (peak_position < ( volume_wrapper_height * 0.2 ) ) {
+    //     // If the volume is in the top 20%, show yellow.
+    //     volume_peak_display.style.borderColor = 'yellow';
+    // } else {
+    //     // If the volume is in the less than 80%, show green.
+    //     volume_peak_display.style.borderColor = 'green';
+    // }
+
+    // Set the persistent value.
+    var incremented_peak = Math.min( display_height, volume_2_last_peak);
+    volume_2_last_peak = incremented_peak <= volume_wrapper_height ? incremented_peak + 8 : volume_wrapper_height ;
 }
 
 var volume_wrapper = document.getElementById( 'volume-1-display-wrapper' );
