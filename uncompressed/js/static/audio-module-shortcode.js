@@ -126,14 +126,26 @@ function volume_1_callback( volume ){
 
     // Set the peak-monitor (decays to zero more slowly than standard volume display).
     // If the new volume is louder than our persistent value, show that.
-    console.log( display_height + ' | ' + volume_1_last_peak );
     var peak_position = Math.min( display_height, volume_1_last_peak );
+    
     // Set the peak-display position.
     volume_peak_display.style.top = peak_position + 'px';
+    
+    // Set the colour of the peak-marker based on the clipping level.
+    // if (peak_position < ( volume_wrapper_height * 0.1 ) ) {
+    //     // If the volume is in the top 10%, show red.
+    //     volume_peak_display.style.borderColor = 'red';
+    // } else if (peak_position < ( volume_wrapper_height * 0.2 ) ) {
+    //     // If the volume is in the top 20%, show yellow.
+    //     volume_peak_display.style.borderColor = 'yellow';
+    // } else {
+    //     // If the volume is in the less than 80%, show green.
+    //     volume_peak_display.style.borderColor = 'green';
+    // }
 
     // Set the persistent value.
-    var incremented_peak = Math.min( display_height * 1.00001, incremented_peak * 1.00001 );
-    volume_1_last_peak = incremented_peak <= volume_wrapper_height ? incremented_peak : volume_wrapper_height ;
+    var incremented_peak = Math.min( display_height, volume_1_last_peak);
+    volume_1_last_peak = incremented_peak <= volume_wrapper_height ? incremented_peak + 8; : volume_wrapper_height ;
 }
 
 // Visualiser function for volume_2
