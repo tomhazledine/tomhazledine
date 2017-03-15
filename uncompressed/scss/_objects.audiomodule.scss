@@ -1,7 +1,15 @@
+.audio-module-container{
+    display:block;
+    position:relative;
+    height:10em;
+}
+
 .audio-module-keyboard{
     border:.2rem solid $black;
     border-top-width:.4em;
     padding:0 1em 1em 1em;
+    width:80%;
+    float:left;
 }
 
 .audio-module-key{
@@ -10,10 +18,10 @@
     float:left;
     border:.2rem solid $white;
     display:block;
-    // height:4em;
+    height:10em;
     margin:0;
     padding:0;
-    padding-bottom:20%;
+    // padding-bottom:20%;
     position:relative;
     z-index:1;
     background:$grey;
@@ -29,7 +37,8 @@
         margin-right:-2.5%;
         // margin-left:-3.571%;
         // margin-right:-3.571%;
-        padding-bottom:15%;
+        height:6em;
+        // padding-bottom:15%;
         border-right-width:.4rem;
         border-left-width:.4rem;
         border-bottom-width:.4rem;
@@ -38,6 +47,12 @@
     &:active{
         background:$primary;
     }
+}
+
+.volume-sections{
+    position:absolute;
+    top:0;
+    right:0;
 }
 
 .volume-section{
@@ -141,4 +156,8 @@ $range_height:16em;
     //   margin:0;
     //   // height:3em;
     }
+}
+
+.volume-sections .controlStrip{
+    margin-top:3em;
 }
