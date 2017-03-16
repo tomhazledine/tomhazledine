@@ -1,10 +1,12 @@
 .audio-module-container{
     display:block;
     position:relative;
+    z-index:1;
     min-height:10em;
     padding-right:10em;
     border:.2rem solid $black;
     border-top-width:.4em;
+    margin:2em auto 1em;
     @include bp(d2){
         padding-right:0;
     }

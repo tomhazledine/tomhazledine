@@ -60,13 +60,21 @@ img.aligncenter,
 }
 .wp-caption.alignnone{
     @extend %cf;
+    max-width:100%;
+    img{
+        max-width:100%;
+    }
 }
 
 .wp-caption-text{
-    padding:.5em 0;
+    display:block;
+    padding:0 0 .5em 0;
+    font-size:.8em;
     font-style:italic;
     text-align:center;
     padding-bottom:0;
+    width:80%;
+    margin:0 auto 2em;
 }
 
 img.size-full{

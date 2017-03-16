@@ -54,6 +54,7 @@ require get_template_directory() . '/inc/menus.php';
 // Shortcodes.
 require get_template_directory() . '/inc/shortcodes.php';
 require get_template_directory() . '/inc/shortcode-audio.php';
+require get_template_directory() . '/inc/shortcode-frequency-graph.php';
 
 // Social.
 require get_template_directory() . '/inc/social.php';
