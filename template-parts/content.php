@@ -141,7 +141,7 @@
             </div>
         <?php } ?>
         
-        <div class="selectable-area">
+        <div class="selectable-area first-selectable-area">
             <?php the_content(); ?>
         </div>
 
