@@ -2,14 +2,15 @@
 <!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1"
 	 id="svg5669" inkscape:output_extension="org.inkscape.output.svg.inkscape" inkscape:version="0.46" sodipodi:docname="Lindos3.svg" sodipodi:version="0.32" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1408 583"
-	 style="enable-background:new 0 0 1408 583;" xml:space="preserve">
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 2793.5 583"
+	 style="enable-background:new 0 0 2793.5 583;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#DAD8D2;}
 	.st1{fill:#00B7C6;}
 	.st2{font-family:'ArialMT';}
 	.st3{font-size:28px;}
 	.st4{font-size:24px;}
+	.st5{fill:none;stroke:#00B7C6;stroke-width:6;stroke-miterlimit:10;}
 </style>
 <path class="st0" d="M695.5,17.3h-1l0,0H694v-1.5H98.7v3h43.2V54H98.7v1h43.2v35.2H98.7v3h43.2v35.2H98.7v1h43.2v35.2H98.7v3h43.2
 	v35.2H98.7v1h43.2V239H98.7v3h43.2v35.2H98.7v1h43.2v35.2H98.7v3h43.2v35.2H98.7v1h43.2v35.2H98.7v3h43.2V426H98.7v1h43.2v35.2H98.7
@@ -851,4 +852,14 @@
 	<text transform="matrix(1 0 0 1 43.6743 545.3502)" class="st2 st3">-50</text>
 </g>
 <text transform="matrix(4.489659e-11 -1 1 4.489659e-11 27.1448 335.291)" class="st2 st4">Gain (dBFS)</text>
+<path class="st0" d="M1600.2,15.3V542h601.1V15.3H1600.2z M2197.3,19.3v18.4h-593.1V19.3H2197.3z M1604.2,487.7v-27h593.1v27H1604.2
+	z M2197.3,489.7v27h-593.1v-27H2197.3z M1604.2,456.7v-27h593.1v27H1604.2z M1604.2,427.7v-28h593.1v28H1604.2z M1604.2,397.7v-27
+	h593.1v27H1604.2z M1604.2,366.7v-27h593.1v27H1604.2z M1604.2,337.7v-28h593.1v28H1604.2z M1604.2,307.6v-26h593.1v26H1604.2z
+	 M1604.2,275.6v-26h593.1v26H1604.2z M1604.2,247.6v-28h593.1v28H1604.2z M1604.2,217.6v-27h593.1v27H1604.2z M1604.2,186.6v-27
+	h593.1v27H1604.2z M1604.2,157.6v-28h593.1v28H1604.2z M1604.2,127.6v-27h593.1v27H1604.2z M1604.2,96.6v-27h593.1v27H1604.2z
+	 M1604.2,67.6v-28h593.1v28H1604.2z M1604.2,538v-17.3h593.1V538H1604.2z"/>
+<path class="st5" d="M1604.2,278.7c0,0,30-90,49.4-90c19.4,0,49.4,90,49.4,90s30,90,49.4,90s49.4-90,49.4-90s30-120.4,49.4-120
+	c20.2,0.4,49.4,120,49.4,120"/>
+<path class="st5" d="M1900.8,278.7c0,0,30-180,49.4-180c19.4,0,49.4,180,49.4,180s30,180,49.4,180c19.4,0,49.4-180,49.4-180
+	s30-240.4,49.4-240c20.2,0.4,49.4,240,49.4,240"/>
 </svg>
