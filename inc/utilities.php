@@ -9,6 +9,9 @@ function parse_category_for_icon_slug( $raw_category ) {
         case 'code':
             $icon_id = 'code';
             break;
+        case 'audio':
+            $icon_id = 'notes';
+            break;
         case 'events':
         case 'general':
         default:
