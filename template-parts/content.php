@@ -157,6 +157,14 @@
             </svg>
             <em>Want to comment on this topic?</em> <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Join the discussion on Twitter'); ?>
         </div>
+
+        <form class="tweet-link-wrapper" action="/">
+            <svg class="twitter-icon">
+                <use xlink:href="#twitter" />
+            </svg>
+            <input type="textarea" value="<?= get_the_permalink(); ?> @thomashazledine">
+            <button class="tweet-this faux-button">Tell me what you think</button>
+        </form>
         
     </div>
 

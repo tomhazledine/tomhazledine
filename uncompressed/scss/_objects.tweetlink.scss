@@ -39,3 +39,44 @@ a.button{
         background:$primary;
     }
 }
+
+form.tweet-link-wrapper{
+    position:relative;
+    padding-right:20em;
+    padding-left:2em;
+    input{
+        border:.2rem solid $primary;
+        width:100%;
+        font-size:1em;
+        height:3em;
+        border-top-right-radius:0;
+        border-bottom-right-radius:0;
+        border-color:$primary;
+        border-width:.2rem;
+        border-right:0;
+    }
+    button{
+        height:3em;
+        font-size:1em;
+        width:20em;
+        position:absolute;
+        background:$primary;
+        top:0;
+        right:0;
+        border-top-left-radius:0;
+        border-bottom-left-radius:0;
+    }
+    .twitter-icon{
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        display:block;
+        width:1.6em;
+        height:1.6em;
+        fill:$primary;
+        fill:$black;
+        fill:$greyDark;
+        fill:$blackSoft;
+        left:0;
+    }
+}
