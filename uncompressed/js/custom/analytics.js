@@ -10,3 +10,13 @@ function track_intro_note_click(e) {
     ga('send', 'event', 'Intro Note Link', 'click', target_url);
     window.location = target_url;
 }
+
+var tweet_widget_link = document.getElementsByClassName( 'tweet-widget' );
+tweet_widget_link.addEventListener( 'click', track_tweet_widget_click );
+
+function track_tweet_widget_click(e) {
+    e.preventDefault();
+    var target_url = e.target.href;
+    ga('send', 'event', 'Tweet Selection Link', 'click', target_url);
+    window.location = target_url;
+}
