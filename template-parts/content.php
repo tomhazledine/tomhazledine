@@ -151,12 +151,12 @@
             <?php the_content(); ?>
         </div>
 
-        <div class="tweet-link-wrapper">
+        <!-- <div class="tweet-link-wrapper">
             <svg class="twitter-icon">
                 <use xlink:href="#twitter" />
             </svg>
             <em>Want to comment on this topic?</em> <?php tweet_this_link( get_the_title(), get_the_permalink(), 'Join the discussion on Twitter'); ?>
-        </div>
+        </div> -->
 
         <form class="tweet-link-wrapper" id="tweet-form" action="">
             <svg class="twitter-icon">
