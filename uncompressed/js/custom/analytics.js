@@ -11,7 +11,7 @@ function track_intro_note_click(e) {
     window.location = target_url;
 }
 
-var tweet_widget_link = document.getElementsByClassName( 'tweet-widget' );
+var tweet_widget_link = document.getElementByIdName( 'tweet-widget' );
 tweet_widget_link.addEventListener( 'click', track_tweet_widget_click );
 
 function track_tweet_widget_click(e) {
