@@ -60,15 +60,16 @@
                     <?php if ($icon_id == 'notes') { ?>
                         <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/notes_bg.jpg"/>
                         <meta itemprop="url" content="<?= get_template_directory_uri(); ?>/assets/images/notes_bg.jpg">
+                        <meta name="twitter:image" content="<?= get_template_directory_uri(); ?>/assets/images/notes_bg.jpg" />
                     <?php } else { ?>
                         <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages_stack_bg.jpg"/>
                         <meta itemprop="url" content="<?= get_template_directory_uri(); ?>/assets/images/pages_stack_bg.jpg">
+                        <meta name="twitter:image" content="<?= get_template_directory_uri(); ?>/assets/images/pages_stack_bg.jpg" />
                     <?php } ?>
                     <meta itemprop="width" content="400">
                     <meta itemprop="height" content="400">
                     
                     <meta name="twitter:card" content="summary" />
-                    <meta name="twitter:image" content="<?= get_template_directory_uri(); ?>/assets/images/pages_stack_bg.jpg" />
                 </div>
             <?php } ?>
 
