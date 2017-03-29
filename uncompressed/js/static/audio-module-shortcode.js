@@ -84,8 +84,8 @@ function Sounds_API_Triggers( sounds_api, options ){
         keys[i].addEventListener('mouseout',_noteMouseout,false);
         keys[i].addEventListener('mouseup',_noteMouseup,false);
     };
-    document.addEventListener('keydown',_noteKeydown,false);
-    document.addEventListener('keyup',_noteKeyup,false);
+    // document.addEventListener('keydown',_noteKeydown,false);
+    // document.addEventListener('keyup',_noteKeyup,false);
     // masterVolumeSlider[0].addEventListener('change',_controlPress,false);
     // oscOneVolumeSlider[0].addEventListener('change',_controlPress,false);
     // oscTwoVolumeSlider[0].addEventListener('change',_controlPress,false);
