@@ -69,7 +69,7 @@
             border-bottom-width:.2rem;
         }
     }
-    @include bp(d3){
+    @include bp(d1){
         width:14.28%;
         &.accidental{
             width:10%;
