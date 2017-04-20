@@ -83,6 +83,11 @@ function Sounds_API_Triggers( sounds_api, options ){
         keys[i].addEventListener('mouseover',_noteMouseover,false);
         keys[i].addEventListener('mouseout',_noteMouseout,false);
         keys[i].addEventListener('mouseup',_noteMouseup,false);
+
+        keys[i].addEventListener('touchstart',_notePress,false);
+        keys[i].addEventListener('touchmove',_noteMouseover,false);
+        // keys[i].addEventListener('touchout',_noteMouseout,false);
+        keys[i].addEventListener('touchend',_noteMouseup,false);
     };
     // document.addEventListener('keydown',_noteKeydown,false);
     // document.addEventListener('keyup',_noteKeyup,false);
