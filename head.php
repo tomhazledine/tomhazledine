@@ -43,3 +43,5 @@
     <div class="svgSpriteWrapper hidden">
         <?php get_template_part('assets/icons/iconsprite.svg'); ?>
     </div>
+
+    <?php get_template_part('template-parts/module','newsletterbar'); ?>
