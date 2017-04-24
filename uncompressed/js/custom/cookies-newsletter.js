@@ -2,7 +2,7 @@ var days = 2592000;// This is 30 days in seconds
 
 var page_load_count = docCookies.getItem('page_load_count');
 
-console.log(page_load_count);
+// console.log(page_load_count);
 
 if (page_load_count) {
     page_load_count++;
@@ -12,5 +12,5 @@ if (page_load_count) {
 }
 
 if ( page_load_count > 4 ) {
-    console.log('looks like you\'ve been here a few times');
+    // console.log('looks like you\'ve been here a few times');
 }
