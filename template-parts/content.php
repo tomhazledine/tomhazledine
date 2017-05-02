@@ -171,6 +171,8 @@
 
     <hr>
 
+    <?php get_template_part('template-parts/module','relatedpost'); ?>
+
     <?php get_template_part('template-parts/module','singlenavigation'); ?>
 
     <footer class="entry-footer">
