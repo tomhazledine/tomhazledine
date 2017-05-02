@@ -78,9 +78,9 @@
         },
         {
             "key": "field_5908af6b80e4c",
-            "label": "Related Post",
-            "name": "related_post",
-            "type": "post_object",
+            "label": "Related Posts",
+            "name": "related_posts",
+            "type": "relationship",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -93,10 +93,34 @@
                 "post"
             ],
             "taxonomy": [],
-            "allow_null": 0,
-            "multiple": 0,
-            "return_format": "id",
-            "ui": 1
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "id"
+        },
+        {
+            "key": "field_5908ceda9bbe1",
+            "label": "Related Post Excerpt",
+            "name": "related_post_excerpt",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -116,5 +140,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1493741604
+    "modified": 1493750031
 }

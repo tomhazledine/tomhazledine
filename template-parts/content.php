@@ -173,8 +173,6 @@
 
     <?php get_template_part('template-parts/module','relatedpost'); ?>
 
-    <?php get_template_part('template-parts/module','singlenavigation'); ?>
-
     <footer class="entry-footer">
         <?php //tomhazledine_theme_entry_footer(); ?>
     </footer>
