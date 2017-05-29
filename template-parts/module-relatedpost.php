@@ -1,7 +1,7 @@
 <?php
 $related_posts = get_field( 'related_posts' );
 
-if ( count( $related_posts ) > 0 ) {
+if ( !empty($related_posts) && count( $related_posts ) > 0 ) {
 
     if ( count( $related_posts ) > 1 ) {
         echo '<h3>If you liked that post, you might be interested in these ones too:</h3>';
