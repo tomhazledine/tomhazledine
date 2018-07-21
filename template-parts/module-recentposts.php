@@ -13,5 +13,5 @@
     wp_reset_postdata();
     ?>
 
-    <a href="/">See all...</a>
+    <a href="<?= get_post_type_archive_link( 'post' ); ?>">See all...</a>
 </div>

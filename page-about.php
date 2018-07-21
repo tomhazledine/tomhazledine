@@ -27,7 +27,13 @@ get_header(); ?>
 
             <hr>
 
-            <?php get_template_part( 'template-parts/module', 'recentposts' ); ?>
+            <?php
+            if (!empty(get_field('featured_posts'))) {
+                get_template_part( 'template-parts/module', 'featuredposts' );
+            } else {
+                get_template_part( 'template-parts/module', 'recentposts' );
+            }
+            ?>
 
         </main><!-- #main -->
     </div><!-- #primary -->
