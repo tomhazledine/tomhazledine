@@ -1,50 +1,62 @@
 <?php
 /**
- * The home template file.
+ * The front-page template file.
  *
  * @package Tom_Hazledine_Theme
  */
 
-get_header(); ?>
+get_header();
+
+while ( have_posts() ) : the_post();
+    ?>
 
     <div id="primary" class="content-area">
-        <main id="main" class="site-main" role="main">
+        <main id="main" class="site-main has-sidenotes" role="main">
 
-        <?php
-        if ( have_posts() ) :
+            <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                <svg class="pages-icon">
+                    <use xlink:href="#pages_stack" />
+                </svg>
+                <img class="visuallyhidden" src="<?= get_template_directory_uri(); ?>/assets/images/pages.png"/>
+                <meta itemprop="url" content="http://www.mycorp.com/logo.jpg">
+                <meta itemprop="width" content="32">
+                <meta itemprop="height" content="32">
+            </div>
 
-            if ( is_home() && ! is_front_page() ) : ?>
-                <header>
-                    <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-                </header>
+            <div class="clearfix homepage-sidenote-wrapper">
 
-            <?php
-            endif;
+                <?php
+                $queryArgs = array(
+                    'post_type' => 'post',
+                    'posts_per_page' => -1,
+                );
+                $postList = new WP_Query($queryArgs);
 
-            /* Start the Loop */
-            while ( have_posts() ) :
-                the_post();
+                if ( $postList->have_posts() ) :
 
-                /*
-                 * Include the Post-Format-specific template for the content.
-                 * If you want to override this in a child theme, then include a file
-                 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-                 */
-                get_template_part( 'template-parts/content', 'mini' );
+                    while( $postList->have_posts() ): $postList->the_post();
 
-            endwhile;
+                        get_template_part( 'template-parts/content', 'mini' );
 
-            the_posts_navigation();
+                    endwhile;
+                    wp_reset_postdata();
 
-        else :
+                else:
 
-            get_template_part( 'template-parts/content', 'none' );
+                    get_template_part( 'template-parts/content', 'none' );
 
-        endif; ?>
+                endif;
+                ?>
 
-        </main><!-- #main -->
-    </div><!-- #primary -->
+                <hr class="homepage-sidenote-hr">
 
-<?php
-// get_sidebar();
+                <span class="sidenote home-content"><?php the_content(); ?></span>
+
+            </div>
+
+        </main>
+    </div>
+
+    <?php
+    endwhile;
 get_footer();
