@@ -4,7 +4,6 @@
     <?php $featured_posts = get_field('featured_posts'); ?>
 
     <?php
-    print_pre($featured_posts);
     foreach ($featured_posts as $featured_post) {
         $post_query = new WP_Query(
             array(
