@@ -9,7 +9,7 @@
  * Enqueue scripts and styles.
  */
 function tomhazledine_theme_scripts() {
-	wp_enqueue_style( 'tomhazledine_theme-style', get_template_directory_uri() . '/assets/css/main.min.css', array(), null );
+	wp_enqueue_style( 'tomhazledine_theme-style', get_template_directory_uri() . '/assets/app.css', array(), null );
 
     // Use a non-WP version of jquery (to get around the native .noConflict() version that WP uses by default).
     // wp_deregister_script('jquery');
