@@ -7,10 +7,10 @@
 
 get_header();
 
-while ( have_posts() ) : the_post();
+// while ( have_posts() ) : the_post();
     ?>
 
-    <div id="primary" class="content-area">
+    <div id="primary" class="content-area pseudo-home">
         <main id="main" class="site-main has-sidenotes" role="main">
 
             <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
@@ -49,8 +49,18 @@ while ( have_posts() ) : the_post();
                 ?>
 
                 <hr class="homepage-sidenote-hr">
-
-                <span class="sidenote home-content"><?php the_content(); ?></span>
+                
+                <?php
+                if( get_option('page_for_posts') && is_home() ) {
+                    the_post();
+                    $page_for_posts_id = get_option('page_for_posts');
+                    setup_postdata(get_page($page_for_posts_id));
+                    ?>
+                    <span class="sidenote home-content"><?php the_content(); ?></span>
+                    <?php 
+                    rewind_posts();
+                };
+                ?>
 
             </div>
 
@@ -58,5 +68,5 @@ while ( have_posts() ) : the_post();
     </div>
 
     <?php
-    endwhile;
+    // endwhile;
 get_footer();
