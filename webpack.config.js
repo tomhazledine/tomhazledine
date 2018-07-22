@@ -6,7 +6,8 @@ const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 module.exports = {
     entry: {
-        app: './uncompressed/js/main.js'
+        app: './uncompressed/js/main.js',
+        'audio-shortcode': './uncompressed/js/audio-module-shortcode.js'
     },
     output: {
         path: path.resolve(__dirname, 'assets'),

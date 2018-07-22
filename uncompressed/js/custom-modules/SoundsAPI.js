@@ -1,10 +1,10 @@
 /**
  * ---------------------------------------------------------------------------
  * SOUNDS A.P.I.
- * 
+ *
  * Call this function to invoke a new instance of a synth. Simplified example:
- *     
- * var new_synth = Sounds_API(window.AudioContext);
+ *
+ * var new_synth = SoundsAPI(window.AudioContext);
  *
  * This function creates a simplified API that generates synthesier-sounds. To
  * be of any use, it requires some sort of input handling.
@@ -20,8 +20,7 @@
  * the primary oscillator.
  * ---------------------------------------------------------------------------
  */
-function Sounds_API( options ) {
-
+function SoundsAPI(options) {
     /**
      * -----------------------
      * PARSE OPTIONS
@@ -38,14 +37,14 @@ function Sounds_API( options ) {
     options.vco1_wave = options.vco1_wave || 'sine';
     options.vco2_wave = options.vco2_wave || 'triangle';
 
-    var context_class = (window.AudioContext || window.webkitAudioContext);
+    var context_class = window.AudioContext || window.webkitAudioContext;
 
     var // Set up audio context (set as a param so
-        // we can use the browser-specific version)
-        context = new context_class();
+    // we can use the browser-specific version)
+    context = new context_class();
 
     var // Controller Values
-        master_volume = options.master_volume;
+    master_volume = options.master_volume;
 
     var // Controller Starting Values
         vco2_pitch_mulitplier = options.vco2_pitch_mulitplier, // (PM = Pitch Multiplier)
@@ -59,7 +58,7 @@ function Sounds_API( options ) {
      * We need oscillators to create our
      * waveforms, and amplifiers to then
      * manipulate them.
-     * 
+     *
      * VCO = voltage controlled oscillator
      * VCA = voltage controlled amplifier
      *
@@ -68,14 +67,14 @@ function Sounds_API( options ) {
      * used real circuits and voltages)
      * -----------------------------------
      */
-    
+
     // VCO #1
     // Create an oscillator using the API:
     var vco1 = context.createOscillator();
     // Set the waveform for our new VCO:
-    vco1.type = vco1_wave;// OPTIONS: sine, square, sawtooth, triangle
+    vco1.type = vco1_wave; // OPTIONS: sine, square, sawtooth, triangle
     // Set the starting frequency for the VCO
-    vco1.frequency.value = 440.00;// 440.00Hz = "A", the standard note all orchestras tune to.
+    vco1.frequency.value = 440.0; // 440.00Hz = "A", the standard note all orchestras tune to.
     // Get the VCO running
     vco1.start(0);
 
@@ -83,7 +82,7 @@ function Sounds_API( options ) {
     // Repeat the process for our second oscillator:
     var vco2 = context.createOscillator();
     vco2.type = vco2_wave;
-    vco2.frequency.value = 440.00;
+    vco2.frequency.value = 440.0;
     vco2.start(0);
 
     // VCA
@@ -108,7 +107,7 @@ function Sounds_API( options ) {
     // master volume control allows us to
     // set the global volume without
     // affecting the notes' on/off function.
-    // 
+    //
     // Pre-Aux gives us some gain control
     // *before* sending out our signal to
     // third-party modules, and Master is
@@ -143,17 +142,17 @@ function Sounds_API( options ) {
      * Expose aux in and out
      * ---------------------
      */
-    function aux_out(){
+    function aux_out() {
         var aux_out_object = {
             context: context,
             signal: pre_aux_gain
         };
         return aux_out_object;
     }
-    function aux_in(input){
+    function aux_in(input) {
         input.connect(master_gain);
     }
-    function master_out(input){
+    function master_out(input) {
         var master_object = {
             context: context,
             signal: master_gain
@@ -166,7 +165,7 @@ function Sounds_API( options ) {
      * NOTE CONTROLS
      *
      * These methods begin and end our note.
-     * 
+     *
      * `note_start()` is passed a frequency,
      * sets that frequency to the VCOs and
      * then makes sure the VCA is set to 1
@@ -174,17 +173,17 @@ function Sounds_API( options ) {
      * class to the relevant note on the
      * keyboard so we can visually show that
      * the note has been pressed.
-     * 
+     *
      * `noteEnd()` reverses this process.
      * -------------------------------------
      */
-    function note_start(note){
-        vco1.frequency.value = note;// Set note pitch
-        vco2.frequency.value = (note / vco2_pitch_mulitplier);// Set note pitch
-        vca.gain.value = 1;// Start note
+    function note_start(note) {
+        vco1.frequency.value = note; // Set note pitch
+        vco2.frequency.value = note / vco2_pitch_mulitplier; // Set note pitch
+        vca.gain.value = 1; // Start note
     }
-    function note_end(){
-        vca.gain.value = 0;// End note
+    function note_end() {
+        vca.gain.value = 0; // End note
     }
 
     /**
@@ -196,30 +195,30 @@ function Sounds_API( options ) {
      * of the oscillators.
      * ------------------------
      */
-    
-    function master_volume_control(volume){
+
+    function master_volume_control(volume) {
         master_gain.gain.value = volume;
     }
-    
-    function vco1_volume_control(volume){
+
+    function vco1_volume_control(volume) {
         vco1_volume.gain.value = volume;
     }
-    
-    function vco2_volume_control(volume){
+
+    function vco2_volume_control(volume) {
         vco2_volume.gain.value = volume;
     }
-    
-    function vco1_wave_control(wave_type){
+
+    function vco1_wave_control(wave_type) {
         vco1_wave = _handle_wave_type(wave_type);
         vco1.type = vco1_wave;
     }
-    
-    function vco2_wave_control(wave_type){
+
+    function vco2_wave_control(wave_type) {
         vco2_wave = _handle_wave_type(wave_type);
         vco2.type = vco2_wave;
     }
-    
-    function vco2_pitch_control(pitch_multiplier){
+
+    function vco2_pitch_control(pitch_multiplier) {
         vco2_pitch_mulitplier = pitch_multiplier;
     }
 
@@ -233,7 +232,7 @@ function Sounds_API( options ) {
      * correct controller.
      * -------------------
      */
-    function _control_router(name,value){
+    function _control_router(name, value) {
         // console.log('the ' + name + ' control has been set to ' + value);
         switch (name) {
             case 'master_volume':
@@ -255,13 +254,12 @@ function Sounds_API( options ) {
                 vco2_pitch_control(value);
                 break;
         }
-
     }
 
     /**
      * ----------------------------
      * HANDLE WAVE TYPES
-     * 
+     *
      * This helper-function takes a
      * raw value from a range input
      * and converts it into the
@@ -269,7 +267,7 @@ function Sounds_API( options ) {
      * oscillator type.
      * ----------------------------
      */
-    function _handle_wave_type(rawWaveValue){
+    function _handle_wave_type(rawWaveValue) {
         switch (rawWaveValue) {
             case 0:
             case '0':
@@ -316,7 +314,8 @@ function Sounds_API( options ) {
         aux_in: aux_in,
         master_out: master_out
     };
-    
-    return publicAPI;
 
-};
+    return publicAPI;
+}
+
+export default SoundsAPI;
