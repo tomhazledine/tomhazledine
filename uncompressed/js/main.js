@@ -9,8 +9,6 @@ import './custom/selection';
 import './custom/sidenotes';
 import './custom/tweet';
 
-import Prism from 'prismjs';
-
 import hljs from 'highlight.js';
 // import './vendor/highlight.pack';
 hljs.initHighlightingOnLoad();
