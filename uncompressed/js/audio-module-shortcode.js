@@ -115,14 +115,16 @@ function Sounds_API_Triggers(sounds_api, options) {
         keyIsDown = true;
         var noteValue = this.getAttribute('data-pitch');
         sounds_api.note_start(noteValue);
-        noQuery.addClass(this, 'playing');
+        this.classList.add('playing');
+        // noQuery.addClass(this, 'playing');
     }
 
     function _noteMouseover() {
         if (keyIsDown) {
             var noteValue = this.getAttribute('data-pitch');
             sounds_api.note_start(noteValue);
-            noQuery.addClass(this, 'playing');
+            this.classList.add('playing');
+            // noQuery.addClass(this, 'playing');
         }
     }
 
@@ -130,7 +132,8 @@ function Sounds_API_Triggers(sounds_api, options) {
         if (keyIsDown) {
             var noteValue = this.getAttribute('data-pitch');
             sounds_api.note_end();
-            noQuery.removeClass(this, 'playing');
+            // noQuery.removeClass(this, 'playing');
+            this.classList.remove('playing');
         }
     }
 
@@ -138,7 +141,8 @@ function Sounds_API_Triggers(sounds_api, options) {
         keyIsDown = false;
         var noteValue = this.getAttribute('data-pitch');
         sounds_api.note_end();
-        noQuery.removeClass(this, 'playing');
+        // noQuery.removeClass(this, 'playing');
+        this.classList.remove('playing');
     }
 
     // /**

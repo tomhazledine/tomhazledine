@@ -8,13 +8,60 @@
  * analyser scope...
  * -------------------------------
  */
-var SAMPLE_RATE = 44100;
-// var SAMPLE_RATE = context.sampleRate;
-var FFT_SIZE = 1024;
-var BIN_SIZE = FFT_SIZE / 2;
-var BOTTOM_THRESHOLD = 20;
-var TOP_THRESHOLD = 20000;
-var DECAY_RATE = 0.1;
+const SAMPLE_RATE = 44100;
+// const SAMPLE_RATE = context.sampleRate;
+const FFT_SIZE = 1024;
+const BIN_SIZE = FFT_SIZE / 2;
+const BOTTOM_THRESHOLD = 20;
+const TOP_THRESHOLD = 20000;
+const DECAY_RATE = 0.1;
+
+/**
+ * ------------------
+ * LOG ARRAY
+ *
+ * Only log if array
+ * contains values
+ * greater than zero.
+ * ------------------
+ */
+const logArray = array => {
+    let logArray = array.reduce((acc, curr) => {
+        if (curr['value'] > 0) {
+            acc = true;
+        }
+        return acc;
+    }, false);
+
+    if (logArray) {
+        console.log(array[0]);
+    }
+};
+
+/**
+ * -----------------------
+ * PARSE FREQUENCY ARRAY
+ *
+ * Sanitize the frequency
+ * data to suppress errors
+ * and zoom-in on relevant
+ * part of audio spectrum.
+ * -----------------------
+ */
+const parseFreqArray = array => {
+    var result = [];
+
+    // logArray(array);
+
+    // Return only the first X number of array items
+    for (var i = 0; i < 100; i++) {
+        result.push(array[i]['value']);
+    }
+
+    logArray(result);
+
+    return result;
+};
 
 /**
  * ---------------
@@ -166,52 +213,6 @@ function audioAnalysis(context, input, callback) {
         }
 
         return average;
-    }
-}
-
-/**
- * -----------------------
- * PARSE FREQUENCY ARRAY
- *
- * Sanitize the frequency
- * data to suppress errors
- * and zoom-in on relevant
- * part of audio spectrum.
- * -----------------------
- */
-function parseFreqArray(array) {
-    var result = [];
-
-    // logArray(array);
-
-    // Return only the first X number of array items
-    for (var i = 0; i < 100; i++) {
-        result.push(array[i]['value']);
-    }
-
-    logArray(result);
-
-    return result;
-}
-
-/**
- * ------------------
- * LOG ARRAY
- *
- * Only log if array
- * contains values
- * greater than zero.
- * ------------------
- */
-function logArray(array) {
-    var logArray = false;
-    for (var i = 0; i < array.length; i++) {
-        if (array[i]['value'] > 0) {
-            logArray = true;
-        }
-    }
-    if (logArray) {
-        console.log(array[0]);
     }
 }
 
