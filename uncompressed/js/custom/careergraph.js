@@ -4,8 +4,6 @@ import careerData from '../data/career';
 var homeGraphCheck = document.getElementById('career-graph');
 
 if (homeGraphCheck) {
-    console.log('loading career graph');
-
     // Set the dimensions of the canvas / graph
     const margin = { top: 0, right: 20, bottom: 30, left: 20 };
     let width = 600 - margin.left - margin.right;
@@ -18,10 +16,6 @@ if (homeGraphCheck) {
 
     height = wrapperHeight - margin.top - margin.bottom;
     width = wrapperWidth - margin.left - margin.right;
-
-    // Parse the date / time
-    // let parseDate = d3.timeFormat('%d-%b-%y').parse;
-    // let bisectDate = d3.bisector(d => d.date).left;
 
     // Set the ranges
     let my_x = d3.scaleTime().range([0, width]);
@@ -38,7 +32,17 @@ if (homeGraphCheck) {
         .ticks(5);
 
     const keys = ['happiness', 'musician', 'lego', 'artist', 'designer', 'developer'];
+    const keySlugs = {
+        happiness: '',
+        musician: 'mus',
+        lego: 'lego',
+        artist: 'art',
+        designer: 'des',
+        developer: 'dev'
+    };
 
+    // Parse the date / time
+    let bisectDate = d3.bisector(d => d.date).left;
     let parseDate = d3.utcParse('%d-%b-%y');
 
     // Get the data
@@ -55,11 +59,35 @@ if (homeGraphCheck) {
     let lines = keys.map(key => {
         let lineGenerator = d3
             .line()
-            .defined(d => !isNaN(d[key]))
+            .defined(d => typeof d[key] === 'number')
             .x(d => my_x(d.date))
-            .y(d => my_y(d[key]));
+            .y(d => my_y(d[key]))
+            .curve(d3.curveCatmullRom.alpha(0.5));
         let line = lineGenerator(data);
-        return `<path d="${line}" id="line_des" class="line line_des" />`;
+        let selected = key === 'developer' ? 'selected' : '';
+        if (key === 'happiness') return;
+        return `<path d="${line}" id="line_${keySlugs[key]}" class="line line_${
+            keySlugs[key]
+        } ${selected}" />`;
+    });
+
+    let circles = keys.map(key => {
+        let selected = key === 'developer' ? 'selected' : '';
+        return `<circle r="4" class="hover y_${keySlugs[key]} ${selected}" />`;
+    });
+
+    let areas = keys.map(key => {
+        let shapeGenerator = d3
+            .area()
+            .defined(d => typeof d[key] === 'number')
+            .x(d => my_x(d.date))
+            .y0(d => my_y(0))
+            .y1(d => my_y(d[key]))
+            .curve(d3.curveCatmullRom.alpha(0.5));
+        let shape = shapeGenerator(data);
+        let selected = key === 'developer' ? 'selected' : '';
+        if (key === 'happiness') return;
+        return `<path d="${shape}" class="chartarea area_${keySlugs[key]} ${selected}"></path>`;
     });
 
     let output = `
@@ -67,10 +95,17 @@ if (homeGraphCheck) {
         margin.top +
         margin.bottom}>
             <g transform="translate(${margin.left},${margin.top})">
-                <g>
+                <g class="x axis axis--x"></g>
+                <g class="lines">
                     ${lines}
                 </g>
-                <g class="x axis axis--x"></g>
+                <g class="areas">
+                    ${areas}
+                </g>
+                <g class="focus">
+                    ${circles}
+                </g>
+                <rect class="mouse-catcher" width="${width}" height="${height}" />
             </g>
         </svg>`;
 
@@ -82,62 +117,11 @@ if (homeGraphCheck) {
         .attr('transform', 'translate(0,' + height + ')')
         .call(xAxis);
 
-    // Add the Y Axis
-    // svg.append("g")
-    //     .attr("class", "y axis")
-    //     .call(yAxis);
-
-    // append the circle at the intersection
-    // focus.append("circle")
-    //     .classed("y",true)
-    //     .classed("hover",true)
-    //     // .style("fill", "white")
-    //     // .style("stroke", "steelblue")
-    //     // .style("stroke-width", "2px")
-    //     .attr("r", 4);
-
-    // append the circle at the intersection
-    focus
-        .append('circle')
-        .classed('y_mus', true)
-        .classed('hover', true)
-        .attr('r', 4);
-
-    // append the circle at the intersection
-    focus
-        .append('circle')
-        .classed('y_lego', true)
-        .classed('hover', true)
-        .attr('r', 4);
-
-    // append the circle at the intersection
-    focus
-        .append('circle')
-        .classed('y_art', true)
-        .classed('hover', true)
-        .attr('r', 4);
-
-    // append the circle at the intersection
-    focus
-        .append('circle')
-        .classed('y_des', true)
-        .classed('hover', true)
-        .attr('r', 4);
-
-    // append the circle at the intersection
-    focus
-        .append('circle')
-        .classed('y_dev selected', true)
-        .classed('hover', true)
-        .attr('r', 4);
-
     // append the rectangle to capture mouse
-    svg
-        .append('rect')
-        .attr('width', width)
-        .attr('height', height)
-        .style('fill', 'none')
-        .style('pointer-events', 'all')
+    let mouseCatcher = d3.select('.mouse-catcher');
+    let focus = d3.select('.focus');
+
+    mouseCatcher
         .on('mouseover', function() {
             focus.style('display', null);
         })
@@ -145,6 +129,7 @@ if (homeGraphCheck) {
             focus.style('display', 'none');
         })
         .on('mousemove', mousemove);
+
     function mousemove() {
         var x0 = my_x.invert(d3.mouse(this)[0]),
             i = bisectDate(data, x0, 1),
@@ -155,27 +140,27 @@ if (homeGraphCheck) {
         //     .attr("transform",
         //           "translate(" + x(d.date) + "," +
         //                          y(d.happiness) + ")");
-        if (!isNaN(d.musician)) {
+        if (typeof d.musician === 'number') {
             focus
                 .select('circle.y_mus')
                 .classed('active', true)
-                // .defined(function(d) { return !isNaN(d.musician); })
+                // .defined(function(d) { return typeof d.musician === 'number'; })
                 .attr('transform', 'translate(' + my_x(d.date) + ',' + my_y(d.musician) + ')');
         } else {
             focus.select('circle.y_mus').classed('active', false);
         }
 
-        if (!isNaN(d.lego)) {
+        if (typeof d.lego === 'number') {
             focus
                 .select('circle.y_lego')
                 .classed('active', true)
-                // .defined(function(d) { return !isNaN(d.lego); })
+                // .defined(function(d) { return typeof d.lego === 'number'; })
                 .attr('transform', 'translate(' + my_x(d.date) + ',' + my_y(d.lego) + ')');
         } else {
             focus.select('circle.y_lego').classed('active', false);
         }
 
-        if (!isNaN(d.artist)) {
+        if (typeof d.artist === 'number') {
             focus
                 .select('circle.y_art')
                 .classed('active', true)
@@ -184,7 +169,7 @@ if (homeGraphCheck) {
             focus.select('circle.y_art').classed('active', false);
         }
 
-        if (!isNaN(d.designer)) {
+        if (typeof d.designer === 'number') {
             focus
                 .select('circle.y_des')
                 .classed('active', true)
@@ -193,7 +178,7 @@ if (homeGraphCheck) {
             focus.select('circle.y_des').classed('active', false);
         }
 
-        if (!isNaN(d.developer)) {
+        if (typeof d.developer === 'number') {
             focus
                 .select('circle.y_dev')
                 .classed('active', true)
@@ -216,8 +201,6 @@ function _checkboxChange(e) {
     var checked = this.checked;
 
     var lineClass = 'path.line_' + value;
-
-    console.log(lineClass);
     var circleClass = 'circle.y_' + value;
     var areaClass = 'path.area_' + value;
     var line = d3.selectAll(lineClass);

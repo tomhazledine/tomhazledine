@@ -105,6 +105,11 @@ $colour_dev: $primary;
             fill: rgba($colour_dev, 0.3);
         }
     }
+
+    .mouse-catcher {
+        fill: none;
+        pointer-events: all;
+    }
 }
 
 .homeGraphTitle {
