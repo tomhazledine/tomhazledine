@@ -1,0 +1,626 @@
+::-moz-selection {
+  color: #fdfdfa;
+  background: #4d4d4d;
+}
+
+::selection {
+  color: #fdfdfa;
+  background: #4d4d4d;
+}
+
+a::-moz-selection {
+  color: #4d4d4d;
+  background: #fdfdfa;
+}
+
+a::selection {
+  color: #4d4d4d;
+  background: #fdfdfa;
+}
+
+@font-face {
+  font-family: 'Decima';
+  src: url(./petrol-fonts/decima-bold-webfont.eot);
+  src: url(./petrol-fonts/decima-bold-webfont.eot?#iefix) format('embedded-opentype'),
+    url(./petrol-fonts/decima-bold-webfont.woff) format('woff'),
+    url(./petrol-fonts/decima-bold-webfont.ttf) format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Decima';
+  src: url(./petrol-fonts/decima-light-webfont.eot);
+  src: url(./petrol-fonts/decima-light-webfont.eot?#iefix) format('embedded-opentype'),
+    url(./petrol-fonts/decima-light-webfont.woff) format('woff'),
+    url(./petrol-fonts/decima-light-webfont.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DecimaMono';
+  src: url(./petrol-fonts/decimamono-light-webfont.eot);
+  src: url(./petrol-fonts/decimamono-light-webfont.eot?#iefix) format('embedded-opentype'),
+    url(./petrol-fonts/decimamono-light-webfont.woff) format('woff'),
+    url(./petrol-fonts/decimamono-light-webfont.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: ' ';
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  display: inline-block;
+  border: none;
+  border-radius: 0;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+body {
+  font-family: 'Decima', Helvetica, Arial, sans-serif;
+  color: #666;
+}
+
+a {
+  text-decoration: none;
+  color: #4d4d4d;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #00b7c6;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.wrap--wide {
+  width: 96%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.wrap--main {
+  width: 96%;
+  max-width: 91.6rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.wrap--medium {
+  width: 96%;
+  max-width: 114.6rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.wrap--narrow {
+  max-width: 81.2rem;
+  width: 96%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header {
+  padding: 2em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  position: relative;
+  max-width: 124rem;
+  margin: 0 auto;
+}
+@media (max-width: 960px) {
+  .header {
+    padding: 2em 1em;
+  }
+}
+@media (max-width: 750px) {
+  .header {
+    padding: 2em 0.5em;
+  }
+}
+
+.header__home {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.header__home a {
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2em;
+}
+.header__home .home__icon {
+  width: 2rem;
+  height: 2rem;
+  fill: #4d4d4d;
+  transition: fill 0.2s;
+}
+.header__home a:hover .home__icon {
+  fill: #00b7c6;
+}
+.header__home .home__prompt {
+  opacity: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: opacity 0.2s;
+  display: inline-block;
+  padding: 0.7rem 0.5rem 0.3rem 0.5rem;
+  line-height: 1;
+}
+.header__home a:hover .home__prompt {
+  opacity: 1;
+}
+
+.header__content {
+  width: 70%;
+  padding-right: 2em;
+}
+@media (max-width: 960px) {
+  .header__content {
+    width: 100%;
+  }
+}
+
+.header__summary {
+  width: 30%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+@media (max-width: 960px) {
+  .header__summary {
+    width: 100%;
+  }
+}
+
+.header__title {
+  display: inline-block;
+  line-height: 1;
+  font-size: 2em;
+  font-weight: 700;
+  letter-spacing: 0;
+  border-bottom: 0.2rem solid rgba(77, 77, 77, 0.3);
+  margin-bottom: 2rem;
+}
+
+.header p {
+  margin-bottom: 1em;
+}
+
+.header__meta-value {
+  font-size: 4rem;
+  color: #00b7c6;
+  font-weight: 700;
+  display: block;
+  line-height: 1;
+}
+
+.header__meta-label {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.car {
+  width: 10em;
+  height: 5em;
+  fill: #666;
+}
+
+.car.car--320i {
+  width: 12em;
+  height: 5em;
+}
+
+.car.car--120i {
+  width: 10em;
+  height: 5em;
+}
+
+.car.car--107 {
+  width: 8em;
+  height: 4em;
+}
+
+.car__meta {
+  font-size: 1rem;
+}
+
+.car__name {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: #4d4d4d;
+  display: block;
+}
+
+.car__engine {
+  margin-right: 0.5rem;
+}
+
+.car__bhp {
+  margin-right: 0.5rem;
+}
+
+.car__year {
+  margin-right: 0.5rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 4em 2em;
+}
+.footer a {
+  border-bottom: 0.1rem solid #00b7c6;
+}
+
+.year__wrapper {
+  padding: 2em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  max-width: 124rem;
+  margin: 0 auto;
+}
+@media (max-width: 960px) {
+  .year__wrapper {
+    padding: 2em 1em;
+  }
+}
+@media (max-width: 750px) {
+  .year__wrapper {
+    padding: 2em 0.5em;
+  }
+}
+
+.year__meta {
+  width: 30%;
+  padding-right: 2em;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 960px) {
+  .year__meta {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
+.year__title {
+  font-size: 4em;
+  font-size: 15vw;
+  color: rgba(0, 183, 198, 0.3);
+  font-weight: 700;
+  line-height: 0.85;
+}
+@media (max-width: 960px) {
+  .year__title {
+    text-align: center;
+    font-size: 40vw;
+  }
+}
+
+.year__meta-value {
+  font-size: 2em;
+  font-weight: 700;
+  color: #00b7c6;
+}
+
+.year__graphs {
+  position: relative;
+  z-index: 2;
+  width: 70%;
+}
+@media (max-width: 960px) {
+  .year__graphs {
+    width: 100%;
+  }
+}
+
+.year__divider {
+  width: 100%;
+  margin-bottom: 2em;
+  position: relative;
+}
+.year__divider:before {
+  content: '';
+  display: block;
+  width: 80%;
+  height: 0.1rem;
+  background: #00b7c6;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.year__divider:after {
+  content: '';
+  display: block;
+  width: 5rem;
+  height: 2rem;
+  background: #fdfdfa;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.year__divider-icon {
+  display: block;
+  width: 3em;
+  height: 6em;
+  fill: #00b7c6;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+  padding-left: 0.2em;
+}
+
+.graph__wrapper {
+  margin-bottom: 2em;
+}
+
+.graph__title-wrapper {
+  padding-left: 0.6rem;
+  margin-bottom: 0.5em;
+}
+
+.graph__title {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.graph__marker {
+  fill: rgba(77, 77, 77, 0.15);
+}
+.graph__marker.graph__marker--strong {
+  fill: rgba(77, 77, 77, 0.3);
+  height: 0.2rem;
+  transform: translateY(-0.05rem);
+}
+
+.graph__background {
+  fill: #efeeeb;
+}
+
+.axis .domain {
+  stroke: none;
+}
+
+.axis .tick line {
+  stroke: #aca79a;
+}
+
+.frequency__bar {
+  fill: rgba(0, 183, 198, 0.6);
+}
+.frequency__bar:hover {
+  fill: #00b7c6;
+  stroke: #00b7c6;
+  stroke-width: 0.1rem;
+}
+
+.monthly__bar {
+  fill: rgba(0, 183, 198, 0.5);
+  transition: fill 0.2s;
+}
+
+.monthly__bar-label {
+  font-size: 1.6rem;
+  font-family: 'DecimaMono', 'Decima', Helvetica, Arial, sans-serif;
+  fill: #efeeeb;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(1.6rem);
+}
+
+.monthly__bar-wrapper:hover .monthly__bar-label {
+  opacity: 1;
+}
+
+.monthly__bar-wrapper:hover .monthly__bar {
+  fill: #00b7c6;
+}
+
+.circle {
+  fill: #00b7c6;
+}
+
+.average-line--median {
+  fill: #ff7c28;
+}
+
+.average-line--mean {
+  fill: rgba(255, 65, 54, 0.2);
+}
+
+.average-line--mode {
+  fill: rgba(255, 65, 54, 0.5);
+}
+
+.average-line__text {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.average-line__text--median {
+  fill: rgba(255, 124, 40, 0.8);
+}
+
+.average-line__text--mean {
+  fill: rgba(255, 65, 54, 0.2);
+  fill: #ff7c28;
+  transform: translateX(10em);
+}
+
+.average-line__text--mode {
+  fill: rgba(255, 65, 54, 0.5);
+  transform: translateX(5em);
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.invisible {
+  visibility: hidden;
+}
