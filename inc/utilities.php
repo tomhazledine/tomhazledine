@@ -2,7 +2,11 @@
 function parse_category_for_icon_slug( $raw_category ) {
     
     // Get the category slug, and make sure it's lowercase.
-    $category_slug = strtolower( $raw_category[0]->slug );
+    if (!empty($raw_category)) {
+        $category_slug = strtolower( $raw_category[0]->slug );
+    } else {
+        return 'pages';
+    }
 
     //
     switch ($category_slug) {
