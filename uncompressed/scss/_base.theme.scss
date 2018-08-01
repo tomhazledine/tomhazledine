@@ -1,102 +1,120 @@
-body{
-    font-size:1.6em;
-    width:90%;
-    max-width:54em;
-    padding:2em .5em;
-    margin:0 auto 4em;
-    color:$black;
-    background:$white;
+body {
+    font-size: 1.6em;
+    width: 90%;
+    max-width: 54em;
+    padding: 2em 0.5em;
+    margin: 0 auto 4em;
+    color: $black;
+    background: $white;
     // background:white;
-    font-family:$text;
-    line-height:1.7;
+    font-family: $text;
+    line-height: 1.7;
     // background:$cream;
-    @include bp(d3){
-        font-size:1.4em;
+    @include bp(d3) {
+        font-size: 1.4em;
     }
 }
 
-h1,h2,h3,h4,h5,h6{
-    font-weight:bold;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
     // font-family:$display;
     // padding:0 0 1em 0;
 }
 
-a{
-    color:$primary;
-    text-decoration:none;
+a {
+    color: $primary;
+    text-decoration: none;
 }
 
-h1{
-    font-weight:bold;
+h1 {
+    font-weight: bold;
     // font-size:1.3em;
-    padding-bottom:.2em;
+    padding-bottom: 0.2em;
     // margin-bottom:5em;
-    display:block;
+    display: block;
     // border-bottom:.1rem solid $grey;
 }
 
-h2{
+h2 {
     // font-size:1.2em;
 }
 
-h2,h3,h4,h5,h6{
-    display:inline;
+h2,
+h3,
+h4,
+h5,
+h6 {
+    display: inline;
     // padding-bottom:.5em;
 }
 
-p{
-    margin-bottom:1em;
+p {
+    margin-bottom: 1em;
 }
 
-pre{
-    font-family:monospace;
-    margin:1em 0;
-    // padding:.1em;
-    border-radius:.5em;
-    border:.1rem solid $grey;
-    overflow:hidden;
-    // border-radius:.5em;
-    // background:$grey;
+em {
+    font-style: italic;
 }
 
-em{
-    font-style:italic;
-}
-
-strong{
-    font-weight:bold;
+strong {
+    font-weight: bold;
 }
 
 sub,
-sup{
+sup {
     // Specified in % so that the sup/sup is the right size relative to the surrounding text.
-    font-size:75%;
+    font-size: 75%;
 
     // Zero out the line-height so that it doesn't interfere with the positioning that follows.
-    line-height:0;
+    line-height: 0;
 
     // Where the magic happens: makes all browsers position the sup/sup properly, relative to the surrounding text.
-    position:relative;
+    position: relative;
 
     // Note that if you're using Eric Meyer's reset.css, this is already set and you can remove this rule
     // vertical-align: baseline;
 }
 
 sup {
-  // Move the superscripted text up.
-  top:-0.5em;
+    // Move the superscripted text up.
+    top: -0.5em;
 }
 
 sub {
-  // Move the subscripted text down, but only half as far down as the superscript moved up.
-  bottom:-0.25em;
+    // Move the subscripted text down, but only half as far down as the superscript moved up.
+    bottom: -0.25em;
 }
 
-code{
-    font-family:$code;
-    line-height:1.2em;
-    font-size:.8em;
-    background:$cream;
-    padding-right:.2em;
-    padding-left:.3em;
+article > code,
+p > code {
+    font-family: $code;
+    line-height: 1.2em;
+    font-size: 0.8em;
+    background: $cream;
+    padding-right: 0.2em;
+    padding-left: 0.3em;
+}
+
+pre {
+    font-family: monospace;
+    // padding:.1em;
+    border-radius: 0.5em;
+    // border: 0.1rem solid $grey;
+    overflow: hidden;
+    // border-radius:.5em;
+    // background:$grey;
+    font-size: 0.8em;
+    background: #2d2d2d;
+    padding: 1em;
+    margin: 1em 0 !important;
+    overflow: auto;
+    > code {
+        color: $white;
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    }
 }

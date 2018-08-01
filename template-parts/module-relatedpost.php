@@ -23,8 +23,9 @@ if ( !empty($related_posts) && count( $related_posts ) > 0 ) {
         wp_reset_postdata();
     }
 
-} else {
-
-    get_template_part('template-parts/module','singlenavigation');
-
 }
+// } else {
+
+get_template_part('template-parts/module','singlenavigation');
+
+// }

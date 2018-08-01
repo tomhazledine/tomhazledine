@@ -30,11 +30,22 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['env']
+                    presets: ['env'],
+                    plugins: [
+                        [
+                            'prismjs',
+                            {
+                                languages: ['javascript', 'css', 'markup', 'php', 'bash'],
+                                plugins: ['line-numbers'],
+                                theme: 'tomorrow',
+                                css: true
+                            }
+                        ]
+                    ]
                 }
             },
             {
-                test: /\.scss$/,
+                test: /\.(scss|css|sass)$/,
                 use: [
                     // // fallback to style-loader in development
                     // process.env.NODE_ENV !== 'production'
