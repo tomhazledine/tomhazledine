@@ -62,5 +62,5 @@ require get_template_directory() . '/inc/social.php';
 // Utilities.
 require get_template_directory() . '/inc/utilities.php';
 
-// Custom filters.
-// require get_template_directory() . '/inc/filters-actions.php';
+// Showcase custom post type
+require get_template_directory() . '/inc/posttype-showcase.php';
