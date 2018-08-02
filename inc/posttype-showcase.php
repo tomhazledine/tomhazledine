@@ -21,7 +21,7 @@ function showcase_post_type() {
         'label'               => __( 'Showcase', 'text_domain' ),
         'description'         => __( 'Showcase information pages', 'text_domain' ),
         'labels'              => $labels,
-        'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'custom-fields', ),
+        'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', ),
         'taxonomies'          => array( 'locations_tax' ),
         'hierarchical'        => false,
         'public'              => true,
@@ -39,9 +39,28 @@ function showcase_post_type() {
         'show_in_rest'        => true,
         'rewrite'             => array('slug' => 'showcase')
     );
-    register_post_type( 'Showcase', $args );
+    register_post_type( 'showcase', $args );
 
 }
 
 // Hook into the 'init' action
 add_action( 'init', 'showcase_post_type', 0 );
+
+// 
+function create_my_taxonomies() {
+    register_taxonomy(
+        'showcase_topic',
+        'showcase',
+        array(
+            'labels' => array(
+                'name' => 'Showcase Topic',
+                'add_new_item' => 'Add New Showcase Topic',
+                'new_item_name' => "New Showcase Topic"
+            ),
+            'show_ui' => true,
+            'show_tagcloud' => false,
+            'hierarchical' => true
+        )
+    );
+}
+add_action( 'init', 'create_my_taxonomies', 0 );
